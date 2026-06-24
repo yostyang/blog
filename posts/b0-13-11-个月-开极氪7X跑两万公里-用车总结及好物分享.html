@@ -144,6 +144,35 @@
   
   <nav class="nav-links"><a class="prev" href="b2-21-人生的首个全马-倒计时-30-天-我做了这些准备.html"><span>← 上一篇</span>人生的首个全马，倒计时 30 天，我做了这些准备……</a><a class="next" href="b3-23-嘿-还记得-为QQ等级挂机-的岁月吗-来晒晒你的等级吧.html"><span>下一篇 →</span>嘿！还记得“为QQ等级挂机”的岁月吗？来晒晒你的等级吧！</a></nav>
 </article>
+<nav class="post-toc" id="postToc" hidden><div class="toc-title">目录</div><ul></ul></nav>
 <footer class="site-foot"><b>约斯特普通</b> · © 2026</footer>
+<script>
+(function(){
+  var content=document.querySelector('.post .content');
+  var toc=document.getElementById('postToc');
+  if(!content||!toc)return;
+  var hs=content.querySelectorAll('h2,h3');
+  if(hs.length<2)return;          // 标题太少不显示目录
+  var ul=toc.querySelector('ul'),items=[];
+  hs.forEach(function(h,i){
+    if(!h.id)h.id='sec-'+i;
+    var li=document.createElement('li');li.className='toc-'+h.tagName.toLowerCase();
+    var a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      window.scrollTo({top:h.getBoundingClientRect().top+window.scrollY-76,behavior:'smooth'});
+      history.replaceState(null,'','#'+h.id);
+    });
+    li.appendChild(a);ul.appendChild(li);items.push({h:h,a:a});
+  });
+  toc.hidden=false;
+  function spy(){
+    var pos=window.scrollY+130,cur=items[0];
+    items.forEach(function(it){if(it.h.offsetTop<=pos)cur=it;});
+    items.forEach(function(it){it.a.classList.toggle('active',it===cur);});
+  }
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
 </body>
 </html>

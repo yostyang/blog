@@ -160,6 +160,35 @@
   <div class="post-tags"><a class="post-tag" href="../index.html?tag=选车">#选车</a><a class="post-tag" href="../index.html?tag=极氪7X">#极氪7X</a></div>
   <nav class="nav-links"><a class="prev" href="b0-24-从比亚迪唐到极氪7X-9年新能源车主的23篇真实用车记录.html"><span>← 上一篇</span>从比亚迪唐到极氪7X：9年新能源车主的23篇真实用车记录</a><a class="next" href="b0-26-开极氪7X跑了3万公里-我才理解汽车的情绪价值.html"><span>下一篇 →</span>开极氪7X跑了3万公里，我才理解汽车的情绪价值</a></nav>
 </article>
+<nav class="post-toc" id="postToc" hidden><div class="toc-title">目录</div><ul></ul></nav>
 <footer class="site-foot"><b>约斯特普通</b> · © 2026</footer>
+<script>
+(function(){
+  var content=document.querySelector('.post .content');
+  var toc=document.getElementById('postToc');
+  if(!content||!toc)return;
+  var hs=content.querySelectorAll('h2,h3');
+  if(hs.length<2)return;          // 标题太少不显示目录
+  var ul=toc.querySelector('ul'),items=[];
+  hs.forEach(function(h,i){
+    if(!h.id)h.id='sec-'+i;
+    var li=document.createElement('li');li.className='toc-'+h.tagName.toLowerCase();
+    var a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      window.scrollTo({top:h.getBoundingClientRect().top+window.scrollY-76,behavior:'smooth'});
+      history.replaceState(null,'','#'+h.id);
+    });
+    li.appendChild(a);ul.appendChild(li);items.push({h:h,a:a});
+  });
+  toc.hidden=false;
+  function spy(){
+    var pos=window.scrollY+130,cur=items[0];
+    items.forEach(function(it){if(it.h.offsetTop<=pos)cur=it;});
+    items.forEach(function(it){it.a.classList.toggle('active',it===cur);});
+  }
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
 </body>
 </html>
