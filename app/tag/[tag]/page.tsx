@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EssayList } from "@/components/EssayList";
+import { essayFromPost } from "@/lib/essay";
 import { decodeParam } from "@/lib/params";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
 
@@ -42,7 +43,7 @@ export default async function TagPage({ params }: Props) {
         <p className="page-lede">
           标签「{tag}」下的 {posts.length} 篇文章。
         </p>
-        <EssayList posts={posts} />
+        <EssayList posts={posts.map(essayFromPost)} />
       </div>
     </main>
   );

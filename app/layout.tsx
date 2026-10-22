@@ -39,7 +39,8 @@ export const metadata: Metadata = {
     description: site.description,
   },
   icons: {
-    icon: [{ url: "/avatar.jpg", type: "image/jpeg" }],
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png" }],
   },
 };
 
@@ -54,15 +55,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <footer className="site-footer">
           <div className="wrap">
-            <div>
-              <strong>{site.name}</strong>
-              <p>{site.description}</p>
+            <div className="follow">
+              <img src="/qrcode.jpg" alt="公众号「约斯特普通」二维码" width={88} height={88} />
+              <div>
+                <strong>扫码关注约斯特普通</strong>
+                <p>用车体验、纯电转型记录和长期测评，公众号同步更新。</p>
+              </div>
             </div>
             <nav aria-label="页脚">
               <Link href="/articles">全部文章</Link>
-              <Link href="/me">关于我</Link>
-              <Link href="/search">搜索</Link>
+              <Link href="/memo">备忘录</Link>
               <a href="/rss.xml">RSS 订阅</a>
+              <Link href="/me">关于我</Link>
             </nav>
           </div>
         </footer>

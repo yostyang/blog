@@ -50,6 +50,8 @@ function loadPosts(): Post[] {
       ? data.tags.filter((tag): tag is string => typeof tag === "string" && tag.trim() !== "")
       : [];
     const order = typeof data.order === "number" ? data.order : -1;
+    const featured = data.featured === true;
+    const alias = asOptionalPath(data.alias);
     return {
       slug,
       title: asString(data.title, file, "title"),
@@ -60,6 +62,9 @@ function loadPosts(): Post[] {
       thumb: asOptionalPath(data.thumb),
       cover: asOptionalPath(data.cover),
       order,
+      featured,
+      alias,
+      path: featured ? `/articles/${alias || slug}` : `/posts/${slug}`,
       content: content.trim(),
     } satisfies Post;
   });
@@ -82,6 +87,10 @@ export function getAllPosts(): PostMeta[] {
   return loadPosts().map(toMeta);
 }
 
+export function getAllPostRecords(): Post[] {
+  return loadPosts();
+}
+
 export function getPost(slug: string): Post | undefined {
   return loadPosts().find((post) => post.slug === slug);
 }
@@ -90,8 +99,36 @@ export function getPostsByCategory(category: string): PostMeta[] {
   return getAllPosts().filter((post) => post.category === category);
 }
 
+export function getFeaturedPosts(): PostMeta[] {
+  return getAllPosts().filter((post) => post.featured);
+}
+
+export function getFeaturedPost(slug: string): Post | undefined {
+  return loadPosts().find((post) => post.featured && (post.slug === slug || post.alias === slug));
+}
+
 export function getPostsByTag(tag: string): PostMeta[] {
   return getAllPosts().filter((post) => post.tags.includes(tag));
+}
+
+export function getFeaturedTags() {
+  const counts = new Map<string, number>();
+  for (const post of getFeaturedPosts()) {
+    for (const tag of post.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "zh-CN"));
+}
+
+export function getAdjacentFeatured(slug: string) {
+  const posts = getFeaturedPosts();
+  const index = posts.findIndex((post) => post.slug === slug);
+  if (index < 0) return { older: null, newer: null };
+  return {
+    older: posts[index + 1] ?? null,
+    newer: posts[index - 1] ?? null,
+  };
 }
 
 export function getAllTags() {

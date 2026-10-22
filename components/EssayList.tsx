@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { formatDate } from "@/lib/format";
-import type { PostMeta } from "@/lib/types";
+import type { EssayListItem } from "@/lib/types";
 
-export function EssayList({ posts }: { posts: PostMeta[] }) {
+export function EssayList({ posts }: { posts: EssayListItem[] }) {
   if (posts.length === 0) {
     return <p className="empty">没有匹配的文章</p>;
   }
@@ -10,32 +10,29 @@ export function EssayList({ posts }: { posts: PostMeta[] }) {
   return (
     <ul className="essay-list">
       {posts.map((post) => (
-        <li className={post.thumb ? "essay" : "essay no-cover"} key={post.slug}>
+        <li className={post.thumb ? "essay" : "essay no-cover"} key={post.key}>
           <div>
             <div className="meta num">
               <time dateTime={post.date}>{formatDate(post.date)}</time>
             </div>
-            <Link className="title" href={`/posts/${post.slug}`}>
+            <Link className="title" href={post.href}>
               <h3>{post.title}</h3>
             </Link>
             <p>{post.excerpt}</p>
-            <ul className="tags">
-              <li>
-                <Link className="tag" href={`/category/${post.category}`}>
-                  {post.category}
-                </Link>
-              </li>
-              {post.tags.map((tag) => (
-                <li key={tag}>
-                  <Link className="tag" href={`/tag/${tag}`}>
-                    {tag}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {post.tags.length > 0 ? (
+              <ul className="tags">
+                {post.tags.map((tag) => (
+                  <li key={tag.name}>
+                    <Link className="tag" href={tag.href}>
+                      {tag.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
           {post.thumb ? (
-            <Link href={`/posts/${post.slug}`} tabIndex={-1} aria-hidden="true">
+            <Link href={post.href} tabIndex={-1} aria-hidden="true">
               <img
                 className="cover"
                 src={post.thumb}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EssayList } from "@/components/EssayList";
 import { CATEGORIES } from "@/lib/categories";
+import { essayFromPost } from "@/lib/essay";
 import { getAllPosts } from "@/lib/posts";
 import type { PostMeta } from "@/lib/types";
 
@@ -39,7 +40,7 @@ export function ArticleIndex({
             </Link>
           ))}
         </nav>
-        <EssayList posts={posts} />
+        <EssayList posts={posts.map(essayFromPost)} />
       </div>
     </main>
   );

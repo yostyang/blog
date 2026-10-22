@@ -229,6 +229,10 @@ main {
   padding-block: clamp(2rem, 5vw, 3.5rem) 4rem;
 }
 
+.me-page main {
+  padding: 0;
+}
+
 .page-title {
   margin: 0;
   font-size: var(--step-4);
@@ -257,7 +261,7 @@ main {
 }
 
 .intro-copy .page-title {
-  max-width: 12em;
+  max-width: 14em;
 }
 
 .intro-actions {
@@ -908,6 +912,163 @@ a.tag:hover {
   color: var(--ink);
 }
 
+.follow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.follow img {
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.follow strong {
+  display: block;
+}
+
+.follow p {
+  max-width: 22em;
+  margin: 0.25rem 0 0;
+}
+
+.memo-head {
+  max-width: 46rem;
+}
+
+.memo-cals {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.memo-cals .cal-month {
+  flex: none;
+  width: 11.5rem;
+}
+
+.memo-list {
+  max-width: 52rem;
+}
+
+.ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  align-items: stretch;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger-date {
+  padding: 0.95rem 0.9rem 0.95rem 0;
+  border-right: 3px double var(--red);
+  text-align: right;
+  line-height: 1.25;
+}
+
+.ledger-date b {
+  display: block;
+  color: var(--ink);
+  font-size: 1.375rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger-date span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.ledger-body {
+  min-width: 0;
+  padding: 0.95rem 0 0.95rem 1.1rem;
+}
+
+.ledger-body a.line {
+  display: block;
+  color: var(--ink);
+  line-height: 1.75;
+}
+
+.ledger-body a.line:hover {
+  color: var(--blue-ink);
+  text-decoration: underline 1px;
+  text-underline-offset: 4px;
+}
+
+.ledger-body .tags {
+  margin-top: 0.45rem;
+}
+
+.ledger-month {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 2.25rem 0 0;
+  padding: 0 0 0.4rem;
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--step-1);
+}
+
+.ledger-month small {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.more-tags {
+  display: contents;
+}
+
+.more-tags summary {
+  padding: 0.3rem 0.7rem;
+  color: var(--blue);
+  font-size: 0.875rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.more-tags summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-tags[open] summary {
+  display: none;
+}
+
+.more-tags .filters {
+  display: contents;
+  margin: 0;
+}
+
+@media (width <= 560px) {
+  .ledger-row {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+  }
+
+  .ledger-date {
+    padding-right: 0.6rem;
+  }
+
+  .ledger-date b {
+    font-size: 1.125rem;
+  }
+
+  .ledger-body {
+    padding-left: 0.75rem;
+  }
+}
+
 .not-found-actions {
   margin-top: 1.75rem;
 }
@@ -1027,8 +1188,14 @@ a.tag:hover {
 }
 
 .cal a.d {
-  color: #fff;
+  background: var(--blue);
+  color: var(--on-blue);
   font-weight: 600;
+}
+
+.cal .d.today {
+  outline: 1.5px solid var(--red);
+  outline-offset: -1.5px;
 }
 
 .cal a.d:hover {
