@@ -4,21 +4,16 @@ import { useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { EssayList } from "@/components/EssayList";
 import { commitQuery, useSiteQuery } from "@/lib/query";
-import type { PostMeta } from "@/lib/types";
+import type { SearchDoc } from "@/lib/essay";
 
-function matches(post: PostMeta, query: string) {
-  const haystack = `${post.title}\n${post.excerpt}\n${post.category}\n${post.tags.join("\n")}`.toLowerCase();
-  return haystack.includes(query);
-}
-
-export function SearchScreen({ posts }: { posts: PostMeta[] }) {
+export function SearchScreen({ docs }: { docs: SearchDoc[] }) {
   const query = useSiteQuery();
   const pathname = usePathname();
   const composing = useRef(false);
   const [draft, setDraft] = useState<string | null>(null);
   const value = draft ?? query;
   const needle = query.trim().toLowerCase();
-  const visible = needle ? posts.filter((post) => matches(post, needle)) : [];
+  const visible = needle ? docs.filter((doc) => doc.haystack.includes(needle)) : [];
 
   function publish(next: string) {
     setDraft(null);
@@ -38,12 +33,12 @@ export function SearchScreen({ posts }: { posts: PostMeta[] }) {
           }}
         >
           <label className="visually-hidden" htmlFor="q">
-            搜索文章
+            搜索文章和备忘录
           </label>
           <input
             id="q"
             type="search"
-            placeholder="比如：极氪、马拉松、减重"
+            placeholder="比如：极氪、马拉松、以旧换新"
             value={value}
             autoComplete="off"
             enterKeyHint="search"
@@ -69,7 +64,13 @@ export function SearchScreen({ posts }: { posts: PostMeta[] }) {
           </button>
         </form>
         <p className="result-count">
-          {needle ? `找到 ${visible.length} 篇` : "按标题、摘要、专题或标签查找。"}
+          {needle ? (
+            <>
+              「{query.trim()}」找到 <b className="num">{visible.length}</b> 篇，搜索范围包括标题、摘要、标签和正文。
+            </>
+          ) : (
+            "按标题、摘要、标签或正文查找。"
+          )}
         </p>
         {needle ? <EssayList posts={visible} /> : null}
       </div>

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EssayList } from "@/components/EssayList";
-import { MonthCalendar } from "@/components/WritingCalendar";
-import { indexDays } from "@/lib/calendar";
-import { CATEGORIES } from "@/lib/categories";
-import { getAllPosts } from "@/lib/posts";
+import { LedgerList } from "@/components/LedgerList";
+import { memoIndex, WeekCalendar } from "@/components/MemoCalendar";
+import { shanghaiToday, weekContaining } from "@/lib/calendar";
+import { essayFromPost } from "@/lib/essay";
+import { formatDate } from "@/lib/format";
+import { getAllMemos } from "@/lib/memos";
+import { getFeaturedPosts, getFeaturedTags } from "@/lib/posts";
 import { getSiteUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -19,13 +22,12 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const posts = getAllPosts();
-  const latest = posts[0];
-  const days = indexDays(posts);
-  const [calYear, calMonth] = latest ? latest.date.split("-").map(Number) : [0, 0];
-  const counts = new Map<string, number>();
-  for (const post of posts) counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
-
+  const posts = getFeaturedPosts();
+  const memos = getAllMemos();
+  const latest = memos[0];
+  const today = shanghaiToday();
+  const week = weekContaining(today);
+  const tags = getFeaturedTags().filter((tag) => tag.count >= 2);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -48,7 +50,7 @@ export default function HomePage() {
         <div className="wrap">
           <section className="intro">
             <div className="intro-copy">
-              <h1 className="page-title">一个普通中年男人的记录。</h1>
+              <h1 className="page-title">{site.hero}</h1>
               <p className="page-lede">{site.lede}</p>
               <div className="intro-actions">
                 <Link className="btn" href="/articles">
@@ -57,39 +59,51 @@ export default function HomePage() {
               </div>
             </div>
             <aside className="intro-card" aria-labelledby="cal-title">
-              <h2 id="cal-title">写作日历</h2>
+              <h2 id="cal-title">产业与普通人备忘录</h2>
               <p className="card-note">
-                有颜色的日子写过文章。
-                <Link href="/me">完整日历</Link>
-                在关于我。
+                每天一篇，从官方叙事和产业变化里，记下普通人的账本。蓝色的日子可以点开，
+                <Link href="/memo">完整日历</Link>
+                在备忘录页。
               </p>
-              {latest ? <MonthCalendar year={calYear} month={calMonth} days={days} /> : null}
+              <WeekCalendar days={week} memos={memoIndex(memos)} today={today} />
               {latest ? (
-                <Link className="card-latest" href={`/posts/${latest.slug}`}>
-                  <span className="num">最新 · {latest.date.replaceAll("-", ".")}</span>
-                  {latest.title}
+                <Link className="card-latest" href={latest.path}>
+                  <span className="num">最新 · {formatDate(latest.date)}</span>
+                  {latest.excerpt}
                 </Link>
               ) : null}
             </aside>
           </section>
-          <section className="section" aria-labelledby="latest-title">
+
+          <section className="section" aria-labelledby="picks">
             <div className="section-head">
-              <h2 id="latest-title">最新文章</h2>
+              <h2 id="picks">推荐阅读</h2>
               <Link className="more" href="/articles">
                 全部 {posts.length} 篇文章
               </Link>
             </div>
-            <EssayList posts={posts.slice(0, 6)} />
+            <EssayList posts={posts.slice(0, 6).map(essayFromPost)} />
           </section>
-          <section className="section" aria-labelledby="topics-title">
+
+          <section className="section" aria-labelledby="recent-memos">
             <div className="section-head">
-              <h2 id="topics-title">按专题读</h2>
+              <h2 id="recent-memos">最近的备忘录</h2>
+              <Link className="more" href="/memo">
+                共 {memos.length} 天
+              </Link>
             </div>
-            <nav className="filters" aria-labelledby="topics-title">
-              {CATEGORIES.map((category) => (
-                <Link key={category.name} href={`/category/${category.name}`}>
-                  {category.name}
-                  <small>{counts.get(category.name) ?? 0}</small>
+            <LedgerList memos={memos.slice(0, 6)} />
+          </section>
+
+          <section className="section" aria-labelledby="topics">
+            <div className="section-head">
+              <h2 id="topics">按话题读</h2>
+            </div>
+            <nav className="filters" aria-labelledby="topics">
+              {tags.map((tag) => (
+                <Link key={tag.name} href={`/articles?tag=${encodeURIComponent(tag.name)}`}>
+                  {tag.name}
+                  <small>{tag.count}</small>
                 </Link>
               ))}
             </nav>

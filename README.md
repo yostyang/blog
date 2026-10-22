@@ -1,15 +1,23 @@
 # 约斯特普通
 
-一个普通中年男人的电车、跑步、生活与成长记录。站点用 Next.js（App Router）静态生成。版式是浅纸色底、墨蓝字和蓝色链接，导航是首页、文章、关于我、搜索。首页右侧是按真实发文日期画的写作日历。
+7 年插混车主转纯电。站点用 Next.js（App Router）静态生成，正式域名是 https://yostyang.com 。版式是浅纸色底、墨蓝字和蓝色链接。导航是首页、文章、备忘录、关于我、搜索。
 
-仓库里原来的静态导出共 **175** 篇独立文章（旧 README 按专题加总写成 179，和实际 HTML 对不上）。这 175 篇已全部迁到 `content/posts`，配图和头像都在。
+正文分两层：
 
-| 专题 | 篇数 |
-| --- | --- |
-| 电车出行 | 26 |
-| 跑步 | 27 |
-| 中年成长 | 28 |
-| 生活随笔 | 94 |
+- **推荐文章**（`featured: true`）来自 https://yost-pt.top/ 的 20 篇长文，地址是 `/articles/<slug>`。和仓库里旧稿标题相同的，更新旧稿而不是另存一篇，公开地址用源站 slug（frontmatter 的 `alias`）。
+- **归档**是原来的 175 篇，加上上面没有对应旧稿的新文章，地址仍是 `/posts/<文件名>`。同一标题在多本旧文集里重复出现时，正文都会更新，只有文件名排序后的第一篇标成推荐。
+- **备忘录**在 `content/memos/`，大约每天一篇，地址是 `/articles/memo-YYYY-MM-DD`，日历和话题筛选在 `/memo`。
+
+从源站重新拉正文、配图和关于我页面：
+
+```bash
+python3 scripts/import-yost.py
+python3 scripts/import-yost.py --only articles
+python3 scripts/import-yost.py --only memos
+python3 scripts/import-yost.py --only about
+```
+
+微信图床的图会经源站 `/api/import` 转存到 `public/images/yost/`。关于我页面的图在 `public/assets/me/`。
 
 ## 本地运行
 
@@ -29,18 +37,24 @@ npm run build
 npm start
 ```
 
-`npm run build` 会预渲染首页、文章列表、关于我、搜索页、4 个专题页、标签页和全部文章页。
+`npm run build` 会预渲染首页、文章列表、备忘录、关于我、搜索页、4 个专题页、标签页、全部文章和全部备忘录。
 
 ## 目录
 
 ```
-app/                  路由：首页、文章列表、专题、标签、文章、搜索、RSS、sitemap
-components/           导航、文章列表、正文、目录、搜索
+app/                  路由：首页、文章、备忘录、关于我、专题、标签、搜索、RSS、sitemap
+components/           导航、文章列表、备忘录日历、正文、目录、搜索
 content/posts/*.md    文章（Markdown + frontmatter）
-lib/                  读取文章与站点配置
+content/memos/*.md    产业与普通人备忘录
+content/about/        关于我页面的 HTML 和脚本
+lib/                  读取文章、备忘录与站点配置
 public/avatar.jpg     头像
+public/favicon.png    站点图标
+public/qrcode.jpg     页脚公众号二维码
 public/images/        正文配图
-public/images/thumbs/ 列表缩略图
+public/images/yost/   从 yost-pt.top 转存的配图
+public/assets/me/     关于我页面的配图
+scripts/import-yost.py  从 yost-pt.top 导入内容
 ```
 
 ## 新增一篇文章
@@ -67,24 +81,27 @@ cover: "/images/thumbs/sm_example.jpg"
 - `category` 只能是 `电车出行`、`跑步`、`中年成长`、`生活随笔` 之一。要增加专题，改 `lib/categories.ts`。
 - `date` 用引号包住的 `YYYY-MM-DD`。同一天有多篇时，可以用可选字段 `order`（数字越小越靠前）固定顺序。不写 `order` 时，新文章会排在同一天已有文章的前面。
 - 图片放到 `public/images/`，文中写成 `/images/文件名.jpg`。`thumb` 是列表右侧缩略图，`cover` 用于分享卡片；没有配图时这两个字段可以不写。
-- `tags` 可选。写了之后，列表和文首标签会链到 `/tag/标签名`。
+- `tags` 可选。归档文章的标签链到 `/tag/标签名`。推荐文章（`featured: true`）的标签链到 `/articles?tag=`。
+- 可选 `featured: true` 把文章放进首页「推荐阅读」和 `/articles`。可选 `alias` 作为 `/articles/` 下的公开 slug；不写就用文件名。
 
-保存后重新跑 `npm run dev` 或 `npm run build` 即可。首页「最新文章」会带上这篇，不用改页面代码。
+保存后重新跑 `npm run dev` 或 `npm run build` 即可。
 
 ## 部署到 Vercel
 
 1. 把仓库推到 GitHub。
 2. 在 Vercel 里 Import 这个仓库。框架选 Next.js，构建命令 `npm run build`，输出目录保持默认（不要改成静态导出目录）。
-3. 可选：设置环境变量 `NEXT_PUBLIC_SITE_URL` 为正式域名，例如 `https://example.com`（不要末尾斜杠）。RSS、sitemap 和分享卡片会用它做绝对地址。不设置时，Vercel 会退回到本次部署的域名。
+3. 可选：设置环境变量 `NEXT_PUBLIC_SITE_URL`（不要末尾斜杠）。RSS 和 sitemap 会用它做绝对地址。不设置时使用 https://yostyang.com 。
 
-部署完成后这些地址可用：
+这些地址可用：
 
-- `/` 首页（含当月写作日历）
-- `/articles` 全部文章，可用专题筛选
-- `/me` 关于我，含全部写作日历
-- `/category/电车出行` 等专题页
-- `/search` 搜索
-- `/posts/文章文件名` 文章页（文末有上一篇、下一篇）
+- `/` 首页：推荐阅读、本周备忘录、按话题读
+- `/articles` 推荐文章，可用 `?tag=` 筛选
+- `/memo` 备忘录日历，可用 `?tag=` 筛选
+- `/articles/memo-YYYY-MM-DD` 某一天的备忘录
+- `/me` 关于我（`/about` 会 308 到这里）
+- `/category/电车出行` 等专题页（含归档）
+- `/search` 搜索文章和备忘录
+- `/posts/文章文件名` 归档文章，推荐文章也会在这里打开，规范地址是 `/articles/`
 - `/rss.xml` 订阅
 - `/sitemap.xml` 站点地图
 

@@ -9,10 +9,16 @@ const links = [
     name: "文章",
     href: "/articles",
     current: (path: string) =>
-      path.startsWith("/articles") ||
+      path === "/articles" ||
+      (path.startsWith("/articles/") && !path.startsWith("/articles/memo-")) ||
       path.startsWith("/category") ||
       path.startsWith("/posts") ||
       path.startsWith("/tag"),
+  },
+  {
+    name: "备忘录",
+    href: "/memo",
+    current: (path: string) => path.startsWith("/memo") || path.startsWith("/articles/memo-"),
   },
   { name: "关于我", href: "/me", current: (path: string) => path.startsWith("/me") },
   { name: "搜索", href: "/search", current: (path: string) => path.startsWith("/search") },

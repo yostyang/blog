@@ -67,7 +67,7 @@ export function MobileToc({ headings }: { headings: Heading[] }) {
 
   return (
     <details className="toc-mobile">
-      <summary>目录</summary>
+      <summary>目录 · {headings.length} 节</summary>
       <ol>
         {headings.map((heading) => (
           <li key={heading.id} className={heading.level === 3 ? "l3" : "l2"}>

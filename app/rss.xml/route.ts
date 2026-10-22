@@ -1,3 +1,4 @@
+import { getAllMemos } from "@/lib/memos";
 import { getAllPosts } from "@/lib/posts";
 import { getSiteUrl, site } from "@/lib/site";
 
@@ -13,17 +14,33 @@ function xml(value: string) {
 
 export function GET() {
   const origin = getSiteUrl();
-  const posts = getAllPosts();
-  const items = posts
-    .map((post) => {
-      const link = `${origin}/posts/${encodeURIComponent(post.slug)}`;
-      const description = post.excerpt.replace(/]]>/g, "]]&gt;");
+  const entries = [
+    ...getAllPosts().map((post) => ({
+      title: post.title,
+      link: `${origin}${post.path}`,
+      date: post.date,
+      excerpt: post.excerpt,
+      categories: [post.category, ...post.tags],
+    })),
+    ...getAllMemos().map((memo) => ({
+      title: memo.title,
+      link: `${origin}${memo.path}`,
+      date: memo.date,
+      excerpt: memo.excerpt,
+      categories: memo.tags,
+    })),
+  ].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+
+  const items = entries
+    .map((entry) => {
+      const description = entry.excerpt.replace(/]]>/g, "]]&gt;");
+      const categories = entry.categories.map((category) => `<category>${xml(category)}</category>`).join("");
       return `<item>
-      <title>${xml(post.title)}</title>
-      <link>${link}</link>
-      <guid isPermaLink="true">${link}</guid>
-      <pubDate>${new Date(`${post.date}T00:00:00+08:00`).toUTCString()}</pubDate>
-      <category>${xml(post.category)}</category>
+      <title>${xml(entry.title)}</title>
+      <link>${entry.link}</link>
+      <guid isPermaLink="true">${entry.link}</guid>
+      <pubDate>${new Date(`${entry.date}T00:00:00+08:00`).toUTCString()}</pubDate>
+      ${categories}
       <description><![CDATA[${description}]]></description>
     </item>`;
     })

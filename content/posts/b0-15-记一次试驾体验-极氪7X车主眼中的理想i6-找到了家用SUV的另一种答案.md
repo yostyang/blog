@@ -1,14 +1,21 @@
 ---
 title: "记一次试驾体验：极氪7X车主眼中的理想i6，找到了家用SUV的另一种答案"
-date: "2025-12-09"
+date: "2026-05-24"
 category: "电车出行"
-excerpt: "昨天，终于试驾了理想的车，之前理想 L 系列卖的很好的时候，并没有想去试驾，主要是基于两个点："
-order: 19
-thumb: "/images/thumbs/sm_b0_a15_01a33b2f22.jpg"
-cover: "/images/thumbs/sm_b0_a15_01a33b2f22.jpg"
+excerpt: "如果再今年再让我选一次，我依然选 7x，但 i6绝对是家用SUV的另一种答案。"
+tags:
+  - "新能源汽车"
+  - "极氪7X"
+  - "试驾体验"
+  - "理想i6"
+thumb: "/images/yost/216c650569f57937.jpg"
+cover: "/images/yost/216c650569f57937.jpg"
+order: 5
+featured: true
+alias: "7x-i6-suv"
 ---
 
-一、引子
+## 一、引子
 
 昨天，终于试驾了理想的车，之前理想 L 系列卖的很好的时候，并没有想去试驾，主要是基于两个点：
 
@@ -24,9 +31,9 @@ cover: "/images/thumbs/sm_b0_a15_01a33b2f22.jpg"
 
 ---
 
-二、第一次试驾理想的车
+## 二、第一次试驾理想的车
 
-和销售沟通后，决定试驾两驱版本， 这辆车选配了后排屏幕和电子后视镜。
+和销售沟通后，决定试驾两驱版本，这辆车选配了后排屏幕和电子后视镜。
 
 PS：下面的所有图片，都是用手机来随手拍的，部分场景受限于光线和时间因素，拍出来的图不够好，可能和实际情况有出入。
 
@@ -34,7 +41,7 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 ① 签署纸质协议
 
-对的，你没有看错，是纸质协议， 要手写姓名、身份证号、联系方式。
+对的，你没有看错，是纸质协议，要手写姓名、身份证号、联系方式。
 
 瞬间让我回到七八年前，当时试驾比亚迪的时候，需要带好驾照和签纸质协议。
 
@@ -52,63 +59,63 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 和销售一起从商场的地下车库上车，先试乘后试驾。
 
-![](/images/b0_a15_01a33b2f22.jpg)
+![](/images/yost/216c650569f57937.jpg)
 
 上车后，刚出车库销售便开启导航，位置是附近的理想超充站，接着便把换挡拨杆往下拨动两下，开启智驾。
 
-![](/images/b0_a15_bad775fdd8.jpg)
+![](/images/yost/c2257f56a10d1d1e.jpg)
 
 前排的两个大屏
 
-![](/images/b0_a15_f44d3b2579.jpg)
+![](/images/yost/87e99bab5f9ca72e.jpg)
 
-![](/images/b0_a15_b78a8a0503.jpg)
+![](/images/yost/63aab8487761aca2.jpg)
 
 主驾视角
 
-![](/images/b0_a15_20b10e6c79.jpg)
+![](/images/yost/2e20c7f0af670a46.jpg)
 
 后备箱下沉空间
 
-![](/images/b0_a15_22586a93fc.jpg)
+![](/images/yost/befdf451102714ad.jpg)
 
 机械门把手
 
-![](/images/b0_a15_c86010a16d.jpg)
+![](/images/yost/1bf0a393b34552e3.jpg)
 
 前备箱
 
 轻敲两下，即可开启一条缝，需手动打开及手动关闭
 
-![](/images/b0_a15_ae9131e585.jpg)
+![](/images/yost/c122d98a5d2e1bf7.jpg)
 
-![](/images/b0_a15_56d360b770.jpg)
+![](/images/yost/98c367f88568a2b3.jpg)
 
 后排
 
-![](/images/b0_a15_74e5b59eb8.jpg)
+![](/images/yost/4e074950cc29c3ba.jpg)
 
-![](/images/b0_a15_298c4a5fe6.jpg)
+![](/images/yost/6a53885ef32c2d9b.jpg)
 
 电耗默认显示为驱动电耗
 
-![](/images/b0_a15_f0862197bb.jpg)
+![](/images/yost/fbfe4d2ae900518d.jpg)
 
 各种报告
 
 智驾完成后有行程报告，充电完成后有超充报告
 
-![](/images/b0_a15_8e7a9bc83b.jpg)
+![](/images/yost/3207ca3e36abe46d.jpg)
 
-![](/images/b0_a15_b32ed0dd33.jpg)
+![](/images/yost/e56db162516248fb.jpg)
 
 后排娱乐屏
 
 大小和清晰度都不错，没有小朋友能拒绝
 
-![](/images/b0_a15_38a99b6868.jpg)
+![](/images/yost/436bdbd0e3b466b9.jpg)
 
-![](/images/b0_a15_51622abd2a.jpg)
+![](/images/yost/6495cf949aaa8551.jpg)
 
 2️⃣ 主观试驾感受
 
@@ -128,7 +135,7 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 在去往超充的路途中，销售便会科普理想的 5C超充站的相关技术和建站数量，充电的间隙也会结合充电界面讲解充电功率等信息。
 
-![](/images/b0_a15_a9da0aa779.jpg)
+![](/images/yost/20486285b6f84205.jpg)
 
 其他家一般都是到某个公交站台或车少人少的小路边上换到驾驶位。
 
@@ -148,17 +155,17 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 不愧是第一梯队，市区道路可用性不错
 
-![](/images/b0_a15_a9bb2fed45.jpg)
+![](/images/yost/68a7043fce3cfb38.jpg)
 
 3）hud 特别清晰
 
 显示很是惊艳，各类信息显示全面，可惜我拍的照片不太能看出来效果。
 
-![](/images/b0_a15_527910ce3a.jpg)
+![](/images/yost/bfbad696f3dfb0a6.jpg)
 
-![](/images/b0_a15_1fef791c0b.jpg)
+![](/images/yost/b02a3f340256bebb.jpg)
 
-![](/images/b0_a15_2ae9e9cdd9.jpg)
+![](/images/yost/3492b9df16e72355.jpg)
 
 4）流媒体后视镜清晰度挺高
 
@@ -166,25 +173,25 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 流媒体后视镜解决了一个很大的痛点：在多人使用同一辆车的情况下，不用再频繁调整其位置。
 
-![](/images/b0_a15_947b18531b.jpg)
+![](/images/yost/4f706cd611560d3b.jpg)
 
-![](/images/b0_a15_cd13bd3114.jpg)
+![](/images/yost/c3d3c8c15150eac9.jpg)
 
 5）方向盘上的小屏幕居然可触控
 
 理想在方向盘上的小屏幕也是其特色之一了，试驾了才知道，这块小屏幕居然支持触控，可触控切换显示的信息及切换一些设置项。
 
-![](/images/b0_a15_9d8cd5d84c.jpg)
+![](/images/yost/99c14e1dadd0d6b2.jpg)
 
-![](/images/b0_a15_2c00bc2c46.jpg)
+![](/images/yost/fd5fbe862b9172cd.jpg)
 
 6）坐好后看不到车头
 
 开起来之后倒没有不适应，比较无感。
 
-![](/images/b0_a15_5f2d1b0898.jpg)
+![](/images/yost/5b859e43e98b2a76.jpg)
 
-![](/images/b0_a15_4bbad48863.jpg)
+![](/images/yost/050406d3b4d4add7.jpg)
 
 7）好上手
 
@@ -198,13 +205,13 @@ PS：下面的所有图片，都是用手机来随手拍的，部分场景受限
 
 刹车和电门都很线性，在急加速和急刹车的情况下也不突兀。
 
-3️⃣ 与 极氪 7x 的对比
+3️⃣ 与极氪 7x 的对比
 
 由于试驾的时间特别有限，只能从有限的信息里面去总结一些点。
 
 ① 配置有差别
 
-i6 没有下面三个我每天都在用的配置：头枕音响、 仪表盘。
+i6 没有下面三个我每天都在用的配置：头枕音响、仪表盘。
 
 智驾不提也罢，市区道路我压根不敢开极氪的智驾，虽然新的 6.5 系统有升级，但其和第一梯队的差距仍然没有缩小多少。
 
@@ -214,7 +221,7 @@ i6 没有下面三个我每天都在用的配置：头枕音响、 仪表盘。
 
 两个车的空间表现都不错，宽度接近，长度 i6 稍长一点。
 
-i6 没有 7x 好开， 运动性不足，更适合家人一起乘车出行的场景，i6的运动模式约等于 7x 的舒适模式。
+i6 没有 7x 好开，运动性不足，更适合家人一起乘车出行的场景，i6的运动模式约等于 7x 的舒适模式。
 
 相较而言，7X 更适合自己一个人开或更喜欢开车的人。
 
@@ -226,38 +233,38 @@ i6 没有 7x 好开， 运动性不足，更适合家人一起乘车出行的场
 
 ---
 
-三、结语
+## 三、结语
 
 在整理这篇文章相关信息的时候，被理想汽车最新的数据惊到了，可谓是：不查不知道，一查吓一跳。
 
 理想汽车的累计交付突破了 150 万。
 
-![](/images/b0_a15_1b3cc1d3a9.jpg)
+![](/images/yost/8c36ea1943c4f51d.jpg)
 
-再仔细结合本次的试驾体验， 满分 10 分，能给到 7.5 分。
+再仔细结合本次的试驾体验，满分 10 分，能给到 7.5 分。
 
 如果再今年再让我选一次，我依然选 7x，但 i6绝对是家用SUV的另一种答案。
 
 近期文章
 
-知行合一才是解药
+[知行合一才是解药](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489774&idx=1&sn=12bf8c92eee40aa7bb34f46381abdb9d&scene=21#wechat_redirect)
 
-90年，35岁，跑步30个月，3442km，带来的5个改变
+[90年，35岁，跑步30个月，3442km，带来的5个改变](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489724&idx=1&sn=2a2e2627b0bfa1d2c65a5230cb6e1195&scene=21#wechat_redirect)
 
-真香！坚持使用小鹤双拼一年后，这4个感受不吐不快
+[真香！坚持使用小鹤双拼一年后，这4个感受不吐不快](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489670&idx=1&sn=9766c08021e85435053823cbaf9c63bd&scene=21#wechat_redirect)
 
-农村、大专生、笨小孩：我的来时路
+[农村、大专生、笨小孩：我的来时路](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489632&idx=1&sn=465392f2ddd7518a5644a616ee61b0d0&scene=21#wechat_redirect)
 
-双持党的秋冬体验：当指纹识别频频失效，才懂得FaceID的好处
+[双持党的秋冬体验：当指纹识别频频失效，才懂得FaceID的好处](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489630&idx=1&sn=bf44b34e83164e6b57e969e4bee5f513&scene=21#wechat_redirect)
 
-不思考，你就会买很多并不需要的东西
+[不思考，你就会买很多并不需要的东西](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489619&idx=1&sn=03e4b291d319e87960a4e902cffdf0fc&scene=21#wechat_redirect)
 
-别再问我省多少油钱了！作为 8年新能源车主，我想说
+[别再问我省多少油钱了！作为 8年新能源车主，我想说](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489571&idx=1&sn=fadf2aa60bee570d4c5dbb32737862e0&scene=21#wechat_redirect)
 
-35岁的这个11月，我竟挑战了这么多“第一次”
+[35岁的这个11月，我竟挑战了这么多“第一次”](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489542&idx=1&sn=10f5c24d039a134f70f8f2540aa8b5c7&scene=21#wechat_redirect)
 
-90年，35岁，日更90天，有了这 3 个意外收获
+[90年，35岁，日更90天，有了这 3 个意外收获](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489480&idx=1&sn=0380763ab90896beafc10896f5e97a48&scene=21#wechat_redirect)
 
-听播客5年，日均108分钟：这3个收获，让我认识到“声音”的力量
+[听播客5年，日均108分钟：这3个收获，让我认识到“声音”的力量](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489427&idx=1&sn=a255f8aaa0ba1c12a4f4138e5ad6e04e&scene=21#wechat_redirect)
 
-小米高端化成了吗？拿15S Pro当主力机4个月，我有这5个真实感受
+[小米高端化成了吗？拿15S Pro当主力机4个月，我有这5个真实感受](https://mp.weixin.qq.com/s?__biz=Mzg2NDc3NTY1NA==&mid=2247489300&idx=1&sn=8877e8a12484e2c0d58d869c8e6bfc22&scene=21#wechat_redirect)
