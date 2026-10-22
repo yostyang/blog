@@ -1,0 +1,890 @@
+{
+  "author": "yostyang",
+  "source_total": 46,
+  "added": [],
+  "skipped_duplicates": [
+    {
+      "id": 111187,
+      "title": "开极氪7X跑了3万公里，我才理解车的情绪价值",
+      "url": "https://sspai.com/post/111187",
+      "reason": "duplicate",
+      "title_score": 0.977,
+      "body_score": 0.876,
+      "match_title": "开极氪7X跑了3万公里，我才理解汽车的情绪价值",
+      "match_path": "content/posts/b0-26-开极氪7X跑了3万公里-我才理解汽车的情绪价值.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 111116,
+      "title": "人生第一台新能源车怎么选？开了9年新能源后，我建议先看这5个场景",
+      "url": "https://sspai.com/post/111116",
+      "reason": "duplicate",
+      "title_score": 0.968,
+      "body_score": 0.916,
+      "match_title": "人生第一台新能源车怎么选？开了9年新能源后，我建议先看这5个生活场景",
+      "match_path": "content/posts/9-5.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 110920,
+      "title": "开车的时候，我们到底听什么：我试了试来福 AI 电台",
+      "url": "https://sspai.com/post/110920",
+      "reason": "duplicate",
+      "title_score": 0.409,
+      "body_score": 0.565,
+      "match_title": "极氪7X开了 3 万公里后，我在车上试了试AI电台",
+      "match_path": "content/posts/b0-23-极氪7X开了-3-万公里后-我在车上试了试AI电台.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 110685,
+      "title": "极氪7X车品花了2600元：哪些真刚需，哪些没必要？",
+      "url": "https://sspai.com/post/110685",
+      "reason": "duplicate",
+      "title_score": 0.588,
+      "body_score": 0.62,
+      "match_title": "极氪7X车品消费复盘：2600元花出去后，哪些后悔，哪些离不开？",
+      "match_path": "content/posts/7x-2600.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 110391,
+      "title": "极氪7X开到3万公里，保养、充电、保险一共花了多少钱",
+      "url": "https://sspai.com/post/110391",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.694,
+      "match_title": "极氪7X开到3万公里，保养、充电、保险一共花了多少钱",
+      "match_path": "content/posts/7x-3.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 110113,
+      "title": "中年人堆跑量的B面：当 ‘疲劳债’ 开始累积，我们该如何调整？",
+      "url": "https://sspai.com/post/110113",
+      "reason": "duplicate",
+      "title_score": 0.902,
+      "body_score": 0.935,
+      "match_title": "中年人堆跑量的B面：当 ‘疲劳债’ 开始累积，我们该如何 ‘偿还’ 与休整？",
+      "match_path": "content/posts/b.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 108997,
+      "title": "从新鲜到习惯：16 个月开极氪7X跑3万公里后，我离不开的与早已忽略的",
+      "url": "https://sspai.com/post/108997",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.821,
+      "match_title": "从新鲜到习惯：16 个月开极氪7X跑3万公里后，我离不开的与早已忽略的",
+      "match_path": "content/posts/16-7x-3.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 108638,
+      "title": "从键盘到方向盘：36岁，我的第一份兼职为什么偏偏选了跑货拉拉？",
+      "url": "https://sspai.com/post/108638",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.915,
+      "match_title": "从键盘到方向盘：36岁，我的第一份兼职为什么偏偏选了跑货拉拉？",
+      "match_path": "content/posts/b3-28-从键盘到方向盘-36岁-我的第一份兼职为什么偏偏选了跑货拉拉.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 108148,
+      "title": "时薪不到 30 元，56 单流水 2627 元：一个中年人兼职开车送货的 7 个真相",
+      "url": "https://sspai.com/post/108148",
+      "reason": "duplicate",
+      "title_score": 0.985,
+      "body_score": 0.786,
+      "match_title": "时薪不到30元，56单流水2627：一个中年人兼职开车送货的7个真相",
+      "match_path": "content/posts/30-56-2627-7.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 106575,
+      "title": "100度纯电SUV第2次春运实录：去程充电1次，返程我学会了「下高速」",
+      "url": "https://sspai.com/post/106575",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.688,
+      "match_title": "100度纯电SUV第2次春运实录：去程充电1次，返程我学会了「下高速」",
+      "match_path": "content/posts/100-suv-2-1.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 106520,
+      "title": "一天六地：我在红包与衰老之间，看见故乡的变与不变",
+      "url": "https://sspai.com/post/106520",
+      "reason": "duplicate",
+      "title_score": 0.383,
+      "body_score": 0.687,
+      "match_title": "一天奔赴六地：在密集的脚步中，看见衰老、红包与未变的故里",
+      "match_path": "content/posts/article-mpjccnkr.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 106114,
+      "title": "悟了！2026年，我决定只买1双跑鞋：做减法，选择困难症就好了",
+      "url": "https://sspai.com/post/106114",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.567,
+      "match_title": "悟了！2026年，我决定只买1双跑鞋：做减法，选择困难症就好了",
+      "match_path": "content/posts/2026-1.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 106054,
+      "title": "想通了！开电车真没必要里程焦虑：一年两万公里，续航与充电越来越好",
+      "url": "https://sspai.com/post/106054",
+      "reason": "duplicate",
+      "title_score": 0.857,
+      "body_score": 0.919,
+      "match_title": "想通了！开电车真没必要里程焦虑：一年两万公里，实测续航够用，充电也越来越方便",
+      "match_path": "content/posts/article-mpjceltd.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 105711,
+      "title": "冬天跑步，一件难而正确的事",
+      "url": "https://sspai.com/post/105711",
+      "reason": "duplicate",
+      "title_score": 0.923,
+      "body_score": 0.535,
+      "match_title": "冬天跑步有感，一件难而正确的事",
+      "match_path": "content/posts/article-mpjcfdfj.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 105647,
+      "title": "从插混换到纯电，一年开2万公里后，我已不在意能耗且没有里程焦虑！",
+      "url": "https://sspai.com/post/105647",
+      "reason": "duplicate",
+      "title_score": 0.983,
+      "body_score": 0.862,
+      "match_title": "从插混换到纯电，一年开2万公里后，我已经不在意能耗且没有里程焦虑！",
+      "match_path": "content/posts/2.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 105398,
+      "title": "使用Apple Watch监测睡眠一周后，我才发现：真正偷走睡眠的，不是熬夜",
+      "url": "https://sspai.com/post/105398",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.518,
+      "match_title": "使用Apple Watch监测睡眠一周后，我才发现：真正偷走睡眠的，不是熬夜",
+      "match_path": "content/posts/apple-watch.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 104858,
+      "title": "跑步30个月，首马这场“摸底考试”得了多少分？我的3点复盘",
+      "url": "https://sspai.com/post/104858",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.547,
+      "match_title": "跑步30个月，首马这场“摸底考试”得了多少分？我的3点复盘",
+      "match_path": "content/posts/30-3.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 104460,
+      "title": "记一次试驾体验：极氪7X车主眼中的理想i6，找到了家用SUV的另一种答案",
+      "url": "https://sspai.com/post/104460",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.602,
+      "match_title": "记一次试驾体验：极氪7X车主眼中的理想i6，找到了家用SUV的另一种答案",
+      "match_path": "content/posts/7x-i6-suv.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 103929,
+      "title": "11 个月，开极氪7X跑两万公里，用车总结及好物分享",
+      "url": "https://sspai.com/post/103929",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.757,
+      "match_title": "11 个月，开极氪7X跑两万公里，用车总结及好物分享",
+      "match_path": "content/posts/b0-13-11-个月-开极氪7X跑两万公里-用车总结及好物分享.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 103194,
+      "title": "中年人提高跑量的意外之喜：最大摄氧量首次突破62！",
+      "url": "https://sspai.com/post/103194",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.775,
+      "match_title": "中年人提高跑量的意外之喜：最大摄氧量首次突破62！",
+      "match_path": "content/posts/b2-13-中年人提高跑量的意外之喜-最大摄氧量首次突破62.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 103099,
+      "title": "开纯电车9个月，一个中年新能源车主的生活有了哪些新变化？",
+      "url": "https://sspai.com/post/103099",
+      "reason": "duplicate",
+      "title_score": 0.847,
+      "body_score": 0.854,
+      "match_title": "开了7年混动后投向纯电9个月，一个中年新能源车主的生活有了哪些新变化？",
+      "match_path": "content/posts/b0-9-开了7年混动后投向纯电9个月-一个中年新能源车主的生活有了哪些新变化.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 103048,
+      "title": "8年新能源车主的真心话：这10件车载用品，日常用车离不开！",
+      "url": "https://sspai.com/post/103048",
+      "reason": "duplicate",
+      "title_score": 0.814,
+      "body_score": 0.917,
+      "match_title": "弯路没少走！8年新能源车主的真心话：这10件车载好物，日常用车真的离不开！​​",
+      "match_path": "content/posts/b0-7-弯路没少走-8年新能源车主的真心话-这10件车载好物-日常用车真的离不开.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 102992,
+      "title": "开了7年混动后，我为何最终投向纯电？一位车主的心路历程",
+      "url": "https://sspai.com/post/102992",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.861,
+      "match_title": "开了7年混动后，我为何最终投向纯电？一位车主的心路历程",
+      "match_path": "content/posts/b0-6-开了7年混动后-我为何最终投向纯电-一位车主的心路历程.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 102829,
+      "title": "哪个瞬间让你猛然意识到：自己真的结婚了？",
+      "url": "https://sspai.com/post/102829",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.945,
+      "match_title": "​哪个瞬间让你猛然意识到：自己真的结婚了？​​",
+      "match_path": "content/posts/b1-75-哪个瞬间让你猛然意识到-自己真的结婚了.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 102524,
+      "title": "90 年，35 岁，农村大专生，毕业 13年：主动的 i 人运气不会太差",
+      "url": "https://sspai.com/post/102524",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.909,
+      "match_title": "90 年，35 岁，农村大专生，毕业 13年：主动的 i 人运气不会太差",
+      "match_path": "content/posts/b1-68-90-年-35-岁-农村大专生-毕业-13年-主动的-i-人运气不会太差.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 102336,
+      "title": "中年男人，得主动去油！最快的方式就是减重！",
+      "url": "https://sspai.com/post/102336",
+      "reason": "duplicate",
+      "title_score": 0.947,
+      "body_score": 0.914,
+      "match_title": "中年男人，你得主动去油啊！最快的方式就是减重！",
+      "match_path": "content/posts/b3-16-中年男人-你得主动去油啊-最快的方式就是减重.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 102010,
+      "title": "从骑行转到跑步：一个中年人两年有氧运动的变化",
+      "url": "https://sspai.com/post/102010",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.833,
+      "match_title": "从骑行转到跑步：一个中年人两年有氧运动的变化",
+      "match_path": "content/posts/b2-4-从骑行转到跑步-一个中年人两年有氧运动的变化.md",
+      "match_kind": "post"
+    },
+    {
+      "id": 101932,
+      "title": "纯电车自驾游： 6 天 3300km 之后有了 5 个感受",
+      "url": "https://sspai.com/post/101932",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.829,
+      "match_title": "纯电车自驾游： 6 天 3300km 之后有了 5 个感受",
+      "match_path": "content/posts/b0-3-纯电车自驾游-6-天-3300km-之后有了-5-个感受.md",
+      "match_kind": "post"
+    }
+  ],
+  "already_synced": [
+    {
+      "id": 116267,
+      "title": "三年前儿子画在便签纸上的小人，今天被 AI 做成了游戏",
+      "slug": "sspai-116267",
+      "path": "content/posts/sspai-116267.md"
+    },
+    {
+      "id": 114938,
+      "title": "从3万到3.9万公里：一个极氪7X老车主的几条碎碎念",
+      "slug": "sspai-114938",
+      "path": "content/posts/sspai-114938.md"
+    },
+    {
+      "id": 113583,
+      "title": "高速上找充电桩，真正的麻烦不是没桩，而是你永远不知道哪个最快",
+      "slug": "sspai-113583",
+      "path": "content/posts/sspai-113583.md"
+    },
+    {
+      "id": 113533,
+      "title": "买新能源车最难的，不是看参数，而是看懂自己",
+      "slug": "sspai-113533",
+      "path": "content/posts/sspai-113533.md"
+    },
+    {
+      "id": 112525,
+      "title": "为什么车评里说的“底盘好”，普通人经常感知不到？",
+      "slug": "sspai-112525",
+      "path": "content/posts/sspai-112525.md"
+    },
+    {
+      "id": 112328,
+      "title": "同价位再选一次，我还会买极氪7X吗？一年半开 3 万公里后的诚实复盘",
+      "slug": "sspai-112328",
+      "path": "content/posts/sspai-112328.md"
+    },
+    {
+      "id": 112059,
+      "title": "同样多花一万，花在哪回本最快？一个9年新能源车主的配置排序",
+      "slug": "sspai-112059",
+      "path": "content/posts/sspai-112059.md"
+    },
+    {
+      "id": 111856,
+      "title": "2026 上半年，一个普通中年人的真实生活：继续在模糊中寻找确定性",
+      "slug": "sspai-111856",
+      "path": "content/posts/sspai-111856.md"
+    },
+    {
+      "id": 111691,
+      "title": "一个中年人的618购物小结：一双鞋、一个运动相机、一本书，都是刚需",
+      "slug": "sspai-111691",
+      "path": "content/posts/sspai-111691.md"
+    },
+    {
+      "id": 111623,
+      "title": "开了一年半纯电车，我才发现它改变的不只是通勤方式，更是生活方式",
+      "slug": "sspai-111623",
+      "path": "content/posts/sspai-111623.md"
+    },
+    {
+      "id": 111581,
+      "title": "开纯电一年半，我终于明白：100度电池给的从来不是续航，是确定性",
+      "slug": "sspai-111581",
+      "path": "content/posts/sspai-111581.md"
+    },
+    {
+      "id": 111401,
+      "title": "兼职开车送货24天、跑了61单后，再看家用SUV，最在意的5个地方变了",
+      "slug": "sspai-111401",
+      "path": "content/posts/sspai-111401.md"
+    },
+    {
+      "id": 111400,
+      "title": "2026年计划只买一双跑鞋，最后为什么选了李宁赤兔9 Pro？",
+      "slug": "sspai-111400",
+      "path": "content/posts/sspai-111400.md"
+    },
+    {
+      "id": 111317,
+      "title": "家庭用户买新能源车，哪些配置是刚需，哪些只是新鲜感",
+      "slug": "sspai-111317",
+      "path": "content/posts/sspai-111317.md"
+    },
+    {
+      "id": 103287,
+      "title": "一双 “问题” 跑鞋带来的顿悟​：问题的答案藏在细节里……",
+      "slug": "sspai-103287",
+      "path": "content/posts/sspai-103287.md"
+    },
+    {
+      "id": 102854,
+      "title": "跑步两年半，2700km 踩坑与惊喜：分享3个跑鞋之外的跑步装备",
+      "slug": "sspai-102854",
+      "path": "content/posts/sspai-102854.md"
+    },
+    {
+      "id": 102783,
+      "title": "跑步两年半，2700km踩坑与惊喜：分享5双国产跑鞋的真实体验",
+      "slug": "sspai-102783",
+      "path": "content/posts/sspai-102783.md"
+    },
+    {
+      "id": 101776,
+      "title": "7 个月开极氪7X跑16000km后，分享这 5 个真实用车体验",
+      "slug": "sspai-101776",
+      "path": "content/posts/sspai-101776.md"
+    }
+  ],
+  "articles": [
+    {
+      "id": 116267,
+      "title": "三年前儿子画在便签纸上的小人，今天被 AI 做成了游戏",
+      "slug": "sspai-116267",
+      "path": "content/posts/sspai-116267.md",
+      "status": "added"
+    },
+    {
+      "id": 114938,
+      "title": "从3万到3.9万公里：一个极氪7X老车主的几条碎碎念",
+      "slug": "sspai-114938",
+      "path": "content/posts/sspai-114938.md",
+      "status": "added"
+    },
+    {
+      "id": 113583,
+      "title": "高速上找充电桩，真正的麻烦不是没桩，而是你永远不知道哪个最快",
+      "slug": "sspai-113583",
+      "path": "content/posts/sspai-113583.md",
+      "status": "added"
+    },
+    {
+      "id": 113533,
+      "title": "买新能源车最难的，不是看参数，而是看懂自己",
+      "slug": "sspai-113533",
+      "path": "content/posts/sspai-113533.md",
+      "status": "added"
+    },
+    {
+      "id": 112525,
+      "title": "为什么车评里说的“底盘好”，普通人经常感知不到？",
+      "slug": "sspai-112525",
+      "path": "content/posts/sspai-112525.md",
+      "status": "added"
+    },
+    {
+      "id": 112328,
+      "title": "同价位再选一次，我还会买极氪7X吗？一年半开 3 万公里后的诚实复盘",
+      "slug": "sspai-112328",
+      "path": "content/posts/sspai-112328.md",
+      "status": "added"
+    },
+    {
+      "id": 112059,
+      "title": "同样多花一万，花在哪回本最快？一个9年新能源车主的配置排序",
+      "slug": "sspai-112059",
+      "path": "content/posts/sspai-112059.md",
+      "status": "added"
+    },
+    {
+      "id": 111856,
+      "title": "2026 上半年，一个普通中年人的真实生活：继续在模糊中寻找确定性",
+      "slug": "sspai-111856",
+      "path": "content/posts/sspai-111856.md",
+      "status": "added"
+    },
+    {
+      "id": 111691,
+      "title": "一个中年人的618购物小结：一双鞋、一个运动相机、一本书，都是刚需",
+      "slug": "sspai-111691",
+      "path": "content/posts/sspai-111691.md",
+      "status": "added"
+    },
+    {
+      "id": 111623,
+      "title": "开了一年半纯电车，我才发现它改变的不只是通勤方式，更是生活方式",
+      "slug": "sspai-111623",
+      "path": "content/posts/sspai-111623.md",
+      "status": "added"
+    },
+    {
+      "id": 111581,
+      "title": "开纯电一年半，我终于明白：100度电池给的从来不是续航，是确定性",
+      "slug": "sspai-111581",
+      "path": "content/posts/sspai-111581.md",
+      "status": "added"
+    },
+    {
+      "id": 111401,
+      "title": "兼职开车送货24天、跑了61单后，再看家用SUV，最在意的5个地方变了",
+      "slug": "sspai-111401",
+      "path": "content/posts/sspai-111401.md",
+      "status": "added"
+    },
+    {
+      "id": 111400,
+      "title": "2026年计划只买一双跑鞋，最后为什么选了李宁赤兔9 Pro？",
+      "slug": "sspai-111400",
+      "path": "content/posts/sspai-111400.md",
+      "status": "added"
+    },
+    {
+      "id": 111317,
+      "title": "家庭用户买新能源车，哪些配置是刚需，哪些只是新鲜感",
+      "slug": "sspai-111317",
+      "path": "content/posts/sspai-111317.md",
+      "status": "added"
+    },
+    {
+      "id": 111187,
+      "title": "开极氪7X跑了3万公里，我才理解车的情绪价值",
+      "url": "https://sspai.com/post/111187",
+      "reason": "duplicate",
+      "title_score": 0.977,
+      "body_score": 0.876,
+      "match_title": "开极氪7X跑了3万公里，我才理解汽车的情绪价值",
+      "match_path": "content/posts/b0-26-开极氪7X跑了3万公里-我才理解汽车的情绪价值.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 111116,
+      "title": "人生第一台新能源车怎么选？开了9年新能源后，我建议先看这5个场景",
+      "url": "https://sspai.com/post/111116",
+      "reason": "duplicate",
+      "title_score": 0.968,
+      "body_score": 0.916,
+      "match_title": "人生第一台新能源车怎么选？开了9年新能源后，我建议先看这5个生活场景",
+      "match_path": "content/posts/9-5.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 110920,
+      "title": "开车的时候，我们到底听什么：我试了试来福 AI 电台",
+      "url": "https://sspai.com/post/110920",
+      "reason": "duplicate",
+      "title_score": 0.409,
+      "body_score": 0.565,
+      "match_title": "极氪7X开了 3 万公里后，我在车上试了试AI电台",
+      "match_path": "content/posts/b0-23-极氪7X开了-3-万公里后-我在车上试了试AI电台.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 110685,
+      "title": "极氪7X车品花了2600元：哪些真刚需，哪些没必要？",
+      "url": "https://sspai.com/post/110685",
+      "reason": "duplicate",
+      "title_score": 0.588,
+      "body_score": 0.62,
+      "match_title": "极氪7X车品消费复盘：2600元花出去后，哪些后悔，哪些离不开？",
+      "match_path": "content/posts/7x-2600.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 110391,
+      "title": "极氪7X开到3万公里，保养、充电、保险一共花了多少钱",
+      "url": "https://sspai.com/post/110391",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.694,
+      "match_title": "极氪7X开到3万公里，保养、充电、保险一共花了多少钱",
+      "match_path": "content/posts/7x-3.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 110113,
+      "title": "中年人堆跑量的B面：当 ‘疲劳债’ 开始累积，我们该如何调整？",
+      "url": "https://sspai.com/post/110113",
+      "reason": "duplicate",
+      "title_score": 0.902,
+      "body_score": 0.935,
+      "match_title": "中年人堆跑量的B面：当 ‘疲劳债’ 开始累积，我们该如何 ‘偿还’ 与休整？",
+      "match_path": "content/posts/b.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 108997,
+      "title": "从新鲜到习惯：16 个月开极氪7X跑3万公里后，我离不开的与早已忽略的",
+      "url": "https://sspai.com/post/108997",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.821,
+      "match_title": "从新鲜到习惯：16 个月开极氪7X跑3万公里后，我离不开的与早已忽略的",
+      "match_path": "content/posts/16-7x-3.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 108638,
+      "title": "从键盘到方向盘：36岁，我的第一份兼职为什么偏偏选了跑货拉拉？",
+      "url": "https://sspai.com/post/108638",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.915,
+      "match_title": "从键盘到方向盘：36岁，我的第一份兼职为什么偏偏选了跑货拉拉？",
+      "match_path": "content/posts/b3-28-从键盘到方向盘-36岁-我的第一份兼职为什么偏偏选了跑货拉拉.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 108148,
+      "title": "时薪不到 30 元，56 单流水 2627 元：一个中年人兼职开车送货的 7 个真相",
+      "url": "https://sspai.com/post/108148",
+      "reason": "duplicate",
+      "title_score": 0.985,
+      "body_score": 0.786,
+      "match_title": "时薪不到30元，56单流水2627：一个中年人兼职开车送货的7个真相",
+      "match_path": "content/posts/30-56-2627-7.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 106575,
+      "title": "100度纯电SUV第2次春运实录：去程充电1次，返程我学会了「下高速」",
+      "url": "https://sspai.com/post/106575",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.688,
+      "match_title": "100度纯电SUV第2次春运实录：去程充电1次，返程我学会了「下高速」",
+      "match_path": "content/posts/100-suv-2-1.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 106520,
+      "title": "一天六地：我在红包与衰老之间，看见故乡的变与不变",
+      "url": "https://sspai.com/post/106520",
+      "reason": "duplicate",
+      "title_score": 0.383,
+      "body_score": 0.687,
+      "match_title": "一天奔赴六地：在密集的脚步中，看见衰老、红包与未变的故里",
+      "match_path": "content/posts/article-mpjccnkr.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 106114,
+      "title": "悟了！2026年，我决定只买1双跑鞋：做减法，选择困难症就好了",
+      "url": "https://sspai.com/post/106114",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.567,
+      "match_title": "悟了！2026年，我决定只买1双跑鞋：做减法，选择困难症就好了",
+      "match_path": "content/posts/2026-1.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 106054,
+      "title": "想通了！开电车真没必要里程焦虑：一年两万公里，续航与充电越来越好",
+      "url": "https://sspai.com/post/106054",
+      "reason": "duplicate",
+      "title_score": 0.857,
+      "body_score": 0.919,
+      "match_title": "想通了！开电车真没必要里程焦虑：一年两万公里，实测续航够用，充电也越来越方便",
+      "match_path": "content/posts/article-mpjceltd.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 105711,
+      "title": "冬天跑步，一件难而正确的事",
+      "url": "https://sspai.com/post/105711",
+      "reason": "duplicate",
+      "title_score": 0.923,
+      "body_score": 0.535,
+      "match_title": "冬天跑步有感，一件难而正确的事",
+      "match_path": "content/posts/article-mpjcfdfj.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 105647,
+      "title": "从插混换到纯电，一年开2万公里后，我已不在意能耗且没有里程焦虑！",
+      "url": "https://sspai.com/post/105647",
+      "reason": "duplicate",
+      "title_score": 0.983,
+      "body_score": 0.862,
+      "match_title": "从插混换到纯电，一年开2万公里后，我已经不在意能耗且没有里程焦虑！",
+      "match_path": "content/posts/2.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 105398,
+      "title": "使用Apple Watch监测睡眠一周后，我才发现：真正偷走睡眠的，不是熬夜",
+      "url": "https://sspai.com/post/105398",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.518,
+      "match_title": "使用Apple Watch监测睡眠一周后，我才发现：真正偷走睡眠的，不是熬夜",
+      "match_path": "content/posts/apple-watch.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 104858,
+      "title": "跑步30个月，首马这场“摸底考试”得了多少分？我的3点复盘",
+      "url": "https://sspai.com/post/104858",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.547,
+      "match_title": "跑步30个月，首马这场“摸底考试”得了多少分？我的3点复盘",
+      "match_path": "content/posts/30-3.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 104460,
+      "title": "记一次试驾体验：极氪7X车主眼中的理想i6，找到了家用SUV的另一种答案",
+      "url": "https://sspai.com/post/104460",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.602,
+      "match_title": "记一次试驾体验：极氪7X车主眼中的理想i6，找到了家用SUV的另一种答案",
+      "match_path": "content/posts/7x-i6-suv.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 103929,
+      "title": "11 个月，开极氪7X跑两万公里，用车总结及好物分享",
+      "url": "https://sspai.com/post/103929",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.757,
+      "match_title": "11 个月，开极氪7X跑两万公里，用车总结及好物分享",
+      "match_path": "content/posts/b0-13-11-个月-开极氪7X跑两万公里-用车总结及好物分享.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 103287,
+      "title": "一双 “问题” 跑鞋带来的顿悟​：问题的答案藏在细节里……",
+      "slug": "sspai-103287",
+      "path": "content/posts/sspai-103287.md",
+      "status": "added"
+    },
+    {
+      "id": 103194,
+      "title": "中年人提高跑量的意外之喜：最大摄氧量首次突破62！",
+      "url": "https://sspai.com/post/103194",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.775,
+      "match_title": "中年人提高跑量的意外之喜：最大摄氧量首次突破62！",
+      "match_path": "content/posts/b2-13-中年人提高跑量的意外之喜-最大摄氧量首次突破62.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 103099,
+      "title": "开纯电车9个月，一个中年新能源车主的生活有了哪些新变化？",
+      "url": "https://sspai.com/post/103099",
+      "reason": "duplicate",
+      "title_score": 0.847,
+      "body_score": 0.854,
+      "match_title": "开了7年混动后投向纯电9个月，一个中年新能源车主的生活有了哪些新变化？",
+      "match_path": "content/posts/b0-9-开了7年混动后投向纯电9个月-一个中年新能源车主的生活有了哪些新变化.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 103048,
+      "title": "8年新能源车主的真心话：这10件车载用品，日常用车离不开！",
+      "url": "https://sspai.com/post/103048",
+      "reason": "duplicate",
+      "title_score": 0.814,
+      "body_score": 0.917,
+      "match_title": "弯路没少走！8年新能源车主的真心话：这10件车载好物，日常用车真的离不开！​​",
+      "match_path": "content/posts/b0-7-弯路没少走-8年新能源车主的真心话-这10件车载好物-日常用车真的离不开.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 102992,
+      "title": "开了7年混动后，我为何最终投向纯电？一位车主的心路历程",
+      "url": "https://sspai.com/post/102992",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.861,
+      "match_title": "开了7年混动后，我为何最终投向纯电？一位车主的心路历程",
+      "match_path": "content/posts/b0-6-开了7年混动后-我为何最终投向纯电-一位车主的心路历程.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 102854,
+      "title": "跑步两年半，2700km 踩坑与惊喜：分享3个跑鞋之外的跑步装备",
+      "slug": "sspai-102854",
+      "path": "content/posts/sspai-102854.md",
+      "status": "added"
+    },
+    {
+      "id": 102829,
+      "title": "哪个瞬间让你猛然意识到：自己真的结婚了？",
+      "url": "https://sspai.com/post/102829",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.945,
+      "match_title": "​哪个瞬间让你猛然意识到：自己真的结婚了？​​",
+      "match_path": "content/posts/b1-75-哪个瞬间让你猛然意识到-自己真的结婚了.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 102783,
+      "title": "跑步两年半，2700km踩坑与惊喜：分享5双国产跑鞋的真实体验",
+      "slug": "sspai-102783",
+      "path": "content/posts/sspai-102783.md",
+      "status": "added"
+    },
+    {
+      "id": 102524,
+      "title": "90 年，35 岁，农村大专生，毕业 13年：主动的 i 人运气不会太差",
+      "url": "https://sspai.com/post/102524",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.909,
+      "match_title": "90 年，35 岁，农村大专生，毕业 13年：主动的 i 人运气不会太差",
+      "match_path": "content/posts/b1-68-90-年-35-岁-农村大专生-毕业-13年-主动的-i-人运气不会太差.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 102336,
+      "title": "中年男人，得主动去油！最快的方式就是减重！",
+      "url": "https://sspai.com/post/102336",
+      "reason": "duplicate",
+      "title_score": 0.947,
+      "body_score": 0.914,
+      "match_title": "中年男人，你得主动去油啊！最快的方式就是减重！",
+      "match_path": "content/posts/b3-16-中年男人-你得主动去油啊-最快的方式就是减重.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 102010,
+      "title": "从骑行转到跑步：一个中年人两年有氧运动的变化",
+      "url": "https://sspai.com/post/102010",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.833,
+      "match_title": "从骑行转到跑步：一个中年人两年有氧运动的变化",
+      "match_path": "content/posts/b2-4-从骑行转到跑步-一个中年人两年有氧运动的变化.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 101932,
+      "title": "纯电车自驾游： 6 天 3300km 之后有了 5 个感受",
+      "url": "https://sspai.com/post/101932",
+      "reason": "duplicate",
+      "title_score": 1.0,
+      "body_score": 0.829,
+      "match_title": "纯电车自驾游： 6 天 3300km 之后有了 5 个感受",
+      "match_path": "content/posts/b0-3-纯电车自驾游-6-天-3300km-之后有了-5-个感受.md",
+      "match_kind": "post",
+      "status": "skipped"
+    },
+    {
+      "id": 101776,
+      "title": "7 个月开极氪7X跑16000km后，分享这 5 个真实用车体验",
+      "slug": "sspai-101776",
+      "path": "content/posts/sspai-101776.md",
+      "status": "added"
+    }
+  ],
+  "image_failures": []
+}

@@ -18,7 +18,13 @@ python3 scripts/import-yost.py --only about
 python3 scripts/import-yost.py --only dedupe
 ```
 
-微信图床的图会经源站 `/api/import` 转存到 `public/images/yost/`。关于我页面的图在 `public/assets/me/`。
+少数派上还没进站的文章（每周可再跑，已导入的和重复的都会跳过）：
+
+```bash
+python3 scripts/sync-sspai.py
+```
+
+微信图床的图会经源站 `/api/import` 转存到 `public/images/yost/`。少数派配图在 `public/images/sspai/`。关于我页面的图在 `public/assets/me/`。
 
 ## 本地运行
 
