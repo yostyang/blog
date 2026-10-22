@@ -11,7 +11,6 @@ thumb: "/images/yost/5cad70a0a1edab8b.jpg"
 cover: "/images/yost/5cad70a0a1edab8b.jpg"
 order: 17
 featured: true
-alias: "article-mpjccnkr"
 ---
 
 ## 引子

@@ -11,6 +11,7 @@ Usage:
   python3 scripts/import-yost.py --only articles
   python3 scripts/import-yost.py --only memos
   python3 scripts/import-yost.py --only about
+  python3 scripts/import-yost.py --only dedupe
 """
 
 from __future__ import annotations
@@ -37,6 +38,7 @@ ROOT = Path(__file__).resolve().parents[1]
 POSTS_DIR = ROOT / "content" / "posts"
 MEMOS_DIR = ROOT / "content" / "memos"
 ABOUT_DIR = ROOT / "content" / "about"
+REDIRECTS_PATH = ROOT / "content" / "redirects.json"
 IMAGE_DIR = ROOT / "public" / "images" / "yost"
 ME_DIR = ROOT / "public" / "assets" / "me"
 ORIGIN = "https://yost-pt.top"
@@ -567,73 +569,295 @@ def import_pages(kind: str, images: ImageStore) -> list[dict]:
 
 
 def write_articles(articles: list[dict]) -> dict:
+    """Write each source article once, at the yost-pt.top slug.
+
+    Older files with the same title are deleted. Their `/posts/<slug>`
+    addresses are recorded as permanent redirects to `/articles/<slug>`.
+    """
     posts = read_posts()
     by_norm: dict[str, list[dict]] = defaultdict(list)
     for post in posts:
         by_norm[post["norm"]].append(post)
     used_slugs = {post["slug"] for post in posts}
-    updated, created, unmatched = [], [], []
+    redirects = load_redirects()
+    updated, created = [], []
     for article in articles:
         key = norm_title(article["title"])
         matches = by_norm.get(key, [])
         if not matches and "\ufffd" in article["title"]:
             matches = [
                 post
-                for posts in by_norm.values()
-                for post in posts
+                for group in by_norm.values()
+                for post in group
                 if titles_compatible(article["title"], post["title"])
             ]
         cover = article["cover"]
         title = article["title"]
         if matches and "\ufffd" in title:
             title = matches[0]["title"]
+        slug = article["slug"]
+        if any(post["slug"] == slug for post in matches):
+            pass
+        elif slug in used_slugs:
+            slug = f"{slug}-yost"
+        category = infer_category(title, article["tags"])
+        thumb = cover
+        kept_cover = cover
         if matches:
-            if len(matches) > 1:
-                print(f"  note: {len(matches)} posts share「{article['title']}」, featuring the first", flush=True)
-            for index, post in enumerate(matches):
-                featured = index == 0
-                alias = None
-                if featured and post["slug"] != article["slug"]:
-                    alias = article["slug"]
-                    if alias in used_slugs and alias != post["slug"]:
-                        print(f"  warn: alias {alias} collides, skipping alias", flush=True)
-                        alias = None
-                meta = {
-                    "title": title,
-                    "date": article["date"],
-                    "category": post["category"] if post["category"] in CATEGORIES else infer_category(title, article["tags"]),
-                    "excerpt": article["excerpt"],
-                    "tags": article["tags"],
-                    "thumb": cover or post["thumb"],
-                    "cover": cover or post["cover"],
-                    "order": article["order"] if featured else post["order"],
-                    "featured": featured,
-                    "alias": alias,
-                }
-                post["path"].write_text(dump_markdown(meta, article["body"]), encoding="utf-8")
-                if featured:
-                    updated.append({"title": article["title"], "slug": post["slug"], "alias": alias})
+            donor = next((post for post in matches if post["slug"] == slug), matches[0])
+            if donor["category"] in CATEGORIES:
+                category = donor["category"]
+            thumb = cover or donor["thumb"]
+            kept_cover = cover or donor["cover"]
+        meta = {
+            "title": title.replace("\ufffd", "") if not matches else title,
+            "date": article["date"],
+            "category": category,
+            "excerpt": article["excerpt"],
+            "tags": article["tags"],
+            "thumb": thumb,
+            "cover": kept_cover,
+            "order": article["order"],
+            "featured": True,
+            "alias": None,
+        }
+        canonical = POSTS_DIR / f"{slug}.md"
+        canonical.write_text(dump_markdown(meta, article["body"]), encoding="utf-8")
+        used_slugs.add(slug)
+        removed = []
+        for post in matches:
+            if post["path"].resolve() == canonical.resolve():
+                continue
+            record_redirect(redirects, f"/posts/{post['slug']}", f"/articles/{slug}")
+            post["path"].unlink()
+            used_slugs.discard(post["slug"])
+            removed.append(post["slug"])
+        row = {"title": article["title"], "slug": slug, "removed": removed}
+        if matches:
+            updated.append(row)
         else:
-            slug = article["slug"]
-            if slug in used_slugs:
-                slug = f"{slug}-yost"
-            used_slugs.add(slug)
-            meta = {
-                "title": title.replace("\ufffd", ""),
-                "date": article["date"],
-                "category": infer_category(title, article["tags"]),
-                "excerpt": article["excerpt"],
-                "tags": article["tags"],
-                "thumb": cover,
-                "cover": cover,
-                "order": article["order"],
-                "featured": True,
-                "alias": None,
-            }
-            (POSTS_DIR / f"{slug}.md").write_text(dump_markdown(meta, article["body"]), encoding="utf-8")
-            created.append({"title": article["title"], "slug": slug})
-            unmatched.append(article["title"])
+            created.append(row)
+        if removed:
+            print(f"  dropped {len(removed)} older copies of「{article['title']}」", flush=True)
+    save_redirects(redirects)
     return {"updated": updated, "created": created}
+
+
+def load_redirects() -> dict[str, str]:
+    if not REDIRECTS_PATH.exists():
+        return {}
+    data = json.loads(REDIRECTS_PATH.read_text(encoding="utf-8"))
+    return {str(key): str(value) for key, value in data.items()}
+
+
+def save_redirects(table: dict[str, str]) -> None:
+    live = set()
+    for post in read_posts():
+        live.add(f"/posts/{post['slug']}")
+        live.add(f"/posts/{post['slug']}.html")
+    cleaned = {source: dest for source, dest in table.items() if source not in live and source != dest}
+    REDIRECTS_PATH.write_text(json.dumps(cleaned, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def record_redirect(table: dict[str, str], source: str, dest: str) -> None:
+    if not source or source == dest:
+        return
+    table[source] = dest
+    if source.startswith("/posts/") and not source.endswith(".html"):
+        table[f"{source}.html"] = dest
+
+
+def completeness(path: Path) -> tuple[int, int, int]:
+    raw = path.read_text(encoding="utf-8")
+    body = raw.split("---", 2)[-1] if raw.startswith("---") else raw
+    images = len(re.findall(r"!\[[^\]]*\]\([^)]+\)", body))
+    return (len(body), images, len(raw))
+
+
+def strip_alias(text: str) -> str:
+    return re.sub(r"\nalias:\s*.+\n", "\n", text, count=1)
+
+
+def post_public_path(post: dict) -> str:
+    front = post["path"].read_text(encoding="utf-8")
+    match = re.match(r"^---\n(.*?)\n---\n", front, re.S)
+    fm = match.group(1) if match else ""
+    featured = re.search(r"^featured:\s*true\s*$", fm, re.M) is not None
+    alias = fm_field(fm, "alias")
+    if featured:
+        return f"/articles/{alias or post['slug']}"
+    return f"/posts/{post['slug']}"
+
+
+def dedupe_posts() -> dict:
+    """One Markdown file per title. Keep the yost-pt.top slug when the post
+    came from that site; otherwise keep the longest copy."""
+    before = len(list(POSTS_DIR.glob("*.md")))
+    redirects = load_redirects()
+    renamed = []
+
+    for post in read_posts():
+        front = post["path"].read_text(encoding="utf-8")
+        match = re.match(r"^---\n(.*?)\n---\n", front, re.S)
+        fm = match.group(1) if match else ""
+        if not re.search(r"^featured:\s*true\s*$", fm, re.M):
+            continue
+        alias = fm_field(fm, "alias")
+        if not alias or alias == post["slug"]:
+            continue
+        dest = POSTS_DIR / f"{alias}.md"
+        if dest.exists() and dest.resolve() != post["path"].resolve():
+            print(f"  warn: cannot rename {post['slug']} to {alias}, file exists", flush=True)
+            continue
+        dest.write_text(strip_alias(front), encoding="utf-8")
+        record_redirect(redirects, f"/posts/{post['slug']}", f"/articles/{alias}")
+        post["path"].unlink()
+        renamed.append({"from": post["slug"], "to": alias, "title": post["title"]})
+
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for post in read_posts():
+        groups[post["norm"]].append(post)
+
+    merged = []
+    for posts in groups.values():
+        if len(posts) < 2:
+            continue
+        featured = [post for post in posts if _is_featured(post)]
+        if featured:
+            keeper = featured[0]
+            reason = "yost-pt.top"
+        else:
+            keeper = max(posts, key=lambda post: (*completeness(post["path"]), -len(post["slug"])))
+            reason = "最完整"
+        removed = []
+        dest = post_public_path(keeper)
+        for post in posts:
+            if post["path"].resolve() == keeper["path"].resolve():
+                continue
+            record_redirect(redirects, f"/posts/{post['slug']}", dest)
+            post["path"].unlink()
+            removed.append(post["slug"])
+        merged.append(
+            {
+                "title": keeper["title"],
+                "kept": keeper["slug"],
+                "kept_url": dest,
+                "reason": reason,
+                "removed": removed,
+            }
+        )
+        print(f"  merge「{keeper['title']}」keep {keeper['slug']} ({reason}), drop {len(removed)}", flush=True)
+
+    save_redirects(redirects)
+    rewrite_removed_links(redirects)
+    relink_about()
+    memo_note = memo_overlap()
+    after = len(list(POSTS_DIR.glob("*.md")))
+    report_path = ROOT / "content" / "dedupe-report.json"
+    prior: dict = {}
+    if report_path.exists():
+        try:
+            prior = json.loads(report_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            prior = {}
+    renamed = _merge_rows(prior.get("renamed_to_yost_slug") or [], renamed, "from")
+    merged = _merge_rows(prior.get("merged") or [], merged, "title")
+    stored_before = prior.get("articles_before")
+    articles_before = stored_before if isinstance(stored_before, int) else before
+    report = {
+        "articles_before": articles_before,
+        "articles_after": after,
+        "renamed_to_yost_slug": renamed,
+        "merged": merged,
+        "memos": memo_note,
+    }
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(
+        f"dedupe: {before} -> {after} articles, {len(merged)} groups, {len(renamed)} yost renames",
+        flush=True,
+    )
+    return report
+
+
+def _merge_rows(prior: list, current: list, key: str) -> list:
+    rows = [row for row in prior if isinstance(row, dict) and key in row]
+    seen = {row[key] for row in rows}
+    for row in current:
+        if row.get(key) not in seen:
+            rows.append(row)
+            seen.add(row[key])
+    return rows
+
+
+def _is_featured(post: dict) -> bool:
+    front = post["path"].read_text(encoding="utf-8")
+    match = re.match(r"^---\n(.*?)\n---\n", front, re.S)
+    fm = match.group(1) if match else ""
+    return re.search(r"^featured:\s*true\s*$", fm, re.M) is not None
+
+
+def rewrite_removed_links(redirects: dict[str, str]) -> None:
+    sources = [(source, dest) for source, dest in redirects.items() if not source.endswith(".html")]
+    # Longer paths first so `/posts/b` cannot clobber `/posts/b0-…`.
+    sources.sort(key=lambda item: len(item[0]), reverse=True)
+    if not sources:
+        return
+    for path in list(POSTS_DIR.glob("*.md")) + list(MEMOS_DIR.glob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        updated = text
+        for source, dest in sources:
+            updated = updated.replace(source, dest)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8")
+
+
+def relink_about() -> None:
+    script_path = ABOUT_DIR / "boot.js"
+    if not script_path.exists():
+        return
+    script = script_path.read_text(encoding="utf-8")
+    match = re.search(r"const ARTS = (\[.*?\]);\n", script, re.S)
+    if not match:
+        return
+    arts = json.loads(match.group(1))
+    index = local_index()
+    linked = 0
+    for article in arts:
+        path = index.get(norm_title(article.get("t", "")))
+        if path:
+            article["local"] = path
+            linked += 1
+        else:
+            article.pop("local", None)
+    script = (
+        script[: match.start(1)]
+        + json.dumps(arts, ensure_ascii=False, separators=(",", ":"))
+        + script[match.end(1) :]
+    )
+    script_path.write_text(script, encoding="utf-8")
+    print(f"  about links refreshed {linked}/{len(arts)}", flush=True)
+
+
+def memo_overlap() -> dict:
+    post_titles = {post["norm"] for post in read_posts()}
+    post_hashes = set()
+    for path in POSTS_DIR.glob("*.md"):
+        body = path.read_text(encoding="utf-8").split("---", 2)[-1]
+        post_hashes.add(hashlib.sha1(norm_title(body).encode()).hexdigest())
+    same_title = []
+    same_body = []
+    if MEMOS_DIR.exists():
+        for path in MEMOS_DIR.glob("*.md"):
+            raw = path.read_text(encoding="utf-8")
+            match = re.match(r"^---\n(.*?)\n---\n(.*)$", raw, re.S)
+            fm, body = (match.group(1), match.group(2)) if match else ("", raw)
+            title = fm_field(fm, "title") or path.stem
+            if norm_title(title) in post_titles:
+                same_title.append(path.stem)
+            digest = hashlib.sha1(norm_title(body).encode()).hexdigest()
+            if digest in post_hashes:
+                same_body.append(path.stem)
+    return {"same_title": same_title, "same_body": same_body}
 
 
 def write_memos(memos: list[dict]) -> int:
@@ -854,7 +1078,7 @@ def local_index() -> dict[str, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Import yost-pt.top content")
-    parser.add_argument("--only", choices=["articles", "memos", "about", "all"], default="all")
+    parser.add_argument("--only", choices=["articles", "memos", "about", "dedupe", "all"], default="all")
     args = parser.parse_args()
     images = ImageStore(IMAGE_DIR, "/images/yost")
     report_path = ROOT / "content" / "import-report.json"
@@ -879,6 +1103,8 @@ def main() -> int:
         print(f"memos: {report['memos']}", flush=True)
     if args.only in {"about", "all"}:
         import_about(local_index())
+    if args.only in {"articles", "dedupe", "all"}:
+        report["dedupe"] = dedupe_posts()
     if images.failures:
         print(f"image failures: {len(images.failures)}", flush=True)
         for failure in images.failures[:12]:

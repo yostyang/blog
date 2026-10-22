@@ -9,7 +9,6 @@ thumb: "/images/yost/2d46531f8acbe501.png"
 cover: "/images/yost/2d46531f8acbe501.png"
 order: 12
 featured: true
-alias: "article-mpjceltd"
 ---
 
 ## 一、引子

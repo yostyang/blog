@@ -10,7 +10,6 @@ thumb: "/images/yost/f505e7ef96fb9ea2.gif"
 cover: "/images/yost/f505e7ef96fb9ea2.gif"
 order: 11
 featured: true
-alias: "article-mpjcfdfj"
 ---
 
 ## 一、引子

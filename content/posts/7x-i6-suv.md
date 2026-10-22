@@ -12,7 +12,6 @@ thumb: "/images/yost/216c650569f57937.jpg"
 cover: "/images/yost/216c650569f57937.jpg"
 order: 5
 featured: true
-alias: "7x-i6-suv"
 ---
 
 ## 一、引子

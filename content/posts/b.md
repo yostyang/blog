@@ -11,7 +11,6 @@ thumb: "/images/yost/26942eb179547b2a.png"
 cover: "/images/yost/26942eb179547b2a.png"
 order: 4
 featured: true
-alias: "b"
 ---
 
 ![](/images/yost/26942eb179547b2a.png)

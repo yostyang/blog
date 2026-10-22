@@ -4,8 +4,8 @@
 
 正文分两层：
 
-- **推荐文章**（`featured: true`）来自 https://yost-pt.top/ 的 20 篇长文，地址是 `/articles/<slug>`。和仓库里旧稿标题相同的，更新旧稿而不是另存一篇，公开地址用源站 slug（frontmatter 的 `alias`）。
-- **归档**是原来的 175 篇，加上上面没有对应旧稿的新文章，地址仍是 `/posts/<文件名>`。同一标题在多本旧文集里重复出现时，正文都会更新，只有文件名排序后的第一篇标成推荐。
+- **推荐文章**（`featured: true`）来自 https://yost-pt.top/ 的 20 篇长文，地址是 `/articles/<slug>`，文件名就是源站 slug。
+- **归档**是其余长文，地址是 `/posts/<文件名>`。同一标题只留一份：有 yost-pt.top 版本时留那一版并删掉旧副本，否则留正文最完整的一份。删掉的地址记在 `content/redirects.json`，永久跳到留下来的那篇。
 - **备忘录**在 `content/memos/`，大约每天一篇，地址是 `/articles/memo-YYYY-MM-DD`，日历和话题筛选在 `/memo`。
 
 从源站重新拉正文、配图和关于我页面：
@@ -15,6 +15,7 @@ python3 scripts/import-yost.py
 python3 scripts/import-yost.py --only articles
 python3 scripts/import-yost.py --only memos
 python3 scripts/import-yost.py --only about
+python3 scripts/import-yost.py --only dedupe
 ```
 
 微信图床的图会经源站 `/api/import` 转存到 `public/images/yost/`。关于我页面的图在 `public/assets/me/`。
@@ -82,7 +83,7 @@ cover: "/images/thumbs/sm_example.jpg"
 - `date` 用引号包住的 `YYYY-MM-DD`。同一天有多篇时，可以用可选字段 `order`（数字越小越靠前）固定顺序。不写 `order` 时，新文章会排在同一天已有文章的前面。
 - 图片放到 `public/images/`，文中写成 `/images/文件名.jpg`。`thumb` 是列表右侧缩略图，`cover` 用于分享卡片；没有配图时这两个字段可以不写。
 - `tags` 可选。归档文章的标签链到 `/tag/标签名`。推荐文章（`featured: true`）的标签链到 `/articles?tag=`。
-- 可选 `featured: true` 把文章放进首页「推荐阅读」和 `/articles`。可选 `alias` 作为 `/articles/` 下的公开 slug；不写就用文件名。
+- 可选 `featured: true` 把文章放进首页「推荐阅读」和 `/articles`，公开地址是 `/articles/<文件名>`。如果另外写了 `alias`，这段地址改用 alias。
 
 保存后重新跑 `npm run dev` 或 `npm run build` 即可。
 
@@ -105,4 +106,4 @@ cover: "/images/thumbs/sm_example.jpg"
 - `/rss.xml` 订阅
 - `/sitemap.xml` 站点地图
 
-旧静态站的 `/index.html` 和 `/posts/某篇.html` 会 308 到新地址。
+旧静态站的 `/index.html` 和 `/posts/某篇.html` 会 308 到新地址。去重删掉的旧 slug（含 `.html`）也会 308 到保留下来的那一篇。
