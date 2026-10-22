@@ -287,6 +287,16 @@ main {
   line-height: 1.6;
 }
 
+.card-note a {
+  margin-inline: 0.15rem;
+  color: var(--blue);
+}
+
+.card-note a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .topic-list {
   margin: 0;
   padding: 0;
@@ -900,6 +910,219 @@ a.tag:hover {
 
 .not-found-actions {
   margin-top: 1.75rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-copy {
+  max-width: 40em;
+  margin: 1rem 0 0;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0 0;
+}
+
+.stats div {
+  padding-top: 0.65rem;
+  border-top: 3px double var(--red);
+}
+
+.stats dt {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.stats dd {
+  margin: 0.15rem 0 0;
+}
+
+.stats b {
+  font-size: var(--step-2);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.stats span {
+  margin-left: 0.25rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.calendar-note {
+  max-width: 42em;
+  margin-top: 0.9rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  list-style: none;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
+}
+
+.cal-month {
+  margin: 0;
+}
+
+.cal-month figcaption {
+  margin-bottom: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.cal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.cal .dow {
+  padding-bottom: 2px;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  text-align: center;
+}
+
+.cal .d {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--rule) 45%, transparent);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cal .d.pad {
+  background: none;
+}
+
+.cal a.d {
+  color: #fff;
+  font-weight: 600;
+}
+
+.cal a.d:hover {
+  filter: brightness(1.12);
+}
+
+.year-block {
+  margin-top: 1.75rem;
+}
+
+.year-block h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: 1.4rem 1.75rem;
+}
+
+.threads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.thread {
+  padding: 1rem 1.1rem 1.05rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+
+.thread h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.thread p {
+  margin: 0.35rem 0 0.75rem;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.swatch[data-cat="电车出行"],
+.cal a.d[data-cat="电车出行"] {
+  background: #2f7d57;
+}
+
+.swatch[data-cat="跑步"],
+.cal a.d[data-cat="跑步"] {
+  background: #c46a1f;
+}
+
+.swatch[data-cat="中年成长"],
+.cal a.d[data-cat="中年成长"] {
+  background: var(--blue);
+}
+
+.swatch[data-cat="生活随笔"],
+.cal a.d[data-cat="生活随笔"] {
+  background: #5c6570;
+}
+
+@media (width <= 640px) {
+  .stats,
+  .threads {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .swatch[data-cat="电车出行"],
+  .cal a.d[data-cat="电车出行"] {
+    background: #5db88a;
+  }
+
+  .swatch[data-cat="跑步"],
+  .cal a.d[data-cat="跑步"] {
+    background: #e8924a;
+  }
+
+  .swatch[data-cat="生活随笔"],
+  .cal a.d[data-cat="生活随笔"] {
+    background: #8f97a6;
+  }
+
+  .cal a.d[data-cat] {
+    color: #11151c;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

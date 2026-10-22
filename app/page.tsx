@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EssayList } from "@/components/EssayList";
+import { MonthCalendar } from "@/components/WritingCalendar";
+import { indexDays } from "@/lib/calendar";
 import { CATEGORIES } from "@/lib/categories";
 import { getAllPosts } from "@/lib/posts";
 import { getSiteUrl, site } from "@/lib/site";
@@ -19,6 +21,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const posts = getAllPosts();
   const latest = posts[0];
+  const days = indexDays(posts);
+  const [calYear, calMonth] = latest ? latest.date.split("-").map(Number) : [0, 0];
   const counts = new Map<string, number>();
   for (const post of posts) counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
 
@@ -52,22 +56,17 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <aside className="intro-card" aria-labelledby="topics-title">
-              <h2 id="topics-title">按专题看</h2>
-              <p className="card-note">电车、跑步、中年成长和生活，四本一直在写的记录。</p>
-              <ul className="topic-list">
-                {CATEGORIES.map((category) => (
-                  <li key={category.name}>
-                    <Link href={`/category/${category.name}`}>
-                      {category.name}
-                      <small>{counts.get(category.name) ?? 0}</small>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <aside className="intro-card" aria-labelledby="cal-title">
+              <h2 id="cal-title">写作日历</h2>
+              <p className="card-note">
+                有颜色的日子写过文章。
+                <Link href="/me">完整日历</Link>
+                在关于我。
+              </p>
+              {latest ? <MonthCalendar year={calYear} month={calMonth} days={days} /> : null}
               {latest ? (
                 <Link className="card-latest" href={`/posts/${latest.slug}`}>
-                  <span>最新</span>
+                  <span className="num">最新 · {latest.date.replaceAll("-", ".")}</span>
                   {latest.title}
                 </Link>
               ) : null}
@@ -77,10 +76,23 @@ export default function HomePage() {
             <div className="section-head">
               <h2 id="latest-title">最新文章</h2>
               <Link className="more" href="/articles">
-                全部文章
+                全部 {posts.length} 篇文章
               </Link>
             </div>
-            <EssayList posts={posts.slice(0, 8)} />
+            <EssayList posts={posts.slice(0, 6)} />
+          </section>
+          <section className="section" aria-labelledby="topics-title">
+            <div className="section-head">
+              <h2 id="topics-title">按专题读</h2>
+            </div>
+            <nav className="filters" aria-labelledby="topics-title">
+              {CATEGORIES.map((category) => (
+                <Link key={category.name} href={`/category/${category.name}`}>
+                  {category.name}
+                  <small>{counts.get(category.name) ?? 0}</small>
+                </Link>
+              ))}
+            </nav>
           </section>
         </div>
       </main>

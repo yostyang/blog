@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    {
+      url: `${origin}/me`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
     ...CATEGORIES.map((category) => ({
       url: `${origin}/category/${encodeURIComponent(category.name)}`,
       lastModified: posts.find((post) => post.category === category.name)?.date,

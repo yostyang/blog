@@ -14,6 +14,7 @@ const links = [
       path.startsWith("/posts") ||
       path.startsWith("/tag"),
   },
+  { name: "关于我", href: "/me", current: (path: string) => path.startsWith("/me") },
   { name: "搜索", href: "/search", current: (path: string) => path.startsWith("/search") },
 ];
 

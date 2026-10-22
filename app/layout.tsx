@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
-import { CATEGORIES } from "@/lib/categories";
 import { getSiteUrl, site } from "@/lib/site";
 import "./globals.css";
 
@@ -60,14 +59,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <p>{site.description}</p>
             </div>
             <nav aria-label="页脚">
-              <Link href="/articles">文章</Link>
-              {CATEGORIES.map((category) => (
-                <Link key={category.name} href={`/category/${category.name}`}>
-                  {category.name}
-                </Link>
-              ))}
+              <Link href="/articles">全部文章</Link>
+              <Link href="/me">关于我</Link>
               <Link href="/search">搜索</Link>
-              <a href="/rss.xml">RSS</a>
+              <a href="/rss.xml">RSS 订阅</a>
             </nav>
           </div>
         </footer>
