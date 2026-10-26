@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<base href="/apo-game04/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#8f3129">
+<meta name="description" content="纸上决斗：绿纸上的手绘火柴人 1v1 对战。出拳、踢腿、格挡、上勾拳、必杀，支持单人对 AI 与本地双人。">
+<meta property="og:title" content="纸上决斗 · 火柴人翻页对战">
+<meta property="og:description" content="绿纸一翻，两个火柴人就打起来了。支持单人对 AI 与本地双人。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<title>纸上决斗 · 火柴人翻页对战</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23b9d79b'/%3E%3Cg stroke='%232c392e' stroke-width='4' stroke-linecap='round' fill='none'%3E%3Ccircle cx='32' cy='19' r='7'/%3E%3Cpath d='M32 26v16M32 30l-10 8M32 30l10 8M32 42l-8 12M32 42l8 12'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="纸上决斗游戏画面"></canvas>
+
+<button id="pauseBtn" aria-label="暂停游戏">Ⅱ</button>
+<div id="rotateHint" aria-hidden="true">↻ 横屏，纸更大</div>
+
+<div id="touch" aria-hidden="true">
+  <div class="cluster left">
+    <button type="button" data-act="left" aria-label="左移">←</button>
+    <button type="button" data-act="right" aria-label="右移">→</button>
+  </div>
+  <div class="cluster right">
+    <button type="button" data-act="punch" class="attack" aria-label="出拳">拳</button>
+    <button type="button" data-act="kick" class="attack" aria-label="踢腿">腿</button>
+    <button type="button" data-act="super" class="attack special" aria-label="必杀">必</button>
+    <button type="button" data-act="down" class="guard" aria-label="格挡">挡</button>
+    <button type="button" data-act="jump" class="guard" aria-label="跳跃">跳</button>
+  </div>
+</div>
+
+<div id="menu" class="overlay">
+  <div class="card menu-card">
+    <span class="tape tape-l"></span>
+    <span class="tape tape-r"></span>
+    <p class="eyebrow">手绘翻页动画 · 三回合决胜</p>
+    <h1>纸上决斗<span class="seal" aria-hidden="true">斗</span></h1>
+    <p class="sub">绿纸一翻，两个火柴人就不讲道理地打了起来。</p>
+
+    <div class="fighters">
+      <span class="chip"><i class="dot p1"></i>铅笔 <b>P1</b></span>
+      <span class="vs">VS</span>
+      <span class="chip"><i class="dot p2"></i>橡皮 <b id="p2ChipTag">CPU</b></span>
+    </div>
+
+    <div class="keys">
+      <div><kbd>A</kbd><kbd>D</kbd><span>移动</span></div>
+      <div><kbd>W</kbd><span>跳跃</span></div>
+      <div><kbd>S</kbd><span>格挡</span></div>
+      <div><kbd>J</kbd><span>出拳</span></div>
+      <div><kbd>K</kbd><span>踢腿</span></div>
+      <div><kbd>F</kbd><span>必杀</span></div>
+    </div>
+    <p class="tip">格挡时按 <kbd>J</kbd> 是上勾拳 · 气满才能放必杀</p>
+
+    <div class="duo-hint hidden" id="duoHint">
+      <b>P2 橡皮</b>
+      <span><kbd>←</kbd><kbd>→</kbd> 移动 · <kbd>↑</kbd> 跳 · <kbd>↓</kbd> 挡</span>
+      <span><kbd>,</kbd> 拳 · <kbd>.</kbd> 腿 · <kbd>/</kbd> 必杀</span>
+      <span><kbd>↓</kbd> + <kbd>,</kbd> 上勾拳</span>
+    </div>
+
+    <div class="diff mode-row" id="modeRow">
+      <span class="diff-label">模式</span>
+      <div class="seg" role="group" aria-label="选择模式">
+        <button type="button" data-mode="1p" aria-pressed="true">单人</button>
+        <button type="button" data-mode="2p">双人</button>
+      </div>
+    </div>
+
+    <div class="diff" id="diffRow">
+      <span class="diff-label">难度</span>
+      <div class="seg" role="group" aria-label="选择难度">
+        <button type="button" data-level="easy">轻松</button>
+        <button type="button" data-level="normal" aria-pressed="true">普通</button>
+        <button type="button" data-level="hard">认真</button>
+      </div>
+    </div>
+
+    <button id="startBtn" class="btn primary" type="button">开 打</button>
+    <p class="hint">按 Enter 开始 · <button id="muteBtn" class="linkish" type="button">音效：开</button> · 按 M 静音</p>
+  </div>
+</div>
+
+<div id="pause" class="overlay hidden">
+  <div class="card small-card">
+    <p class="eyebrow">先喘口气</p>
+    <h2>暂停中</h2>
+    <p class="sub">纸张不会跑，对手会等你。</p>
+    <div class="btn-col">
+      <button id="resumeBtn" class="btn primary" type="button">继 续</button>
+      <button id="restartPauseBtn" class="btn" type="button">重开一局</button>
+      <button id="quitBtn" class="btn" type="button">回到封面</button>
+      <button id="muteBtn2" class="linkish" type="button">音效：开</button>
+    </div>
+  </div>
+</div>
+
+<div id="result" class="overlay hidden">
+  <div class="card result-card">
+    <span class="tape tape-l"></span>
+    <span class="tape tape-r"></span>
+    <p class="eyebrow">第 <span id="resRound">3</span> 页 · 终</p>
+    <h2 id="resTitle">铅笔 胜</h2>
+    <p class="sub score" id="resScore">2 : 1</p>
+    <p class="sub" id="resLine">绿纸一合，输的人被夹在书里。</p>
+    <div class="row">
+      <button id="againBtn" class="btn primary" type="button">再来一局</button>
+      <button id="homeBtn" class="btn" type="button">回到封面</button>
+    </div>
+    <p class="hint">按 Enter 再来一局</p>
+  </div>
+</div>
+
+<noscript><p style="color:#fff;text-align:center;padding:2rem">这个游戏需要开启 JavaScript。</p></noscript>
+
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/stickman.js"></script>
+<script src="js/fighter.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

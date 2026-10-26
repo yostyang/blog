@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<base href="/apo-game05/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>铅笔花园玩法视频</title>
+<link rel="stylesheet" href="fonts/zcool-kuaile.css">
+<style>
+/* Layout: one notebook sheet on the desk — title strip, the video as the hero, chapter tabs under it, then the original sketch pinned beside its caption. Single light look, like the game. */
+:root{
+  --desk:#e9e2d1;
+  --paper:#fbf8ee;
+  --ink:#262833;
+  --ink-soft:#5d6072;
+  --rule:rgba(120,160,214,.4);
+  --margin:#e3787e;
+  --note-y:#ffe98c;
+  --note-g:#d2efba;
+  --font-display:"ZCOOL KuaiLe","Hannotate SC","Kaiti SC","STKaiti",cursive,sans-serif;
+  --font-body:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  color-scheme:light;
+}
+html,body{background:var(--desk);color:var(--ink)}
+body{margin:0;font-family:var(--font-body);font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+[hidden]{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px}
+h1{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.1;letter-spacing:.03em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(transparent 58%,var(--note-y) 58%)}
+.lede{margin:6px 0 0;color:var(--ink-soft);max-width:60ch}
+.play{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:19px;color:var(--ink);text-decoration:none;background:var(--note-y);border:2.5px solid var(--ink);border-radius:999px;padding:6px 20px;box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.play:focus-visible,.ch:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.play:active{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+.screen{background:var(--ink);border:3px solid var(--ink);border-radius:6px 10px 8px 12px;box-shadow:6px 7px 0 rgba(38,40,51,.85);overflow:hidden}
+video{display:block;width:100%;height:auto;aspect-ratio:16/9;max-width:100%;background:var(--paper)}
+.chapters{display:flex;flex-wrap:wrap;gap:8px}
+.ch{display:flex;align-items:baseline;gap:8px;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:5px 12px;font:inherit;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 rgba(38,40,51,.6)}
+.ch b{font-family:var(--font-display);font-weight:400;font-size:17px}
+.ch span{font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.ch.on{background:var(--note-y)}
+.sheet{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:28px;align-items:start;background:var(--paper);border:2.5px solid var(--ink);border-radius:4px;padding:26px 26px 30px 54px;box-shadow:4px 5px 0 rgba(38,40,51,.8);
+ background-image:linear-gradient(90deg,transparent 30px,var(--margin) 30px,var(--margin) 32px,transparent 32px),repeating-linear-gradient(180deg,transparent 0 31px,var(--rule) 31px 32px)}
+.pin{position:relative;transform:rotate(-2.5deg);border:2.5px solid var(--ink);box-shadow:5px 6px 0 rgba(38,40,51,.8);background:#fff}
+.pin::before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:24px;transform:translateX(-50%) rotate(3deg);background:rgba(255,233,140,.85);border:1px solid rgba(38,40,51,.25)}
+.pin img{display:block;width:100%;height:auto}
+.sheet h2{margin:0;font-family:var(--font-display);font-weight:400;font-size:28px;line-height:1.2}
+.sheet p{margin:10px 0 0;max-width:58ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+.fact{background:#fffdf6;border:2px solid var(--ink);border-radius:4px;padding:8px 10px}
+.fact b{display:block;font-family:var(--font-display);font-weight:400;font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact span{font-size:12.5px;color:var(--ink-soft)}
+footer{color:var(--ink-soft);font-size:12.5px}
+@media (max-width:640px){
+  .sheet{grid-template-columns:1fr;padding:20px 16px 24px 40px}
+  .pin{max-width:280px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>铅笔花园<em>大作战</em> · 玩法视频</h1>
+      <p class="lede">两分半钟看懂怎么玩：从一页手画的植物开始，到选植物、融合、战神、机械石头菇，一直打到四足墨水泰坦。记得打开声音。</p>
+    </div>
+    <a class="play" href="index.html">去玩游戏 →</a>
+  </header>
+
+  <div class="screen">
+    <video id="vid" controls playsinline preload="metadata" poster="poster.jpg">
+      <source src="intro.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <nav class="chapters" id="chapters" aria-label="视频章节"></nav>
+
+  <section class="sheet">
+    <div class="pin"><img src="sketch.jpg" alt="原始手稿：一张 A4 纸上用黑笔画满的植物" width="744" height="1043"></div>
+    <div>
+      <h2>原始手稿</h2>
+      <p>游戏从这一页纸开始：一支黑笔，一张 A4 纸，画满了一整页植物。</p>
+      <p>照着这页纸的灵感，游戏里重新画了每一个角色，保留了黑线手绘的味道。</p>
+      <div class="facts">
+        <div class="fact"><b>32</b><span>种基础植物</span></div>
+        <div class="fact"><b>3 次</b><span>最多融合次数</span></div>
+        <div class="fact"><b>22</b><span>个专属配方</span></div>
+        <div class="fact"><b>20 页</b><span>冒险关卡</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>手机上点视频右下角可以全屏，横过来看更清楚。</footer>
+</div>
+
+<script>
+(()=>{
+const CH=[["开场", 0.0], ["原始手稿", 4.5], ["32 种植物", 13.5], ["选植物", 22.0], ["种植物", 34.87], ["融合", 46.07], ["战神", 60.27], ["机械石头菇", 74.47], ["墨团融合", 94.07], ["四足墨水泰坦", 106.27], ["超强植物", 122.47], ["六种玩法", 137.67]];
+const v=document.getElementById('vid'),box=document.getElementById('chapters');
+const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+const btns=CH.map(([name,t])=>{const b=document.createElement('button');b.type='button';b.className='ch';b.innerHTML=`<b>${name}</b><span>${fmt(t)}</span>`;
+ b.addEventListener('click',()=>{try{v.currentTime=t+.05;const p=v.play();if(p&&p.catch)p.catch(()=>{});}catch(e){}});box.appendChild(b);return b;});
+v.addEventListener('timeupdate',()=>{let k=0;CH.forEach(([,t],i)=>{if(v.currentTime>=t-.01)k=i;});btns.forEach((b,i)=>b.classList.toggle('on',i===k));});
+})();
+</script>
+</body>
+</html>
