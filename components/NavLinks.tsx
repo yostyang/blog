@@ -21,6 +21,15 @@ const links = [
     current: (path: string) => path.startsWith("/memo") || path.startsWith("/articles/memo-"),
   },
   { name: "关于我", href: "/me", current: (path: string) => path.startsWith("/me") },
+  {
+    name: "游戏",
+    href: "/apo-game",
+    current: (path: string) =>
+      path.startsWith("/apo-game") ||
+      path.startsWith("/pencil-garden") ||
+      path.startsWith("/dayou") ||
+      path.startsWith("/moving"),
+  },
   { name: "搜索", href: "/search", current: (path: string) => path.startsWith("/search") },
 ];
 

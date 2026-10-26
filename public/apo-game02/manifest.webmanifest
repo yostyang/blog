@@ -1,0 +1,24 @@
+{
+  "name": "便利贴大作战",
+  "short_name": "便利贴大作战",
+  "description": "根据幼儿园大班小朋友的便利贴手翻书改编的铅笔小人对战游戏：剧情动画、故事模式、人机/双人对战、躲火箭小游戏，还能自己画小棍人。",
+  "start_url": "/apo-game02",
+  "scope": "/apo-game02",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#b4402d",
+  "theme_color": "#b4402d",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
