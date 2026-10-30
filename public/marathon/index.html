@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add('js')</script>
+<title>2026 马拉松备战 · 总览</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --ink:#0e1512; --ink-2:#18231e; --paper:#edefea; --card:#ffffff;
+  --line:#dde1d9; --line-2:#e8ebe4; --muted:#5e6a63; --faint:#8b958d;
+  --flame:#ff5a1a; --flame-deep:#e6470c; --flame-soft:#ffe6da;
+  --surface-dark:#0e1512; --on-dark:#f4f8f5; --on-dark-mut:#b8c7bf; --on-dark-dim:#9fb1a9;
+  --done:#a6e022; --shadow:0 16px 40px rgba(14,30,24,.10); --r:14px;
+  --c-nj:#ff2d55; --c-tj:#ff5a1a; --c-sep:#8bbf1e;
+  --c-oct:#3d8bf5; --c-rc:#6a5cf0; --c-ex:#0fb5a8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8efe9; --ink-2:#c3cfc7; --paper:#0b110e; --card:#141c18;
+    --line:#243029; --line-2:#1e2823; --muted:#93a099; --faint:#6d786f;
+    --flame:#ff6a2e; --flame-deep:#ff824d; --flame-soft:#2b1c14;
+    --done:#a6e022; --shadow:0 16px 40px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8efe9; --ink-2:#c3cfc7; --paper:#0b110e; --card:#141c18;
+  --line:#243029; --line-2:#1e2823; --muted:#93a099; --faint:#6d786f;
+  --flame:#ff6a2e; --flame-deep:#ff824d; --flame-soft:#2b1c14;
+  --shadow:0 16px 40px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Saira","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased;}
+.num{font-family:"Saira Condensed","Saira",sans-serif;font-variant-numeric:tabular-nums;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 76px;}
+
+/* ---------------- hero ---------------- */
+.hero-band{position:relative;background:var(--surface-dark);color:#f2f6f3;overflow:hidden;}
+.hero-band::before{content:"";position:absolute;top:-40%;right:-8%;width:44%;height:200%;
+  background:linear-gradient(180deg,var(--flame),#ff8a3d);transform:skewX(-14deg);opacity:.10;}
+.hero-band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;
+  background:repeating-linear-gradient(90deg,var(--flame) 0 40px,#ffb07a 40px 80px);}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;padding:52px 22px 46px;
+  display:grid;grid-template-columns:1.2fr .95fr;gap:44px;align-items:center;}
+.kicker{margin:0 0 16px;display:inline-flex;align-items:center;gap:10px;
+  font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:13px;font-weight:700;color:var(--on-dark-dim);}
+.kicker b{color:var(--flame);font-weight:800;}
+.kicker::before{content:"";width:26px;height:3px;background:var(--flame);display:inline-block;}
+h1{margin:0 0 16px;font-size:clamp(32px,5.2vw,56px);line-height:1.06;font-weight:800;
+  letter-spacing:-.015em;color:var(--on-dark);}
+h1 em{font-style:normal;color:var(--flame);}
+.lead{margin:0 0 26px;color:var(--on-dark-mut);font-size:16px;max-width:44ch;}
+
+/* countdown */
+.cd{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 6px;}
+.cd .u{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);
+  border-radius:10px;padding:9px 14px 8px;min-width:74px;text-align:center;
+  position:relative;overflow:hidden;}
+.cd .u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:linear-gradient(90deg,var(--flame),#ffb07a);opacity:.8;}
+.cd .v{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:30px;line-height:1;color:var(--on-dark);}
+.cd .l{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;
+  font-size:10px;font-weight:700;color:var(--on-dark-dim);margin-top:4px;}
+.cd-lab{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:11.5px;font-weight:700;color:var(--on-dark-dim);margin-bottom:9px;display:block;}
+
+/* season timeline */
+.tl{position:relative;padding:18px 0 4px;}
+.tl-track{position:relative;height:2px;background:rgba(255,255,255,.14);border-radius:2px;}
+.tl-track i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--done),var(--flame));
+  animation:tlFill 1.6s .4s var(--ease) forwards;}
+@keyframes tlFill{to{width:64%;}}
+.tl-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;
+  border-radius:50%;background:#2a3630;border:2px solid rgba(255,255,255,.35);}
+.tl-dot.on{background:var(--flame);border-color:var(--flame);box-shadow:0 0 0 4px rgba(255,90,26,.18);}
+.tl-dot.next{background:#0e1512;border-color:var(--flame);}
+.tl-dot.next::after{content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid var(--flame);opacity:0;animation:ping 2.2s var(--ease) infinite;}
+@keyframes ping{0%{transform:scale(.6);opacity:.9;}80%,100%{transform:scale(1.5);opacity:0;}}
+.tl-rows{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;}
+.tl-rows div{text-align:center;padding:0 4px;}
+.tl-rows .d{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:12px;
+  letter-spacing:.04em;color:var(--on-dark);}
+.tl-rows .t{font-size:11.5px;color:var(--on-dark-dim);margin-top:2px;}
+
+/* right column */
+.side{display:flex;flex-direction:column;gap:16px;}
+.clock{display:flex;align-items:flex-end;gap:14px;}
+.clock .big{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:clamp(66px,10.5vw,108px);line-height:.8;color:var(--flame);letter-spacing:-.02em;
+  text-shadow:0 6px 26px rgba(255,90,26,.3);}
+.clock .meta{padding-bottom:6px;}
+.clock .m1{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;
+  font-size:12.5px;font-weight:800;color:var(--on-dark);}
+.clock .m2{font-size:12px;color:var(--on-dark-dim);margin-top:2px;}
+.clock .m2 .num{color:var(--on-dark);font-weight:600;}
+
+.pbcard{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:14px 16px 12px;}
+.pbcard .ph{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.pbcard .pt{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;
+  font-size:11px;font-weight:700;color:var(--on-dark-dim);}
+.pbcard .pv{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:26px;line-height:1;color:var(--on-dark);}
+.pbcard .pv u{text-decoration:none;font-style:normal;font-size:11px;font-weight:700;
+  color:var(--on-dark-dim);margin-left:3px;}
+.pbbar{height:7px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;display:flex;}
+.pbbar span{height:100%;display:block;}
+.pbbar .a{background:linear-gradient(90deg,var(--done),#c7ee5a);}
+.pbbar .b{background:var(--flame);}
+.pbleg{display:flex;gap:14px;margin-top:9px;font-size:11px;color:var(--on-dark-dim);}
+.pbleg i{display:inline-flex;align-items:center;gap:5px;font-style:normal;}
+.pbleg .sw{width:9px;height:9px;border-radius:2px;}
+
+/* ---------------- sections ---------------- */
+.sec-head{display:flex;align-items:center;gap:12px;margin:44px 0 16px;
+  font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.01em;}
+.sec-head::before{content:"";width:8px;height:22px;background:var(--flame);transform:skewX(-10deg);}
+.sec-head .en{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;
+  font-size:11.5px;font-weight:700;color:var(--faint);margin-left:auto;}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.pcard{position:relative;display:flex;flex-direction:column;gap:8px;padding:22px 22px 18px;
+  border-radius:var(--r);background:var(--card);border:1px solid var(--line);color:inherit;
+  text-decoration:none;overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .32s var(--ease),border-color .32s,box-shadow .32s;}
+.pcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c);
+  transition:width .32s var(--ease);}
+.pcard:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 22px 50px rgba(14,30,24,.18);}
+.pcard:hover::before{width:7px;}
+.pcard .pc-top{display:flex;align-items:center;gap:10px;}
+.pcard .k{font-family:"Saira Condensed",sans-serif;font-weight:700;letter-spacing:.08em;
+  font-size:11.5px;color:var(--c);text-transform:uppercase;}
+.pcard .st{margin-left:auto;font-family:"Saira Condensed",sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--c) 14%,transparent);
+  color:var(--c);text-transform:uppercase;}
+.pcard .t{font-size:20px;font-weight:700;line-height:1.25;}
+.pcard .d{font-size:13.5px;color:var(--muted);line-height:1.6;}
+.pcard .mini{display:flex;gap:16px;margin-top:6px;padding-top:11px;border-top:1px dashed var(--line-2);}
+.pcard .mini div{display:flex;flex-direction:column;}
+.pcard .mini .mv{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;font-size:19px;line-height:1;}
+.pcard .mini .ml{font-size:10.5px;color:var(--faint);margin-top:2px;font-family:"Saira Condensed",sans-serif;letter-spacing:.03em;}
+.pcard .go{margin-top:auto;padding-top:10px;font-size:12.5px;font-weight:700;color:var(--c);
+  display:flex;align-items:center;gap:6px;transition:gap .28s var(--ease);}
+.pcard:hover .go{gap:11px;}
+.pcard .go svg{width:13px;height:13px;fill:currentColor;}
+
+/* key numbers strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;}
+.kn{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px 13px;
+  box-shadow:var(--shadow);}
+.kn .v{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;font-size:26px;line-height:1;}
+.kn .v u{text-decoration:none;font-style:normal;font-size:12px;font-weight:700;color:var(--faint);margin-left:2px;}
+.kn .l{font-size:12px;color:var(--muted);margin-top:4px;}
+
+footer{margin-top:36px;padding-top:16px;border-top:2px solid var(--line);
+  font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:40px 22px 38px;}
+  .grid{grid-template-columns:1fr;}
+  .strip{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:520px){ .tl-rows{font-size:10px;} .cd .u{min-width:64px;padding:8px 10px 7px;} }
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body style="--accent:#ff5a1a;--accent-2:#ffb07a">
+
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></span>
+    <span class="bt"><b>Marathon 2026</b><span>Training Log</span></span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html" class="is-active" data-color="#ff5a1a"><span class="dot"></span>总览</a>
+    <a href="nanjing.html" data-color="#ff2d55"><span class="dot"></span>南京 11.22</a>
+    <a href="tianjin.html" data-color="#ff5a1a"><span class="dot"></span>天津 10.25</a>
+    <a href="september.html" data-color="#8bbf1e"><span class="dot"></span>九月</a>
+    <a href="october.html" data-color="#3d8bf5"><span class="dot"></span>十月</a>
+    <a href="recomp.html" data-color="#6a5cf0"><span class="dot"></span>体态重塑</a>
+    <a href="exercises.html" data-color="#0fb5a8"><span class="dot"></span>动作库</a>
+  </div>
+  <div class="navtools">
+    <button class="navbtn only-mobile" data-rail-toggle aria-label="打开目录">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+  </div>
+  <i class="progress"></i>
+</nav>
+
+<aside class="rail always-pages" aria-label="快速导航">
+  <div class="rail-head">Jump to · 快速跳转</div>
+  <nav class="railnav">
+    <a href="#season"><span class="rn">01</span><span>本赛季</span></a>
+    <a href="#numbers"><span class="rn">02</span><span>关键数据</span></a>
+  </nav>
+  <div class="rail-foot">
+    <div class="rail-prog">
+      <div class="rp-top"><span class="rp-l">阅读进度</span><span class="rp-v">0%</span></div>
+      <div class="rp-track"><i></i></div>
+    </div>
+    <a class="rail-jump" href="exercises.html">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 动作库 · 21 个动作
+    </a>
+  </div>
+</aside>
+<div class="rail-scrim"></div>
+
+<div class="hero-band">
+  <div class="speed" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker"><b>Season</b> · 09 — 2026.11.22</div>
+      <h1>2026 马拉松备战<br><em>冲 3:25</em></h1>
+      <p class="lead">天津 3:35:14 刷新个人最好。下一站南京 11 月 22 日，冲击 3:25——后程不崩，才是这场的关键。</p>
+      <span class="cd-lab">距南京马拉松起跑</span>
+      <div class="cd" id="countdown">
+        <div class="u"><div class="v num" data-cd="d">--</div><div class="l">Days</div></div>
+        <div class="u"><div class="v num" data-cd="h">--</div><div class="l">Hours</div></div>
+        <div class="u"><div class="v num" data-cd="m">--</div><div class="l">Mins</div></div>
+        <div class="u"><div class="v num" data-cd="s">--</div><div class="l">Secs</div></div>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="clock">
+        <div class="big num">3:25</div>
+        <div class="meta">
+          <div class="m1">Nanjing Target</div>
+          <div class="m2">手表领跑员 <span class="num">4'49"–4'50"</span>/km</div>
+        </div>
+      </div>
+
+      <div class="pbcard">
+        <div class="ph"><span class="pt">Personal Best · 2026 天津</span><span class="pv num">3:35:14</span></div>
+        <div class="pbbar">
+          <span class="a" style="width:87.5%"></span>
+          <span class="b" style="width:12.5%"></span>
+        </div>
+        <div class="pbleg">
+          <i><span class="sw" style="background:var(--done)"></span>已跑 343.1 / 392 km</i>
+          <i><span class="sw" style="background:var(--flame)"></span>距 3:25 还差 10:14</i>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-track">
+          <i></i>
+          <span class="tl-dot on" style="left:0%"></span>
+          <span class="tl-dot on" style="left:32%"></span>
+          <span class="tl-dot next" style="left:64%"></span>
+          <span class="tl-dot" style="left:100%"></span>
+        </div>
+        <div class="tl-rows">
+          <div><div class="d">09</div><div class="t">九月 180.9 km</div></div>
+          <div><div class="d">10.25</div><div class="t">天津 3:35:14</div></div>
+          <div><div class="d">11.22</div><div class="t">南京 冲 3:25</div></div>
+          <div><div class="d">12</div><div class="t">体态重塑</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="sec-head" id="season" data-nav="本赛季">本赛季<span class="en">All Pages</span></div>
+  <div class="grid">
+    <a class="pcard" href="nanjing.html" data-reveal style="--c:var(--c-nj)">
+      <div class="pc-top"><span class="k">11.22 · 进行中</span><span class="st">Live</span></div>
+      <span class="t">南京马拉松 · 冲击 3:25</span>
+      <span class="d">四周计划：恢复 → 重建 → 关键周 → 赛周。三档出发方案 + A 档官方里程牌分段。</span>
+      <div class="mini"><div><span class="mv num">4'51.6"</span><span class="ml">目标配速</span></div><div><span class="mv num">3:30</span><span class="ml">保底目标</span></div><div><span class="mv num">4</span><span class="ml">剩余周</span></div></div>
+      <span class="go">打开 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+    <a class="pcard" href="tianjin.html" data-reveal style="--d:90ms;--c:var(--c-tj)">
+      <div class="pc-top"><span class="k">10.25 · 已完赛</span><span class="st">PB</span></div>
+      <span class="t">天津马拉松 · 赛前训练课表</span>
+      <span class="d">七周训练记录、晨重趋势、力量与平衡课表、髋部放松方案，以及比赛配速复盘。</span>
+      <div class="mini"><div><span class="mv num">343.1</span><span class="ml">已跑 km</span></div><div><span class="mv num">29</span><span class="ml">完成跑步</span></div><div><span class="mv num">92</span><span class="ml">平均完成度</span></div></div>
+      <span class="go">打开 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+    <a class="pcard" href="september.html" data-reveal style="--d:160ms;--c:var(--c-sep)">
+      <div class="pc-top"><span class="k">09 · 月度</span><span class="st">Archive</span></div>
+      <span class="t">九月跑步总览</span>
+      <span class="d">17 次 · 180.9 km 的月度训练日历，一眼看清哪几天在跑、哪几天在恢复。</span>
+      <div class="mini"><div><span class="mv num">17</span><span class="ml">跑步次数</span></div><div><span class="mv num">180.9</span><span class="ml">总距离 km</span></div><div><span class="mv num">20.1</span><span class="ml">最长单次</span></div></div>
+      <span class="go">打开 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+    <a class="pcard" href="october.html" data-reveal style="--d:230ms;--c:var(--c-oct)">
+      <div class="pc-top"><span class="k">10 · 月度</span><span class="st">PB</span></div>
+      <span class="t">十月跑步总览</span>
+      <span class="d">14 次 · 177.8 km，含一场 42.52 km 的天津全马。跑量与九月持平，单次均值被拉高。</span>
+      <div class="mini"><div><span class="mv num">14</span><span class="ml">跑步次数</span></div><div><span class="mv num">177.8</span><span class="ml">总距离 km</span></div><div><span class="mv num">42.52</span><span class="ml">最长单次</span></div></div>
+      <span class="go">打开 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+    <a class="pcard" href="recomp.html" data-reveal style="--d:300ms;--c:var(--c-rc)">
+      <div class="pc-top"><span class="k">6 个月 · 规划</span><span class="st">Plan</span></div>
+      <span class="t">体态重塑计划</span>
+      <span class="d">75.5 → 70 kg，体脂 19% → 14%。分五个阶段，先保成绩再重塑。</span>
+      <div class="mini"><div><span class="mv num">−5.5</span><span class="ml">目标 kg</span></div><div><span class="mv num">−5</span><span class="ml">体脂 %</span></div><div><span class="mv num">5</span><span class="ml">阶段</span></div></div>
+      <span class="go">打开 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+    <a class="pcard" href="exercises.html" data-reveal style="--d:370ms;--c:var(--c-ex)">
+      <div class="pc-top"><span class="k">动作库 · 全新</span><span class="st">Motion</span></div>
+      <span class="t">21 个动作 · 配图 + 动效演示</span>
+      <span class="d">力量、平衡、髋部放松、跑步技术四类动作，每个都有逐帧动画演示、剂量、要点与常见错误。</span>
+      <div class="mini"><div><span class="mv num">21</span><span class="ml">动作总数</span></div><div><span class="mv num">4</span><span class="ml">分类</span></div><div><span class="mv num">12</span><span class="ml">配图</span></div></div>
+      <span class="go">进入动作库 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></span>
+    </a>
+  </div>
+
+  <div class="sec-head" id="numbers" data-nav="关键数据">关键数据<span class="en">Key Numbers</span></div>
+  <div class="strip">
+    <div class="kn" data-reveal><div class="v num">3:35:14</div><div class="l">天津 · 个人最好</div></div>
+    <div class="kn" data-reveal style="--d:80ms"><div class="v num">3:44:35</div><div class="l">2025 福州 · 旧 PB</div></div>
+    <div class="kn" data-reveal style="--d:160ms"><div class="v num">4'51.6"</div><div class="l">南京目标配速</div></div>
+    <div class="kn" data-reveal style="--d:240ms"><div class="v num">−10:14</div><div class="l">距 3:25 的差距</div></div>
+  </div>
+
+  <footer>
+    <span>静态 HTML 站点，可直接部署到任意静态托管。</span>
+    <span>数据截至 2026-10-30</span>
+  </footer>
+</main>
+
+<script src="assets/site.js" defer></script>
+<script>
+(function(){
+  // 南京马拉松起跑时间（按参赛手册为准，此处取 07:30）
+  var start = new Date('2026-11-22T07:30:00+08:00').getTime();
+  var els = {
+    d: document.querySelector('[data-cd="d"]'),
+    h: document.querySelector('[data-cd="h"]'),
+    m: document.querySelector('[data-cd="m"]'),
+    s: document.querySelector('[data-cd="s"]')
+  };
+  function pad(n){ return n < 10 ? '0' + n : String(n); }
+  function tick(){
+    var diff = start - Date.now();
+    if (diff <= 0){
+      if (els.d) els.d.textContent = '00';
+      if (els.h) els.h.textContent = '00';
+      if (els.m) els.m.textContent = '00';
+      if (els.s) els.s.textContent = '00';
+      var lab = document.querySelector('.cd-lab');
+      if (lab) lab.textContent = '南京马拉松已完赛';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff % 86400000 / 3600000);
+    var m = Math.floor(diff % 3600000 / 60000);
+    var s = Math.floor(diff % 60000 / 1000);
+    if (els.d) els.d.textContent = d;
+    if (els.h) els.h.textContent = pad(h);
+    if (els.m) els.m.textContent = pad(m);
+    if (els.s) els.s.textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>跑步总览 · 九月｜南马 3:30 备战</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --ink:#141b2e; --ink-2:#3a4358; --paper:#eef1f8; --card:#ffffff;
+  --line:#e2e6f0; --muted:#6b7488; --faint:#98a1b6;
+  --lime:#a6e022; --lime-deep:#7bb70e; --lime-ink:#1c3a06;
+  --green:#22c37b; --coral:#ff6a52; --teal:#12b5b0; --blue:#3d8bf5;
+  --shadow:0 14px 40px rgba(30,44,90,.10);
+  --r:20px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#eaeefb; --ink-2:#c1c9de; --paper:#0b1020; --card:#141b2e;
+  --line:#232c44; --muted:#98a1b6; --faint:#6b7488;
+  --lime:#b4ec38; --lime-deep:#9fd923; --shadow:0 14px 40px rgba(0,0,0,.5);
+}}
+:root[data-theme="dark"]{
+  --ink:#eaeefb; --ink-2:#c1c9de; --paper:#0b1020; --card:#141b2e;
+  --line:#232c44; --muted:#98a1b6; --faint:#6b7488;
+  --lime:#b4ec38; --lime-deep:#9fd923; --shadow:0 14px 40px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{margin:0; background:
+    radial-gradient(120% 80% at 100% 0%, rgba(61,139,245,.14), transparent 60%),
+    radial-gradient(90% 70% at 0% 100%, rgba(166,224,34,.12), transparent 55%),
+    var(--paper);
+  color:var(--ink); font-family:"Saira","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);}
+.num{font-family:"Saira Condensed","Saira",sans-serif; font-variant-numeric:tabular-nums;}
+.wrap{max-width:840px; margin:0 auto; padding:30px 20px 64px;}
+
+.head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:26px; flex-wrap:wrap;}
+.head .kick{font-family:"Saira Condensed",sans-serif; text-transform:uppercase; letter-spacing:.14em;
+  font-size:13px; font-weight:700; color:var(--lime-deep); display:flex; align-items:center; gap:9px;}
+.head .kick::before{content:""; width:24px; height:3px; background:var(--lime);}
+.head h1{margin:8px 0 0; font-size:clamp(28px,5vw,42px); font-weight:700; letter-spacing:-.01em; line-height:1.1;}
+.head .sub{color:var(--muted); font-size:14.5px; margin-top:6px;}
+.head .badge{background:var(--lime); color:var(--lime-ink); font-family:"Saira Condensed",sans-serif;
+  font-style:italic; font-weight:800; font-size:15px; padding:7px 14px; border-radius:99px; white-space:nowrap;}
+
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px;}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px 18px 16px; box-shadow:var(--shadow);}
+.stat .ib{width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;}
+.stat .ib svg{width:24px; height:24px; fill:#fff;}
+.stat .v{font-family:"Saira Condensed",sans-serif; font-style:italic; font-weight:800; font-size:30px; line-height:1;}
+.stat .v u{text-decoration:none; font-style:normal; font-size:14px; font-weight:700; color:var(--faint); margin-left:3px;}
+.stat .l{color:var(--muted); font-size:13px; margin-top:4px;}
+.ib.green{background:var(--green);} .ib.teal{background:var(--teal);}
+.ib.coral{background:var(--coral);} .ib.blue{background:var(--blue);}
+
+.calcard{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:22px 22px 24px; box-shadow:var(--shadow);}
+.cal-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+.cal-top .ct{font-size:18px; font-weight:700;}
+.cal-top .cl{display:flex; gap:14px; font-size:12.5px; color:var(--muted); flex-wrap:wrap;}
+.cal-top .cl i{display:inline-flex; align-items:center; gap:6px;}
+.cal-top .cl .sw{width:12px; height:12px; border-radius:50%;}
+.dow-row{display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:8px;}
+.dow-row span{text-align:center; font-size:13px; color:var(--faint); font-weight:600;}
+.cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:8px 6px;}
+.cal-cell{display:flex; flex-direction:column; align-items:center; gap:5px; padding:4px 0;}
+.cal-cell.empty{visibility:hidden;}
+.cal-cell .ic{width:min(52px,10vw); aspect-ratio:1; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--line);}
+.cal-cell .ic svg{width:58%; height:58%; fill:var(--faint);}
+.cal-cell.done .ic{background:var(--lime); box-shadow:0 6px 16px rgba(166,224,34,.4);}
+.cal-cell.done .ic svg{fill:var(--lime-ink);}
+.cal-cell.up .ic{background:transparent; border:2px dashed var(--lime-deep);}
+.cal-cell.up .ic svg{fill:var(--lime-deep); opacity:.75;}
+.cal-cell.today .ic{outline:3px solid var(--blue); outline-offset:2px;}
+.cal-cell .dnum{font-family:"Saira Condensed",sans-serif; font-weight:700; font-size:14px; color:var(--ink-2);}
+.cal-cell.done .dnum{color:var(--lime-deep);}
+.cal-cell.today .dnum{color:var(--blue); font-weight:800;}
+
+.foot{margin-top:22px; color:var(--muted); font-size:13px; text-align:center;}
+.foot b{color:var(--ink); font-weight:700;}
+
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .cal-grid{gap:6px 4px;}
+}
+/* ---------- hero band ---------- */
+.hero-band{position:relative;background:#0b1020;color:#f2f6f3;overflow:hidden;}
+.hero-band::before{content:"";position:absolute;top:-40%;right:-8%;width:44%;height:200%;
+  background:linear-gradient(180deg,var(--lime),#d9f97a);transform:skewX(-14deg);opacity:.14;}
+.hero-band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;
+  background:repeating-linear-gradient(90deg,var(--lime) 0 40px,#e6ffa0 40px 80px);}
+.hero-inner{position:relative;max-width:840px;margin:0 auto;padding:48px 20px 42px;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;}
+.hero-inner .kick{margin:0 0 14px;display:inline-flex;align-items:center;gap:9px;
+  font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:13px;font-weight:700;color:#9fb1a9;}
+.hero-inner .kick b{color:var(--lime);font-weight:800;}
+.hero-inner .kick::before{content:"";width:26px;height:3px;background:var(--lime);display:inline-block;}
+.hero-inner h1{margin:0 0 14px;font-size:clamp(28px,4.6vw,46px);line-height:1.08;
+  font-weight:800;letter-spacing:-.015em;color:#f4f8f5;}
+.hero-inner .lead{margin:0;color:#b8c7bf;font-size:15.5px;max-width:42ch;}
+.hero-big{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);
+  border-radius:13px;padding:18px 20px 16px;}
+.hb-row{display:flex;align-items:baseline;gap:6px;}
+.hb-v{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:clamp(46px,6.6vw,64px);line-height:.85;color:var(--lime);letter-spacing:-.02em;}
+.hb-u{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:16px;color:#9fb1a9;}
+.hb-lab{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;
+  font-size:11px;font-weight:700;color:#9fb1a9;margin-top:8px;}
+.hb-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.13);overflow:hidden;margin-top:12px;}
+.hb-bar i{display:block;height:100%;width:57%;border-radius:99px;
+  background:linear-gradient(90deg,var(--lime),#d9f97a);}
+.hb-foot{display:flex;justify-content:space-between;font-size:11px;color:#9fb1a9;margin-top:8px;
+  font-family:"Saira Condensed",sans-serif;font-weight:600;letter-spacing:.03em;}
+@media (max-width:760px){ .hero-inner{grid-template-columns:1fr;gap:24px;padding:38px 20px 34px;} }
+
+@media print{*{-webkit-print-color-adjust:exact; print-color-adjust:exact;} body{background:#fff;} .wrap{max-width:none; padding:0;} .stat,.calcard{box-shadow:none;} @page{margin:10mm;}}
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body style="--accent:#7bb70e;--accent-2:#b4ec38">
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></span>
+    <span class="bt"><b>Marathon 2026</b><span>Training Log</span></span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html" data-color="#ff5a1a"><span class="dot"></span>总览</a>
+    <a href="nanjing.html" data-color="#ff2d55"><span class="dot"></span>南京 11.22</a>
+    <a href="tianjin.html" data-color="#ff5a1a"><span class="dot"></span>天津 10.25</a>
+    <a href="september.html" class="is-active" data-color="#7bb70e"><span class="dot"></span>九月</a>
+    <a href="october.html" data-color="#3d8bf5"><span class="dot"></span>十月</a>
+    <a href="recomp.html" data-color="#6a5cf0"><span class="dot"></span>体态重塑</a>
+    <a href="exercises.html" data-color="#0fb5a8"><span class="dot"></span>动作库</a>
+  </div>
+  <div class="navtools">
+    <button class="navbtn only-mobile" data-rail-toggle aria-label="打开目录">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+  </div>
+  <i class="progress"></i>
+</nav>
+
+<aside class="rail" aria-label="本页快速导航">
+  <div class="rail-head">On this page · 本页</div>
+  <nav class="railnav"></nav>
+  <div class="rail-foot">
+    <div class="rail-prog">
+      <div class="rp-top"><span class="rp-l">阅读进度</span><span class="rp-v">0%</span></div>
+      <div class="rp-track"><i></i></div>
+    </div>
+    <a class="rail-jump" href="tianjin.html">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 十月 · 天津课表
+    </a>
+  </div>
+</aside>
+<div class="rail-scrim"></div>
+
+<div class="hero-band">
+  <div class="speed" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hero-inner">
+    <div>
+      <div class="kick"><b>Running Log</b> · September 2026</div>
+      <h1>跑步总览 · 九月</h1>
+      <p class="lead">南京 3:30 备战 · 9 月全部实跑记录。17 天在跑，13 天在恢复——练得进去，也休得下来。</p>
+    </div>
+    <div class="hero-big">
+      <div class="hb-row"><span class="hb-v num">180.9</span><span class="hb-u">km</span></div>
+      <div class="hb-lab">September Volume · 九月总距离</div>
+      <div class="hb-bar"><i></i></div>
+      <div class="hb-foot"><span>17 天在跑 / 30 天</span><span class="num">57%</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="stats" id="s-stats" data-nav="月度数据">
+    <div class="stat" data-reveal>
+      <div class="ib green"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+      <div class="v num">17 <u>次</u></div><div class="l">完成跑步</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="ib teal"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div>
+      <div class="v num">180.9 <u>km</u></div><div class="l">九月总距离</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="ib blue"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.5-.5.5H8v-2h3V7h2z"/></svg></div>
+      <div class="v num">10.6 <u>km</u></div><div class="l">平均单次</div>
+    </div>
+    <div class="stat" data-reveal>
+      <div class="ib coral"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v6c0 5 3.4 8.5 8 9 4.6-.5 8-4 8-9V7z"/></svg></div>
+      <div class="v num">20.1 <u>km</u></div><div class="l">最长单次 · 9/19</div>
+    </div>
+  </section>
+
+  <section class="calcard" id="s-cal" data-nav="训练日历" data-reveal>
+    <div class="cal-top">
+      <div class="ct">跑步 · 九月</div>
+      <div class="cl">
+        <i><span class="sw" style="background:var(--lime)"></span>已完成</i>
+        <i><span class="sw" style="background:transparent;border:2px dashed var(--lime-deep)"></span>计划中</i>
+        <i><span class="sw" style="background:var(--line)"></span>未跑/休息</i>
+      </div>
+    </div>
+    <div class="dow-row"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+    <div class="cal-grid">
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">1</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">2</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">3</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">4</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">5</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">6</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">7</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">8</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">9</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">10</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">11</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">12</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">13</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">14</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">15</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">16</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">17</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">18</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">19</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">20</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">21</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">22</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">23</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">24</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">25</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">26</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">27</span></div>
+    <div class="cal-cell up"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">28</span></div>
+    <div class="cal-cell done"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">29</span></div>
+    <div class="cal-cell off"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div><span class="dnum">30</span></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    数据来自 <b>9/02 自主跑</b> + <b>南京 3:30 训练计划</b>第 1–3 周实跑记录 · 亮绿为已完成、虚线为九月剩余计划。
+  </footer>
+
+</main>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
