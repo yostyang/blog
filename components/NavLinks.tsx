@@ -30,6 +30,11 @@ const links = [
       path.startsWith("/dayou") ||
       path.startsWith("/moving"),
   },
+  {
+    name: "运动健康",
+    href: "/marathon/",
+    current: (path: string) => path.startsWith("/marathon"),
+  },
   { name: "搜索", href: "/search", current: (path: string) => path.startsWith("/search") },
 ];
 

@@ -43,6 +43,7 @@ const gameRewrites: { source: string; destination: string }[] = [
   { source: "/apo-game04", destination: "/apo-game04/index.html" },
   { source: "/apo-game05", destination: "/apo-game05/index.html" },
   { source: "/apo-game05/intro", destination: "/apo-game05/intro.html" },
+  { source: "/apo-game09", destination: "/apo-game09/index.html" },
   { source: "/pencil-garden", destination: "/pencil-garden/index.html" },
   { source: "/pencil-garden/intro", destination: "/pencil-garden/intro.html" },
   { source: "/dayou", destination: "/dayou/index.html" },
@@ -50,11 +51,26 @@ const gameRewrites: { source: string; destination: string }[] = [
   { source: "/moving/game", destination: "/moving/game/index.html" },
 ];
 
+/** Clean URLs for the marathon mini-site. The .html links in the pages still work as files. */
+const marathonPages = ["exercises", "recomp", "nanjing", "tianjin", "september", "october"];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  // The marathon pages use relative URLs (assets/site.css, exercises.html).
+  // Those only resolve when the browser stays on /marathon/. Next's built-in
+  // rule sends every trailing slash the other way, so turn that rule off and
+  // put the same redirect back for every path except /marathon/.
+  skipTrailingSlashRedirect: true,
   async rewrites() {
-    return gameRewrites;
+    return [
+      ...gameRewrites,
+      { source: "/marathon/", destination: "/marathon/index.html" },
+      ...marathonPages.map((page) => ({
+        source: `/marathon/${page}`,
+        destination: `/marathon/${page}.html`,
+      })),
+    ];
   },
   async redirects() {
     return [
@@ -67,6 +83,14 @@ const nextConfig: NextConfig = {
         destination: "/posts/:slug",
         permanent: true,
       },
+      // (?!/) keeps this from also matching /marathon/, which would loop.
+      { source: "/marathon((?!/))", destination: "/marathon/", permanent: true },
+      {
+        source: "/:path((?!marathon(?:/|$)).*)/",
+        destination: "/:path",
+        permanent: true,
+      },
+      { source: "/marathon/:path+/", destination: "/marathon/:path+", permanent: true },
     ];
   },
 };

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>动作库｜21 个动作 · 配图与动效演示</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --ink:#0e1512; --ink-2:#18231e; --paper:#edefea; --card:#ffffff;
+  --line:#dde1d9; --line-2:#e8ebe4; --muted:#5e6a63; --faint:#8b958d;
+  --teal:#0fb5a8; --teal-deep:#0a8b81; --teal-soft:#e0f5f2;
+  --flame:#ff5a1a; --surface-dark:#0e1512; --on-dark:#f4f8f5;
+  --on-dark-mut:#b8c7bf; --on-dark-dim:#9fb1a9;
+  --shadow:0 16px 40px rgba(14,30,24,.10); --r:14px;
+  --paper-img:#f0efe8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8efe9; --ink-2:#c3cfc7; --paper:#0b110e; --card:#141c18;
+    --line:#243029; --line-2:#1e2823; --muted:#93a099; --faint:#6d786f;
+    --teal:#2ed4c4; --teal-deep:#4fe3d4; --teal-soft:#0e2a27;
+    --shadow:0 16px 40px rgba(0,0,0,.45); --paper-img:#f0efe8;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8efe9; --ink-2:#c3cfc7; --paper:#0b110e; --card:#141c18;
+  --line:#243029; --line-2:#1e2823; --muted:#93a099; --faint:#6d786f;
+  --teal:#2ed4c4; --teal-deep:#4fe3d4; --teal-soft:#0e2a27;
+  --shadow:0 16px 40px rgba(0,0,0,.45); --paper-img:#f0efe8;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Saira","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased;}
+.num{font-family:"Saira Condensed","Saira",sans-serif;font-variant-numeric:tabular-nums;}
+
+/* ---------- hero ---------- */
+.hero-band{position:relative;background:var(--surface-dark);color:#f2f6f3;overflow:hidden;}
+.hero-band::before{content:"";position:absolute;top:-40%;right:-8%;width:44%;height:200%;
+  background:linear-gradient(180deg,var(--teal),#7ce6dc);transform:skewX(-14deg);opacity:.13;}
+.hero-band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;
+  background:repeating-linear-gradient(90deg,var(--teal) 0 40px,#7ce6dc 40px 80px);}
+.hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:48px 22px 42px;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;}
+.kicker{margin:0 0 15px;display:inline-flex;align-items:center;gap:10px;
+  font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:13px;font-weight:700;color:var(--on-dark-dim);}
+.kicker b{color:var(--teal);font-weight:800;}
+.kicker::before{content:"";width:26px;height:3px;background:var(--teal);display:inline-block;}
+h1{margin:0 0 16px;font-size:clamp(30px,4.6vw,50px);line-height:1.08;font-weight:800;
+  letter-spacing:-.015em;color:var(--on-dark);}
+.lead{margin:0;color:var(--on-dark-mut);font-size:15.5px;max-width:44ch;}
+.cat-chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.cc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);
+  border-radius:11px;padding:12px 14px;border-left:3px solid var(--c);}
+.cc b{display:block;font-family:"Saira Condensed",sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--on-dark-dim);font-weight:700;}
+.cc span{display:block;font-size:15px;font-weight:700;color:var(--on-dark);margin-top:1px;}
+.cc em{font-style:normal;font-family:"Saira Condensed",sans-serif;font-weight:800;
+  font-size:26px;color:var(--c);line-height:1;}
+
+/* ---------- filter bar ---------- */
+.filter{position:sticky;top:var(--nav-h);z-index:120;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);}
+.filter-in{max-width:1120px;margin:0 auto;padding:11px 22px;display:flex;gap:7px;
+  overflow-x:auto;scrollbar-width:none;}
+.filter-in::-webkit-scrollbar{display:none;}
+.chip{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font:600 13px/1 "Saira","PingFang SC",sans-serif;padding:9px 15px;border-radius:99px;
+  cursor:pointer;white-space:nowrap;transition:all .22s var(--ease);}
+.chip:hover{border-color:var(--teal);color:var(--ink);}
+.chip.on{background:var(--teal);border-color:var(--teal);color:#04231f;font-weight:700;
+  box-shadow:0 6px 18px rgba(15,181,168,.32);}
+.chip b{font-family:"Saira Condensed",sans-serif;margin-left:5px;opacity:.7;}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:8px 22px 76px;}
+.cat{margin-top:44px;scroll-margin-top:calc(var(--nav-h) + 60px);}
+.cat-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+.cat-no{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:15px;color:#fff;background:var(--c,#ff5a1a);padding:5px 11px 4px;border-radius:5px;
+  transform:skewX(-9deg);flex:0 0 auto;margin-top:3px;}
+.cat-no{display:inline-block;}
+.cat-head h2{margin:0;font-size:23px;font-weight:700;display:flex;align-items:baseline;gap:10px;
+  flex-wrap:wrap;}
+.cat-head h2 em{font-style:normal;font-family:"Saira Condensed",sans-serif;font-size:12px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--faint);font-weight:700;}
+.cat-head p{margin:5px 0 0;color:var(--muted);font-size:13.5px;max-width:62ch;text-wrap:pretty;}
+
+/* ---------- exercise card ---------- */
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:16px;}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .32s var(--ease),box-shadow .32s var(--ease),border-color .32s;}
+.ex:hover{transform:translateY(-5px);box-shadow:0 24px 52px rgba(14,30,24,.18);border-color:var(--teal);}
+.ex.is-hidden{display:none;}
+.ex-media{position:relative;display:block;width:100%;aspect-ratio:5/4;padding:0;border:0;
+  background:var(--paper-img);cursor:pointer;overflow:hidden;}
+.ex-media img{width:100%;height:100%;object-fit:contain;display:block;
+  transition:transform .6s var(--ease);}
+.ex:hover .ex-media img{transform:scale(1.045);}
+.ex-demo{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper-img);}
+.ex-demo svg{width:100%;height:100%;display:block;}
+.ex-badge{position:absolute;left:10px;top:10px;font-family:"Saira Condensed",sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(14,21,18,.82);color:#f4f8f5;padding:4px 9px;border-radius:5px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.ex-play{position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;gap:5px;
+  font-family:"Saira Condensed",sans-serif;font-size:11px;font-weight:800;letter-spacing:.06em;
+  background:var(--teal);color:#04231f;padding:6px 11px 6px 8px;border-radius:99px;
+  transform:translateY(4px);opacity:0;transition:all .28s var(--ease);
+  box-shadow:0 6px 18px rgba(15,181,168,.4);}
+.ex-play svg{width:11px;height:11px;fill:currentColor;}
+.ex:hover .ex-play,.ex:focus-within .ex-play{opacity:1;transform:none;}
+@media (hover:none){.ex-play{opacity:1;transform:none;}}
+.ex-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.ex-body h3{margin:0;font-size:16.5px;font-weight:700;line-height:1.3;}
+.ex-body h3 em{display:block;font-style:normal;font-family:"Saira Condensed",sans-serif;
+  font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
+  font-weight:700;margin-top:2px;}
+.ex-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.ex-dose{font-family:"Saira Condensed",sans-serif;font-style:italic;font-weight:800;
+  font-size:19px;line-height:1;color:var(--teal-deep);}
+.ex-cat{font-size:11px;color:var(--faint);border-left:1px solid var(--line);
+  padding-left:8px;}
+.ex-cue{margin:2px 0 0;font-size:12.5px;color:var(--muted);line-height:1.55;}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:20px;
+  background:rgba(8,14,11,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+.lb.on{display:grid;}
+.lb-panel{position:relative;width:min(940px,100%);max-height:calc(100vh - 40px);overflow:auto;
+  background:var(--card);border-radius:18px;box-shadow:0 40px 90px rgba(0,0,0,.45);
+  display:grid;grid-template-columns:.85fr 1fr;animation:lbIn .34s var(--ease) both;}
+@keyframes lbIn{from{opacity:0;transform:translateY(18px) scale(.985);}to{opacity:1;transform:none;}}
+.lb-stage{position:relative;background:var(--paper-img);padding:22px;display:flex;
+  flex-direction:column;justify-content:center;gap:14px;}
+.lb-demo{width:100%;}
+.lb-demo svg{width:100%;height:auto;display:block;}
+.lb-ctrl{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.lb-btn{appearance:none;border:1px solid rgba(14,21,18,.16);background:rgba(255,255,255,.7);
+  color:#0e1512;font:700 12px/1 "Saira","PingFang SC",sans-serif;padding:8px 13px;
+  border-radius:99px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  transition:all .2s;}
+.lb-btn:hover{background:#fff;border-color:var(--teal);}
+.lb-btn.on{background:var(--teal);border-color:var(--teal);color:#04231f;}
+.lb-btn svg{width:11px;height:11px;fill:currentColor;}
+.lb-info{padding:26px 28px 30px;overflow:auto;}
+.lb-close{position:absolute;right:12px;top:12px;z-index:3;width:34px;height:34px;border-radius:50%;
+  border:0;background:rgba(14,21,18,.72);color:#fff;font-size:20px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;transition:background .2s;}
+.lb-close:hover{background:var(--flame);}
+.lb-kick{font-family:"Saira Condensed",sans-serif;font-size:11px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--teal-deep);}
+.lb-info h3{margin:6px 0 0;font-size:24px;font-weight:700;line-height:1.25;}
+.lb-info h3 em{display:block;font-style:normal;font-family:"Saira Condensed",sans-serif;
+  font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);
+  font-weight:700;margin-top:3px;}
+.lb-dose{display:inline-block;margin-top:12px;font-family:"Saira Condensed",sans-serif;
+  font-style:italic;font-weight:800;font-size:22px;color:var(--teal-deep);}
+.lb-used{display:inline-block;margin-left:10px;font-size:11.5px;color:var(--faint);}
+.lb-info h4{margin:22px 0 8px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.lb-info h4::before{content:"";width:6px;height:15px;background:var(--teal);transform:skewX(-10deg);}
+.lb-info ol{margin:0;padding-left:20px;font-size:13.5px;color:var(--ink-2);}
+.lb-info ol li{margin-bottom:7px;line-height:1.55;}
+.lb-info ul{margin:0;padding:0;list-style:none;font-size:13.5px;color:var(--ink-2);}
+.lb-info ul li{position:relative;padding-left:17px;margin-bottom:7px;line-height:1.55;}
+.lb-info ul.tips li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;
+  border-radius:50%;background:var(--teal);}
+.lb-info ul.warns li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;
+  border-radius:2px;background:var(--flame);transform:skewX(-10deg);}
+
+/* ---------- weekly rhythm ---------- */
+.weekcard{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);overflow:hidden;}
+.weekcard .wh{padding:16px 20px;border-bottom:2px solid var(--line-2);display:flex;
+  align-items:baseline;gap:10px;flex-wrap:wrap;}
+.weekcard .wh h3{margin:0;font-size:18px;font-weight:700;}
+.weekcard .wh em{font-style:normal;font-family:"Saira Condensed",sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--faint);font-weight:700;}
+.wk-row{display:grid;grid-template-columns:130px 1fr 170px;gap:16px;padding:13px 20px;
+  border-bottom:1px solid var(--line-2);font-size:13.5px;align-items:baseline;}
+.wk-row:last-child{border-bottom:0;}
+.wk-k{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:13px;
+  color:var(--teal-deep);letter-spacing:.02em;}
+.wk-v{color:var(--ink-2);}
+.wk-n{color:var(--faint);font-size:12.5px;text-align:right;}
+
+.foot{margin-top:32px;padding-top:18px;border-top:2px solid var(--line);color:var(--muted);
+  font-size:12.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:28px;}
+  .lb-panel{grid-template-columns:1fr;max-height:calc(100vh - 24px);}
+  .lb-stage{padding:16px;}
+  .wk-row{grid-template-columns:1fr;gap:4px;}
+  .wk-n{text-align:left;}
+}
+@media (max-width:560px){
+  .wrap{padding:8px 15px 60px;}
+  .ex-grid{grid-template-columns:1fr;}
+}
+</style>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body style="--accent:#0fb5a8;--accent-2:#7ce6dc">
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></span>
+    <span class="bt"><b>Marathon 2026</b><span>Training Log</span></span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html" data-color="#ff5a1a"><span class="dot"></span>总览</a>
+    <a href="nanjing.html" data-color="#ff2d55"><span class="dot"></span>南京 11.22</a>
+    <a href="tianjin.html" data-color="#ff5a1a"><span class="dot"></span>天津 10.25</a>
+    <a href="september.html" data-color="#7bb70e"><span class="dot"></span>九月</a>
+    <a href="october.html" data-color="#3d8bf5"><span class="dot"></span>十月</a>
+    <a href="recomp.html" data-color="#6a5cf0"><span class="dot"></span>体态重塑</a>
+    <a href="exercises.html" class="is-active" data-color="#0fb5a8"><span class="dot"></span>动作库</a>
+  </div>
+  <div class="navtools">
+    <button class="navbtn only-mobile" data-rail-toggle aria-label="打开目录">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+  </div>
+  <i class="progress"></i>
+</nav>
+
+<aside class="rail" aria-label="本页快速导航">
+  <div class="rail-head">On this page · 本页</div>
+  <nav class="railnav"></nav>
+  <div class="rail-foot">
+    <div class="rail-prog">
+      <div class="rp-top"><span class="rp-l">阅读进度</span><span class="rp-v">0%</span></div>
+      <div class="rp-track"><i></i></div>
+    </div>
+    <a class="rail-jump" href="tianjin.html">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 回到七周课表
+    </a>
+  </div>
+</aside>
+<div class="rail-scrim"></div>
+
+<div class="hero-band">
+  <div class="speed" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hero-inner">
+    <div>
+      <div class="kicker"><b>Exercise Library</b> · 21 Movements</div>
+      <h1>动作库<br>配图 + 动效演示</h1>
+      <p class="lead">21 个动作，每个都能点开看逐帧动画演示。力量、平衡、髋部放松、跑步技术——按训练日排好，照着做就行。</p>
+    </div>
+    <div class="cat-chips">
+      <div class="cc" style="--c:#6a5cf0"><b>Strength</b><span>力量训练</span><em class="num">08</em></div>
+      <div class="cc" style="--c:#0fb5a8"><b>Balance</b><span>平衡稳定</span><em class="num">05</em></div>
+      <div class="cc" style="--c:#ff5a1a"><b>Hip Release</b><span>髋部放松</span><em class="num">05</em></div>
+      <div class="cc" style="--c:#ff2d55"><b>Running</b><span>跑步技术</span><em class="num">03</em></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter">
+  <div class="filter-in">
+    <button class="chip on" data-filter="all">全部<b class="num">21</b></button>
+    <button class="chip" data-filter="strength">力量<b class="num">08</b></button>
+    <button class="chip" data-filter="balance">平衡<b class="num">05</b></button>
+    <button class="chip" data-filter="mobility">髋部放松<b class="num">05</b></button>
+    <button class="chip" data-filter="running">跑步技术<b class="num">03</b></button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="cat" id="cat-strength" data-nav="力量训练" style="--c:#6a5cf0">
+    <div class="cat-head" data-reveal>
+      <span class="cat-no num">08</span>
+      <div>
+        <h2>力量训练<em>Strength</em></h2>
+        <p>跑步专项、单腿稳定与后链为主，中等负荷、控制优先。每周 2 次，跑后或单独进行。</p>
+      </div>
+    </div>
+    <div class="ex-grid">
+<article class="ex" data-cat="strength" data-slug="squat" data-name="高脚杯深蹲" data-en="Goblet Squat" data-dose="3×10">
+  <button class="ex-media" type="button" aria-label="播放 高脚杯深蹲 动作演示">
+    <img src="img/squat.jpg" alt="高脚杯深蹲 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>高脚杯深蹲<em>Goblet Squat</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×10</span><span class="ex-cat">周一 / 周四 · 力量</span></div>
+    <p class="ex-cue">壶铃抱在胸前，髋向后坐，膝盖跟着脚尖走。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×10</div>
+  <div class="lb-used">周一 / 周四 · 力量</div>
+  <h4>怎么做</h4>
+  <ol><li>双脚与肩同宽，脚尖略外展 15°</li><li>壶铃抱在胸口，肘部朝下</li><li>髋向后坐同时屈膝下蹲，胸口保持抬起</li><li>蹲到大腿接近平行，脚掌三点均匀受力</li><li>脚掌推地起身，顶端夹臀但不超伸</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>全程膝盖对着第二脚趾</li><li>下蹲时重心落在中足，不是前掌</li><li>蹲不下去先垫高脚跟 2 cm 练</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>膝盖内扣——主动外展，想着「把地面撕开」</li><li>脚跟离地——重心前移了，先减小下蹲深度</li><li>腰塌、胸口掉——核心收紧，别用腰起身</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="rdl" data-name="罗马尼亚硬拉" data-en="Romanian Deadlift" data-dose="3×10">
+  <button class="ex-media" type="button" aria-label="播放 罗马尼亚硬拉 动作演示">
+    <img src="img/rdl.jpg" alt="罗马尼亚硬拉 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>罗马尼亚硬拉<em>Romanian Deadlift</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×10</span><span class="ex-cat">周一 / 周四 · 力量</span></div>
+    <p class="ex-cue">膝盖微屈并固定，靠髋向后推把杠铃放下去。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×10</div>
+  <div class="lb-used">周一 / 周四 · 力量</div>
+  <h4>怎么做</h4>
+  <ol><li>站距与髋同宽，杠铃贴住大腿</li><li>膝盖微屈，之后全程锁定这个角度</li><li>髋向后推，杠铃贴着腿往下滑</li><li>滑到膝下、感到腘绳肌拉紧就停</li><li>臀部发力把髋推回来，站直不后仰</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>杠铃离身体越近越省腰</li><li>只做到背能保持中立位的幅度</li><li>起身靠臀，不靠腰</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>做成了深蹲——膝盖角度全程不能变</li><li>弓背——幅度超过当前柔韧性，减量</li><li>杠铃向前飘——贴身走，像刮腿</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="bulgarian" data-name="保加利亚分腿蹲" data-en="Bulgarian Split Squat" data-dose="3×8/腿">
+  <button class="ex-media" type="button" aria-label="播放 保加利亚分腿蹲 动作演示">
+    <img src="img/bulgarian.jpg" alt="保加利亚分腿蹲 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>保加利亚分腿蹲<em>Bulgarian Split Squat</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×8/腿</span><span class="ex-cat">力量 · 弱侧优先</span></div>
+    <p class="ex-cue">后脚搭在凳上，前脚承重，直上直下。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×8/腿</div>
+  <div class="lb-used">力量 · 弱侧优先</div>
+  <h4>怎么做</h4>
+  <ol><li>后脚脚背搭在凳上，前脚向前迈一步</li><li>躯干略前倾约 10°</li><li>下蹲到前腿大腿接近平行</li><li>前脚掌发力起身，膝盖跟着脚尖走</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>前脚离凳越近，膝盖压力越大</li><li>先徒手做稳，再负重</li><li>弱侧先做，多做 1 组</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>后腿蹬地代偿——把注意力放在前脚</li><li>左右晃动——放慢速度，减少负重</li><li>前膝内扣——外展髋，膝盖对脚尖</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="bridge" data-name="单腿臀桥" data-en="Single-Leg Glute Bridge" data-dose="3×12/腿">
+  <button class="ex-media" type="button" aria-label="播放 单腿臀桥 动作演示">
+    <img src="img/bridge.jpg" alt="单腿臀桥 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>单腿臀桥<em>Single-Leg Glute Bridge</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×12/腿</span><span class="ex-cat">力量 · 弱侧 +1 组</span></div>
+    <p class="ex-cue">脚跟发力顶髋，到肩-髋-膝一条线就停。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×12/腿</div>
+  <div class="lb-used">力量 · 弱侧 +1 组</div>
+  <h4>怎么做</h4>
+  <ol><li>仰卧屈膝，一脚踩地，另一腿伸直抬起</li><li>先收腹，让腰贴地</li><li>脚跟推地顶髋，直到肩、髋、膝成一条线</li><li>顶端停 1 秒夹臀，再缓慢落下</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>顶到一条线就够，再高就是腰椎代偿</li><li>抬起那条腿保持与身体同线</li><li>离心慢放比顶起更重要</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>用腰顶——先收腹再发力</li><li>骨盆歪斜——抬腿一侧不要掉</li><li>脚离臀太远——腘绳肌会抢臀肌的活</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="calf-raise" data-name="提踵" data-en="Calf Raise" data-dose="3×15">
+  <button class="ex-media" type="button" aria-label="播放 提踵 动作演示">
+    <img src="img/calf-raise.jpg" alt="提踵 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>提踵<em>Calf Raise</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×15</span><span class="ex-cat">周一 / 周四 · 力量</span></div>
+    <p class="ex-cue">前脚掌踩台阶边缘，慢下快上，全程拉满幅度。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×15</div>
+  <div class="lb-used">周一 / 周四 · 力量</div>
+  <h4>怎么做</h4>
+  <ol><li>前脚掌踩在台阶边缘，脚跟悬空</li><li>先降到脚跟低于台阶，感到小腿被拉长</li><li>前脚掌发力顶到最高点，停 1 秒</li><li>用 3 秒慢慢放下来</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>直腿练腓肠肌，屈膝练比目鱼肌，两种都做</li><li>跑量大的时候减组数不减幅度</li><li>踝关节是跑步最容易出问题的地方</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>弹震借力——离心放慢就没法弹</li><li>幅度太小——上下都要拉满</li><li>膝盖锁死——留一点点屈</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="plank" data-name="平板支撑" data-en="Plank" data-dose="40″">
+  <button class="ex-media" type="button" aria-label="播放 平板支撑 动作演示">
+    <img src="img/plank.jpg" alt="平板支撑 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>平板支撑<em>Plank</em></h3>
+    <div class="ex-row"><span class="ex-dose num">40″</span><span class="ex-cat">力量 / 核心</span></div>
+    <p class="ex-cue">肘在肩下，夹臀收腹，身体一条线。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">40″</div>
+  <div class="lb-used">力量 / 核心</div>
+  <h4>怎么做</h4>
+  <ol><li>前臂撑地，肘关节在肩正下方</li><li>脚尖蹬地，把身体撑成一条直线</li><li>收腹夹臀，肋骨向下收</li><li>保持匀速呼吸，别憋气</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>时间不是目标，姿势才是</li><li>撑不住就停，别硬撑到塌腰</li><li>能撑 60 秒就加难度，不用加时间</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>塌腰翘臀——夹臀收腹</li><li>耸肩——肩胛骨向下沉</li><li>憋气——呼吸乱了就结束这一组</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="dead-bug" data-name="死虫" data-en="Dead Bug" data-dose="3×10/侧">
+  <button class="ex-media" type="button" aria-label="播放 死虫 动作演示">
+    <img src="img/dead-bug.jpg" alt="死虫 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>死虫<em>Dead Bug</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×10/侧</span><span class="ex-cat">力量 · 抗旋核心</span></div>
+    <p class="ex-cue">腰始终贴地，对侧手脚慢慢伸出去。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×10/侧</div>
+  <div class="lb-used">力量 · 抗旋核心</div>
+  <h4>怎么做</h4>
+  <ol><li>仰卧，双手指向天花板，髋膝各 90°</li><li>腰背压住地面，全程不离地</li><li>对侧手脚同时缓慢伸展</li><li>回到起点，换另一侧</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>腰一离地就是幅度太大，收回来一点</li><li>越慢越难，也越有用</li><li>呼气时伸展，吸气时收回</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>腰拱起——减小幅度，只做能贴地的范围</li><li>动作太快——慢才是重点</li><li>憋气——伸展时呼气</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="strength" data-slug="bird-dog" data-name="鸟狗" data-en="Bird Dog" data-dose="3×10/侧">
+  <button class="ex-media" type="button" aria-label="播放 鸟狗 动作演示">
+    <div class="ex-demo" data-demo="bird-dog"></div>
+    <span class="ex-badge">力量</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>鸟狗<em>Bird Dog</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×10/侧</span><span class="ex-cat">力量 · 抗旋核心</span></div>
+    <p class="ex-cue">四点支撑，对侧手脚伸直，骨盆不晃。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×10/侧</div>
+  <div class="lb-used">力量 · 抗旋核心</div>
+  <h4>怎么做</h4>
+  <ol><li>手在肩下、膝在髋下，四点支撑</li><li>收腹，先把骨盆调平</li><li>对侧手脚同时伸直到与地面平行</li><li>停 2 秒，慢慢收回</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>想象腰上放了一杯水，不能洒</li><li>手脚伸直但不要抬过髋</li><li>比死虫更考验骨盆控制</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>骨盆旋转——放慢，幅度减小</li><li>抬头看前方——颈椎保持中立</li><li>腿抬太高——超过髋就会塌腰</li></ul>
+</div>
+</article>
+    </div>
+  </section>
+  <section class="cat" id="cat-balance" data-nav="平衡与稳定" style="--c:#0fb5a8">
+    <div class="cat-head" data-reveal>
+      <span class="cat-no num">05</span>
+      <div>
+        <h2>平衡与稳定<em>Balance</em></h2>
+        <p>提升本体感觉与踝、髋稳定，降低崴脚与代偿风险。每周 2–3 次，10–15 分钟。</p>
+      </div>
+    </div>
+    <div class="ex-grid">
+<article class="ex" data-cat="balance" data-slug="single-leg-stand" data-name="单腿站立" data-en="Single-Leg Stand" data-dose="3×30″/腿">
+  <button class="ex-media" type="button" aria-label="播放 单腿站立 动作演示">
+    <img src="img/single-leg-stand.jpg" alt="单腿站立 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">平衡</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>单腿站立<em>Single-Leg Stand</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×30″/腿</span><span class="ex-cat">平衡 2–3 次/周</span></div>
+    <p class="ex-cue">从睁眼到闭眼，从硬地到软垫，逐步加难度。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×30″/腿</div>
+  <div class="lb-used">平衡 2–3 次/周</div>
+  <h4>怎么做</h4>
+  <ol><li>单脚站立，另一腿抬起，膝盖抬到髋高</li><li>目视前方一个固定点，保持 30 秒</li><li>稳定后闭眼，再进阶到软垫</li><li>两侧对比，弱侧多做一组</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>这是所有平衡训练的起点</li><li>闭眼版本才真正练本体感觉</li><li>两侧差距超过 10 秒就要重点补弱侧</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>靠身体大幅晃动硬撑——先扶墙，逐步撤手</li><li>一直看脚——目光固定远处一点</li><li>只练强侧——弱侧优先</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="balance" data-slug="single-leg-rdl" data-name="单腿硬拉触地" data-en="Single-Leg RDL" data-dose="3×8/腿">
+  <button class="ex-media" type="button" aria-label="播放 单腿硬拉触地 动作演示">
+    <div class="ex-demo" data-demo="single-leg-rdl"></div>
+    <span class="ex-badge">平衡</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>单腿硬拉触地<em>Single-Leg RDL</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×8/腿</span><span class="ex-cat">平衡 · 纠偏训练</span></div>
+    <p class="ex-cue">支撑腿微屈，髋向后推，手向地面探。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×8/腿</div>
+  <div class="lb-used">平衡 · 纠偏训练</div>
+  <h4>怎么做</h4>
+  <ol><li>单脚站立，支撑腿微屈</li><li>髋向后推，另一腿向后伸直</li><li>手向地面探，背部保持中立</li><li>感到支撑腿腘绳肌拉紧就起身</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>后腿伸直是平衡的关键，不是装饰</li><li>先徒手，能稳住再拿壶铃</li><li>直接对着左右平衡的短板练</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>骨盆打开——后腿脚尖朝下、两侧髋保持水平</li><li>弓背——只做到背能保持平的幅度</li><li>支撑腿膝盖内扣</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="balance" data-slug="single-calf-balance" data-name="单腿提踵平衡" data-en="Single-Leg Calf Balance" data-dose="3×12/腿">
+  <button class="ex-media" type="button" aria-label="播放 单腿提踵平衡 动作演示">
+    <div class="ex-demo" data-demo="single-calf-balance"></div>
+    <span class="ex-badge">平衡</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>单腿提踵平衡<em>Single-Leg Calf Balance</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×12/腿</span><span class="ex-cat">平衡 2–3 次/周</span></div>
+    <p class="ex-cue">单脚提踵，顶端停住不掉下来。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×12/腿</div>
+  <div class="lb-used">平衡 2–3 次/周</div>
+  <h4>怎么做</h4>
+  <ol><li>单脚站立，另一腿抬起</li><li>前脚掌发力顶到最高点</li><li>顶端停 2 秒，保持平衡</li><li>用 3 秒慢慢放到底</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>踝关节稳定性的核心动作</li><li>顶端停顿比次数重要</li><li>跑量高峰期减量不减频率</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>落地砸下来——离心放慢到 3 秒</li><li>脚踝外翻——想着大脚趾压地</li><li>膝盖锁死</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="balance" data-slug="hip-circle" data-name="站姿髋绕环" data-en="Standing Hip Circle" data-dose="每侧 8 次">
+  <button class="ex-media" type="button" aria-label="播放 站姿髋绕环 动作演示">
+    <div class="ex-demo" data-demo="hip-circle"></div>
+    <span class="ex-badge">平衡</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>站姿髋绕环<em>Standing Hip Circle</em></h3>
+    <div class="ex-row"><span class="ex-dose num">每侧 8 次</span><span class="ex-cat">跑前动态热身</span></div>
+    <p class="ex-cue">单腿站立，另一腿画圈，髋关节走满幅度。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">每侧 8 次</div>
+  <div class="lb-used">跑前动态热身</div>
+  <h4>怎么做</h4>
+  <ol><li>单脚站立，可扶墙保持平衡</li><li>抬起一条腿，膝盖抬到髋高</li><li>向前 → 外 → 后缓慢画一个大圈</li><li>每侧 8 次，再反方向 8 次</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>跑前动态热身用，别做成静态拉伸</li><li>圈越大越有效，但骨盆要稳住</li><li>配合 90/90 髋旋转效果更好</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>用腰代偿——骨盆保持水平</li><li>圈画得太小——等于没做</li><li>速度太快——慢才能到关节末端</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="balance" data-slug="clamshell" data-name="蚌式" data-en="Clamshell" data-dose="3×12/侧">
+  <button class="ex-media" type="button" aria-label="播放 蚌式 动作演示">
+    <div class="ex-demo" data-demo="clamshell"></div>
+    <span class="ex-badge">平衡</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>蚌式<em>Clamshell</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3×12/侧</span><span class="ex-cat">平衡 · 臀中肌</span></div>
+    <p class="ex-cue">侧卧屈膝，脚跟并住，上面膝盖打开。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3×12/侧</div>
+  <div class="lb-used">平衡 · 臀中肌</div>
+  <h4>怎么做</h4>
+  <ol><li>侧卧，髋膝各屈 90°，脚跟并拢</li><li>骨盆保持垂直于地面</li><li>上面膝盖向上打开，脚跟不分开</li><li>顶端停 1 秒，慢慢落下</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>练的是臀中肌——跑步时防膝内扣的关键</li><li>背靠墙做更容易找到感觉</li><li>弱侧多做 1 组</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>骨盆向后倒——背靠墙就不会</li><li>幅度过大用腰代偿——减小到能控制</li><li>速度太快——慢起慢落</li></ul>
+</div>
+</article>
+    </div>
+  </section>
+  <section class="cat" id="cat-mobility" data-nav="髋部放松" style="--c:#ff5a1a">
+    <div class="cat-head" data-reveal>
+      <span class="cat-no num">05</span>
+      <div>
+        <h2>髋部放松<em>Hip Release</em></h2>
+        <p>先把紧的地方松开，再把弱的地方激活——只拉伸不练臀，几天后还会紧回来。每晚 12–15 分钟。</p>
+      </div>
+    </div>
+    <div class="ex-grid">
+<article class="ex" data-cat="mobility" data-slug="hip-flexor-stretch" data-name="半跪髋屈肌拉伸" data-en="Half-Kneeling Hip Flexor" data-dose="2×45″/侧">
+  <button class="ex-media" type="button" aria-label="播放 半跪髋屈肌拉伸 动作演示">
+    <img src="img/hip-flexor.jpg" alt="半跪髋屈肌拉伸 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">髋部放松</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>半跪髋屈肌拉伸<em>Half-Kneeling Hip Flexor</em></h3>
+    <div class="ex-row"><span class="ex-dose num">2×45″/侧</span><span class="ex-cat">每晚放松 12–15 分钟</span></div>
+    <p class="ex-cue">先夹臀把骨盆后卷，再往前推——顺序错了就白拉。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">2×45″/侧</div>
+  <div class="lb-used">每晚放松 12–15 分钟</div>
+  <h4>怎么做</h4>
+  <ol><li>半跪姿，后膝垫软垫</li><li>先夹臀、骨盆后卷（这一步是关键）</li><li>保持骨盆后卷，重心缓慢前移</li><li>感到后腿髋前侧拉紧，停 45 秒</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>骨盆不后卷，拉到的全是腰</li><li>对侧手可以向上举，加大幅度</li><li>每晚做，休息日也做</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>直接往前顶——腰会酸，髋没拉到</li><li>骨盆跟着前倾——夹臀</li><li>憋气——呼吸要长</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="mobility" data-slug="couch-stretch" data-name="沙发拉伸" data-en="Couch Stretch" data-dose="2×30–45″/侧">
+  <button class="ex-media" type="button" aria-label="播放 沙发拉伸 动作演示">
+    <div class="ex-demo" data-demo="couch-stretch"></div>
+    <span class="ex-badge">髋部放松</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>沙发拉伸<em>Couch Stretch</em></h3>
+    <div class="ex-row"><span class="ex-dose num">2×30–45″/侧</span><span class="ex-cat">每晚放松 12–15 分钟</span></div>
+    <p class="ex-cue">后脚背搭高，膝盖贴地，躯干慢慢立起来。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">2×30–45″/侧</div>
+  <div class="lb-used">每晚放松 12–15 分钟</div>
+  <h4>怎么做</h4>
+  <ol><li>后脚背搭在沙发或凳面上</li><li>后膝贴地，垫软垫</li><li>先卷骨盆夹臀，把腰放平</li><li>躯干缓慢立起，感到股四头与髋前侧拉长</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>比半跪拉伸更针对股直肌</li><li>立不起来就先把后脚放低</li><li>一开始别追求幅度</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>塌腰代替伸展——先卷骨盆</li><li>后膝直接压硬地——垫软垫</li><li>一上来幅度太大——循序渐进</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="mobility" data-slug="pigeon" data-name="4 字 / 鸽子式" data-en="Figure-4 / Pigeon" data-dose="2×45″/侧">
+  <button class="ex-media" type="button" aria-label="播放 4 字 / 鸽子式 动作演示">
+    <img src="img/pigeon.jpg" alt="4 字 / 鸽子式 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">髋部放松</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>4 字 / 鸽子式<em>Figure-4 / Pigeon</em></h3>
+    <div class="ex-row"><span class="ex-dose num">2×45″/侧</span><span class="ex-cat">每晚放松 12–15 分钟</span></div>
+    <p class="ex-cue">前腿折叠、后腿伸直，髋摆正再往下沉。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">2×45″/侧</div>
+  <div class="lb-used">每晚放松 12–15 分钟</div>
+  <h4>怎么做</h4>
+  <ol><li>前腿屈膝横放，小腿尽量与身体垂直</li><li>后腿向后伸直</li><li>髋摆正，不要倒向一侧</li><li>躯干缓慢前倾到能承受的深度</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>拉的是臀部深层，不是膝盖</li><li>臀部垫高一点会舒服很多</li><li>膝盖有不适就换成 4 字坐姿</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>髋歪向一侧——垫高臀部再试</li><li>膝盖疼——减小屈膝角度或换动作</li><li>硬往下压——呼吸放松，让重力工作</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="mobility" data-slug="world-greatest-stretch" data-name="世界最伟大拉伸" data-en="World's Greatest Stretch" data-dose="3/侧 · 40″">
+  <button class="ex-media" type="button" aria-label="播放 世界最伟大拉伸 动作演示">
+    <div class="ex-demo" data-demo="world-greatest-stretch"></div>
+    <span class="ex-badge">髋部放松</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>世界最伟大拉伸<em>World's Greatest Stretch</em></h3>
+    <div class="ex-row"><span class="ex-dose num">3/侧 · 40″</span><span class="ex-cat">跑前动态热身</span></div>
+    <p class="ex-cue">弓步 → 手撑地 → 转体抬手，一个动作打开三个方向。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">3/侧 · 40″</div>
+  <div class="lb-used">跑前动态热身</div>
+  <h4>怎么做</h4>
+  <ol><li>大步弓步，前脚掌踩稳</li><li>同侧手撑地，另一手向上打开转体</li><li>转体保持 5 秒，感受胸椎打开</li><li>回正，重心前移拉后腿髋前侧</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>跑前动态热身首选</li><li>转的是胸椎，不是只抬手</li><li>后腿伸直、脚跟压地</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>后腿塌——后膝伸直，脚跟压地</li><li>只转手不转胸——眼睛跟着手走</li><li>憋气——转体时呼气</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="mobility" data-slug="foam-roll" data-name="泡沫轴放松" data-en="Foam Roll" data-dose="各 30–45″">
+  <button class="ex-media" type="button" aria-label="播放 泡沫轴放松 动作演示">
+    <img src="img/foam-roll.jpg" alt="泡沫轴放松 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">髋部放松</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>泡沫轴放松<em>Foam Roll</em></h3>
+    <div class="ex-row"><span class="ex-dose num">各 30–45″</span><span class="ex-cat">每晚放松 12–15 分钟</span></div>
+    <p class="ex-cue">慢滚，遇到紧点停住深呼吸，别在骨头上滚。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">各 30–45″</div>
+  <div class="lb-used">每晚放松 12–15 分钟</div>
+  <h4>怎么做</h4>
+  <ol><li>把泡沫轴放在目标肌群下方</li><li>用体重压住，缓慢来回滚</li><li>遇到紧点停住 20–30 秒，深呼吸</li><li>每个部位 30–45 秒</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>慢才有效，快等于按摩皮肤</li><li>股四头、大腿外侧上方、臀，三个部位就够</li><li>滚完再激活，效果才留得住</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>在髂胫束上硬滚猛压——很痛且帮助有限</li><li>滚得太快——没有时间让组织放松</li><li>滚腰椎——避开，只滚肌肉</li></ul>
+</div>
+</article>
+    </div>
+  </section>
+  <section class="cat" id="cat-running" data-nav="跑步技术" style="--c:#ff2d55">
+    <div class="cat-head" data-reveal>
+      <span class="cat-no num">03</span>
+      <div>
+        <h2>跑步技术<em>Running</em></h2>
+        <p>躯干、落脚点、步频。技术不是跑快了才练，是每次跑步都在练。</p>
+      </div>
+    </div>
+    <div class="ex-grid">
+<article class="ex" data-cat="running" data-slug="run-form" data-name="跑步姿态" data-en="Running Form" data-dose="全程">
+  <button class="ex-media" type="button" aria-label="播放 跑步姿态 动作演示">
+    <img src="img/run-form.jpg" alt="跑步姿态 动作示意" loading="lazy" width="900" height="900">
+    <span class="ex-badge">跑步技术</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>跑步姿态<em>Running Form</em></h3>
+    <div class="ex-row"><span class="ex-dose num">全程</span><span class="ex-cat">每一次跑步</span></div>
+    <p class="ex-cue">身体微前倾、落脚在重心下方、步频优先于步幅。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">全程</div>
+  <div class="lb-used">每一次跑步</div>
+  <h4>怎么做</h4>
+  <ol><li>躯干直立略前倾 5–10°，不要弯腰</li><li>手臂前后摆，肘约 90°</li><li>落脚点在重心正下方，不要跨大步</li><li>步频优先，步幅是结果不是目标</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>步频提到 175–180 会自然减小跨步</li><li>累的时候最先垮的是姿态</li><li>先在轻松跑里练，别在质量课里改动作</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>跨大步刹车——提高步频，落地放轻</li><li>弯腰塌肩——想象胸口领跑</li><li>手臂横摆过身体中线——前后摆</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="running" data-slug="strides" data-name="加速跑" data-en="Strides" data-dose="4×20″">
+  <button class="ex-media" type="button" aria-label="播放 加速跑 动作演示">
+    <div class="ex-demo" data-demo="strides"></div>
+    <span class="ex-badge">跑步技术</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>加速跑<em>Strides</em></h3>
+    <div class="ex-row"><span class="ex-dose num">4×20″</span><span class="ex-cat">轻松跑之后</span></div>
+    <p class="ex-cue">20 秒从 7 成加到 9 成，不冲刺，走回来恢复。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">4×20″</div>
+  <div class="lb-used">轻松跑之后</div>
+  <h4>怎么做</h4>
+  <ol><li>轻松跑之后进行</li><li>20 秒内从 70% 逐渐加到 90%</li><li>保持放松，步频高、落地轻</li><li>走回起点，完全恢复再做下一次</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>目的是唤醒神经，不是练体能</li><li>留 10% 余地，绝不全力</li><li>赛前一周的唤醒跑就靠它</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>变成冲刺——姿态会垮</li><li>耸肩、手臂僵——放松肩膀</li><li>在已经很疲劳时做</li></ul>
+</div>
+</article>
+<article class="ex" data-cat="running" data-slug="lunge-twist" data-name="弓步走 + 转体" data-en="Lunge with Twist" data-dose="6 步">
+  <button class="ex-media" type="button" aria-label="播放 弓步走 + 转体 动作演示">
+    <div class="ex-demo" data-demo="lunge-twist"></div>
+    <span class="ex-badge">跑步技术</span>
+    <span class="ex-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>演示</span>
+  </button>
+  <div class="ex-body">
+    <h3>弓步走 + 转体<em>Lunge with Twist</em></h3>
+    <div class="ex-row"><span class="ex-dose num">6 步</span><span class="ex-cat">跑前动态热身</span></div>
+    <p class="ex-cue">弓步下沉，同侧手撑地转体，跑前动态热身用。</p>
+  </div>
+  <div class="ex-detail" hidden>
+  <div class="lb-dose">6 步</div>
+  <div class="lb-used">跑前动态热身</div>
+  <h4>怎么做</h4>
+  <ol><li>向前跨一大步成弓步</li><li>前腿同侧的手向地面探</li><li>另一手向上打开，胸椎跟着转</li><li>起身换边，共 6 步</li></ol>
+  <h4>要点</h4>
+  <ul class="tips"><li>把髋前侧和胸椎一次打开</li><li>步幅大一点才有拉伸感</li><li>跑前做，不做静态拉伸</li></ul>
+  <h4>常见错误</h4>
+  <ul class="warns"><li>前膝内扣——膝盖对脚尖</li><li>只转手臂——胸椎跟着转</li><li>步幅太小——等于原地踏步</li></ul>
+</div>
+</article>
+    </div>
+  </section>
+
+  <section class="weekcard" id="cat-week" data-nav="周节奏整合" data-reveal>
+    <div class="wh"><h3>周节奏 · 怎么塞进训练周</h3><em>Weekly Rhythm</em></div>
+<div class="wk-row"><div class="wk-k">跑前 5 分钟</div><div class="wk-v">站姿髋绕环 · 世界最伟大拉伸 · 弓步走+转体</div><div class="wk-n">动态，不做静态拉伸</div></div>
+<div class="wk-row"><div class="wk-k">跑后</div><div class="wk-v">提踵 · 单腿提踵平衡 · 蚌式</div><div class="wk-n">力量与稳定，10 分钟</div></div>
+<div class="wk-row"><div class="wk-k">周一 / 周四</div><div class="wk-v">高脚杯深蹲 · 罗马尼亚硬拉 · 保加利亚分腿蹲 · 单腿臀桥 · 平板 · 死虫</div><div class="wk-n">力量 20–30 分钟</div></div>
+<div class="wk-row"><div class="wk-k">每晚</div><div class="wk-v">半跪髋屈肌拉伸 · 沙发拉伸 · 鸽子式 · 泡沫轴</div><div class="wk-n">放松 12–15 分钟</div></div>
+<div class="wk-row"><div class="wk-k">轻松跑后</div><div class="wk-v">加速跑 4×20″</div><div class="wk-n">唤醒神经，不冲刺</div></div>
+  </section>
+
+  <footer class="foot">
+    <span>动作演示为简化示意图，用于理解动作模式；有伤病请找运动康复/理疗当面评估。</span>
+    <span>21 个动作 · 更新于 2026-10-30</span>
+  </footer>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="动作演示">
+  <div class="lb-panel">
+    <button class="lb-close" aria-label="关闭">×</button>
+    <div class="lb-stage">
+      <div class="lb-demo" id="lbDemo"></div>
+      <div class="lb-ctrl">
+        <button class="lb-btn on" data-act="toggle" id="lbToggle">
+          <svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>暂停
+        </button>
+        <button class="lb-btn" data-act="speed" data-v="0.5">0.5×</button>
+        <button class="lb-btn on" data-act="speed" data-v="1">1×</button>
+      </div>
+    </div>
+    <div class="lb-info" id="lbInfo"></div>
+  </div>
+</div>
+
+<script src="assets/demo.js"></script>
+<script src="assets/site.js" defer></script>
+<script>
+(function(){
+  var lb = document.getElementById('lb');
+  var lbDemo = document.getElementById('lbDemo');
+  var lbInfo = document.getElementById('lbInfo');
+  var toggle = document.getElementById('lbToggle');
+  var inst = null, current = null;
+
+  function open(card){
+    var slug = card.dataset.slug;
+    var det = card.querySelector('.ex-detail');
+    var catName = {strength:'力量训练 · Strength', balance:'平衡稳定 · Balance',
+      mobility:'髋部放松 · Hip Release', running:'跑步技术 · Running'}[card.dataset.cat];
+    lbInfo.innerHTML = '<div class="lb-kick">' + catName + '</div>' +
+      '<h3>' + card.dataset.name + '<em>' + card.dataset.en + '</em></h3>' +
+      det.innerHTML;
+    lbDemo.innerHTML = '';
+    if (inst) inst.stop();
+    inst = DemoRig.mount(lbDemo, slug, {});
+    current = card;
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>暂停';
+    toggle.classList.add('on');
+  }
+  function close(){
+    lb.classList.remove('on');
+    document.body.style.overflow = '';
+    if (inst) { inst.stop(); inst = null; }
+  }
+
+  document.querySelectorAll('.ex').forEach(function(card){
+    var btn = card.querySelector('.ex-media');
+    btn.addEventListener('click', function(){ open(card); });
+  });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+
+  toggle.addEventListener('click', function(){
+    if (!inst) return;
+    var paused = inst.toggle();
+    toggle.classList.toggle('on', !paused);
+    toggle.innerHTML = paused
+      ? '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>播放'
+      : '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>暂停';
+  });
+  document.querySelectorAll('.lb-btn[data-act="speed"]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.lb-btn[data-act="speed"]').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      if (inst) inst.speed(parseFloat(b.dataset.v));
+    });
+  });
+
+  /* filter */
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+      chip.classList.add('on');
+      var f = chip.dataset.filter;
+      document.querySelectorAll('.ex').forEach(function(card){
+        card.classList.toggle('is-hidden', f !== 'all' && card.dataset.cat !== f);
+      });
+      document.querySelectorAll('.cat').forEach(function(sec){
+        var any = sec.querySelectorAll('.ex:not(.is-hidden)').length;
+        sec.style.display = any ? '' : 'none';
+      });
+    });
+  });
+
+  /* mount card demos for the 9 without photos */
+  document.querySelectorAll('.ex-demo').forEach(function(host){
+    DemoRig.lazyMount(host, host.dataset.demo, {});
+  });
+})();
+</script>
+</body>
+</html>

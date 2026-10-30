@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>体态重塑 · 6 个月计划｜75.5→70kg · 19%→14%</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --ink:#151327; --ink-2:#39364f; --paper:#eeecf4; --card:#ffffff;
+  --line:#e4e1ee; --line-2:#eeebf6; --muted:#666078; --faint:#9a94ac;
+  --flame:#ff5a1a; --violet:#6a5cf0; --violet-s:#ecebfd; --lime:#8bbf1e;
+  --fat:#ff8a3d; --lean:#12b5a8; --fat-s:#ffe6d6; --lean-s:#dff5f2;
+  --surface-dark:#141227; --on-dark:#f4f3fb; --on-dark-mut:#c3bfd6; --on-dark-dim:#948ead;
+  --shadow:0 16px 42px rgba(28,24,60,.10); --r:16px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#ecebf6; --ink-2:#c6c2d9; --paper:#0b0a16; --card:#161428;
+  --line:#272338; --line-2:#201d31; --muted:#948ead; --faint:#6d6784;
+  --violet:#8a7dff; --violet-s:#211d3a; --lime:#a6e022;
+  --fat-s:#2a1a10; --lean-s:#0e2926; --shadow:0 16px 42px rgba(0,0,0,.5);
+}}
+:root[data-theme="dark"]{
+  --ink:#ecebf6; --ink-2:#c6c2d9; --paper:#0b0a16; --card:#161428;
+  --line:#272338; --line-2:#201d31; --muted:#948ead; --faint:#6d6784;
+  --violet:#8a7dff; --violet-s:#211d3a; --lime:#a6e022;
+  --fat-s:#2a1a10; --lean-s:#0e2926; --shadow:0 16px 42px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Saira","PingFang SC","Microsoft YaHei",system-ui,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);}
+.num{font-family:"Saira Condensed","Saira",sans-serif; font-variant-numeric:tabular-nums;}
+.up{font-family:"Saira Condensed",sans-serif; text-transform:uppercase; letter-spacing:.08em;}
+
+/* hero */
+.hero{position:relative; background:var(--surface-dark); color:var(--on-dark); overflow:hidden;}
+.hero::before{content:""; position:absolute; top:-40%; right:-6%; width:42%; height:200%;
+  background:linear-gradient(180deg,var(--violet),#a99bff); transform:skewX(-14deg); opacity:.14;}
+.hero::after{content:""; position:absolute; left:0; right:0; bottom:0; height:5px;
+  background:repeating-linear-gradient(90deg,var(--violet) 0 40px,#a99bff 40px 80px);}
+.hero-in{position:relative; max-width:1080px; margin:0 auto; padding:calc(38px + env(safe-area-inset-top,0px)) 22px 40px;
+  display:grid; grid-template-columns:1.15fr 1fr; gap:38px; align-items:center;}
+.kick{margin:0 0 15px; display:inline-flex; align-items:center; gap:10px; font-family:"Saira Condensed",sans-serif;
+  text-transform:uppercase; letter-spacing:.14em; font-size:13px; font-weight:700; color:var(--on-dark-dim);}
+.kick::before{content:""; width:26px; height:3px; background:var(--violet);}
+h1{margin:0 0 16px; font-size:clamp(28px,4.4vw,46px); line-height:1.12; font-weight:700; color:#fff; letter-spacing:-.01em;}
+.tagline{display:inline-flex; gap:10px; margin:0 0 18px; flex-wrap:wrap;}
+.tagline span{background:rgba(255,255,255,.08); border-left:3px solid var(--violet); border-radius:0 7px 7px 0;
+  padding:7px 14px; font-weight:600; font-size:15px; color:#fff;}
+.lead{margin:0; color:var(--on-dark-mut); font-size:15.5px; max-width:44ch;}
+.goalbox{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:20px 22px;}
+.gcompare{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.gcell .gl{font-family:"Saira Condensed",sans-serif; text-transform:uppercase; letter-spacing:.1em; font-size:11px; font-weight:700; color:var(--on-dark-dim);}
+.gcell .gv{font-family:"Saira Condensed",sans-serif; font-style:italic; font-weight:800; font-size:34px; line-height:1; color:#fff; margin-top:2px;}
+.gcell .gv.hot{color:var(--violet);}
+.gcell .gs{font-size:12px; color:var(--on-dark-dim); margin-top:3px;}
+.garrow{font-family:"Saira Condensed",sans-serif; font-weight:800; font-size:26px; color:var(--violet);}
+.gnote{margin-top:14px; padding-top:13px; border-top:1px solid rgba(255,255,255,.1); font-size:12.5px; color:var(--on-dark-mut);}
+.gnote b{color:#fff; font-weight:700;}
+
+.wrap{max-width:1080px; margin:0 auto; padding:32px 22px 70px;}
+.sec-title{margin:34px 0 14px; display:flex; align-items:center; gap:11px; font-family:"Saira Condensed",sans-serif; font-weight:700; font-size:21px;}
+.sec-title::before{content:""; width:8px; height:22px; background:var(--flame); transform:skewX(-10deg);}
+.sec-title .en{margin-left:auto; font-family:"Saira Condensed",sans-serif; text-transform:uppercase; letter-spacing:.1em; font-size:12px; font-weight:700; color:var(--faint);}
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:22px 24px; box-shadow:var(--shadow);}
+
+/* body composition bars */
+.bc-row{margin:14px 0;}
+.bc-lab{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; font-size:13.5px;}
+.bc-lab .t{font-weight:700;} .bc-lab .w{font-family:"Saira Condensed",sans-serif; font-weight:800; font-style:italic; font-size:20px;}
+.bc-bar{height:26px; border-radius:8px; overflow:hidden; display:flex; background:var(--line-2);}
+.bc-bar .seg{height:100%; display:flex; align-items:center; padding:0 10px; font-family:"Saira Condensed",sans-serif; font-weight:700; font-size:12px; color:#fff; white-space:nowrap;}
+.bc-bar .lean{background:var(--lean);}
+.bc-bar .fat{background:var(--fat);}
+.bc-key{display:flex; gap:16px; margin-top:12px; font-size:12.5px; color:var(--muted);}
+.bc-key i{display:inline-flex; align-items:center; gap:6px;}
+.bc-key .sw{width:12px; height:12px; border-radius:3px;}
+.bc-delta{margin-top:14px; padding-top:12px; border-top:1px solid var(--line-2); font-size:13px; color:var(--ink-2);}
+.bc-delta b{color:var(--ink);}
+
+/* principles */
+.principles{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+.pr{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--flame); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow);}
+.pr:nth-child(2){border-left-color:var(--violet);}
+.pr:nth-child(3){border-left-color:var(--lean);}
+.pr:nth-child(4){border-left-color:var(--lime);}
+.pr h4{margin:0 0 6px; font-size:15px; font-weight:700;}
+.pr p{margin:0; font-size:13px; color:var(--muted); line-height:1.55;}
+
+/* timeline phases */
+.phase{position:relative; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px 22px 18px 22px; box-shadow:var(--shadow); margin-bottom:12px; border-top:3px solid var(--pc,#ff5a1a);}
+.ph-top{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.ph-no{font-family:"Saira Condensed",sans-serif; font-style:italic; font-weight:800; font-size:15px; color:#fff; background:var(--pc); padding:4px 11px; border-radius:5px; transform:skewX(-9deg);}
+.ph-no span{display:inline-block; transform:skewX(9deg);}
+.ph-name{font-size:17px; font-weight:700;}
+.ph-when{font-family:"Saira Condensed",sans-serif; font-weight:600; font-size:14px; color:var(--muted); margin-left:auto;}
+.ph-goal{margin:10px 0 0; font-size:13.5px; color:var(--ink-2);}
+.ph-goal b{color:var(--pc); font-weight:700;}
+.ph-tags{display:flex; gap:8px; margin-top:11px; flex-wrap:wrap;}
+.ph-tags span{font-family:"Saira Condensed",sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:99px; background:var(--line-2); color:var(--ink-2);}
+
+/* split + lists */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.blk h3{margin:0 0 4px; font-size:17px; font-weight:700; display:flex; align-items:center; gap:10px;}
+.blk h3::before{content:""; width:7px; height:19px; background:var(--violet); transform:skewX(-10deg);}
+.day-split{margin-top:14px;}
+.ds{margin-bottom:14px;}
+.ds h4{margin:0 0 6px; font-family:"Saira Condensed",sans-serif; text-transform:uppercase; letter-spacing:.04em; font-size:13px; font-weight:800; color:var(--violet);}
+.ds ul{list-style:none; margin:0; padding:0;}
+.ds li{display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px dashed var(--line-2); font-size:13px; color:var(--ink-2);}
+.ds li:last-child{border-bottom:0;}
+.ds li .d{font-family:"Saira Condensed",sans-serif; font-weight:700; color:var(--violet); white-space:nowrap;}
+.plist{list-style:none; margin:12px 0 0; padding:0;}
+.plist li{position:relative; padding-left:17px; font-size:13.5px; color:var(--ink-2); margin-bottom:10px; line-height:1.55;}
+.plist li:last-child{margin-bottom:0;}
+.plist li::before{content:""; position:absolute; left:0; top:8px; width:7px; height:7px; border-radius:2px; background:var(--flame); transform:skewX(-10deg);}
+.plist b{color:var(--ink); font-weight:700;}
+.run-note{margin-top:14px; padding-top:12px; border-top:1px solid var(--line-2); font-size:12.5px; color:var(--muted);}
+
+.track{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:2px;}
+.tk{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:15px 17px; box-shadow:var(--shadow);}
+.tk h4{margin:0 0 4px; font-size:14px; font-weight:700;}
+.tk p{margin:0; font-size:12.5px; color:var(--muted); line-height:1.5;}
+
+.health{margin-top:20px; background:var(--surface-dark); color:var(--on-dark); border-radius:var(--r); padding:20px 24px;}
+.health h3{margin:0 0 10px; font-size:16px; color:#fff; display:flex; align-items:center; gap:9px;}
+.health h3::before{content:"⚠"; }
+.health p{margin:0 0 9px; color:var(--on-dark-mut); font-size:13px;} .health p:last-child{margin-bottom:0;}
+.health b{color:var(--violet); font-weight:700;}
+
+.foot{margin-top:24px; color:var(--muted); font-size:12.5px; text-align:center;}
+.foot b{color:var(--ink);}
+
+@media (max-width:880px){
+  .hero-in{grid-template-columns:1fr; gap:26px;}
+  .principles,.two,.track{grid-template-columns:1fr;}
+}
+@media print{*{-webkit-print-color-adjust:exact; print-color-adjust:exact;} body{background:#fff;} .card,.phase,.pr,.tk{box-shadow:none; break-inside:avoid;} @page{margin:9mm;}}
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body style="--accent:#6a5cf0;--accent-2:#a99bff">
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></span>
+    <span class="bt"><b>Marathon 2026</b><span>Training Log</span></span>
+  </a>
+  <div class="navlinks">
+    <a href="index.html" data-color="#ff5a1a"><span class="dot"></span>总览</a>
+    <a href="nanjing.html" data-color="#ff2d55"><span class="dot"></span>南京 11.22</a>
+    <a href="tianjin.html" data-color="#ff5a1a"><span class="dot"></span>天津 10.25</a>
+    <a href="september.html" data-color="#7bb70e"><span class="dot"></span>九月</a>
+    <a href="october.html" data-color="#3d8bf5"><span class="dot"></span>十月</a>
+    <a href="recomp.html" class="is-active" data-color="#6a5cf0"><span class="dot"></span>体态重塑</a>
+    <a href="exercises.html" data-color="#0fb5a8"><span class="dot"></span>动作库</a>
+  </div>
+  <div class="navtools">
+    <button class="navbtn only-mobile" data-rail-toggle aria-label="打开目录">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+  </div>
+  <i class="progress"></i>
+</nav>
+
+<aside class="rail" aria-label="本页快速导航">
+  <div class="rail-head">On this page · 本页</div>
+  <nav class="railnav"></nav>
+  <div class="rail-foot">
+    <div class="rail-prog">
+      <div class="rp-top"><span class="rp-l">阅读进度</span><span class="rp-v">0%</span></div>
+      <div class="rp-track"><i></i></div>
+    </div>
+    <a class="rail-jump" href="exercises.html">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 动作库 · 21 个动作
+    </a>
+  </div>
+</aside>
+<div class="rail-scrim"></div>
+
+<div class="hero">
+  <div class="speed" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hero-in">
+    <div>
+      <div class="kick">Body Recomposition · 6-Month Plan</div>
+      <h1>脱衣有肉，穿衣显瘦<br>半年体态重塑计划</h1>
+      <div class="tagline"><span>更好的体能</span><span>更强的力量</span><span>更清晰的线条</span></div>
+      <p class="lead">你不胖，目标是「重塑」而非「减重」——在保住马拉松成绩的前提下，减少腹背脂肪、增强背部与后链，练出 V 型体态。</p>
+    </div>
+    <aside class="goalbox">
+      <div class="gcompare">
+        <div class="gcell"><div class="gl">现在 Now</div><div class="gv num">75.5<span style="font-size:16px">kg</span></div><div class="gs">体脂 19% · 脂肪 ~14.3 kg</div></div>
+        <div class="garrow">→</div>
+        <div class="gcell"><div class="gl">目标 Goal</div><div class="gv hot num">70<span style="font-size:16px">kg</span></div><div class="gs">体脂 14% · 脂肪 ~9.8 kg</div></div>
+      </div>
+      <div class="gnote">核心是<b>减 ~4.5 kg 脂肪、肌肉尽量保住</b>——6 个月每月降 0.7–0.9 kg，温和且能保成绩、保肌肉。腹部/背部脂肪常最后才掉，靠整体降脂 + 练厚背来实现视觉改善。</div>
+    </aside>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- BODY COMPOSITION -->
+  <div class="sec-title" id="s-comp" data-nav="身体成分" data-reveal>身体成分目标<span class="en">Composition</span></div>
+  <section class="card" data-reveal>
+    <div class="bc-row">
+      <div class="bc-lab"><span class="t">现在 · 75.5 kg / 19%</span><span class="w num">14.3 kg 脂肪</span></div>
+      <div class="bc-bar" style="width:100%">
+        <div class="seg lean" style="flex:61.2">瘦体重 61.2 kg</div>
+        <div class="seg fat" style="flex:14.3">脂肪 14.3</div>
+      </div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-lab"><span class="t">目标 · 70 kg / 14%</span><span class="w num">9.8 kg 脂肪</span></div>
+      <div class="bc-bar" style="width:92.7%">
+        <div class="seg lean" style="flex:60.2">瘦体重 60.2 kg</div>
+        <div class="seg fat" style="flex:9.8">脂肪 9.8</div>
+      </div>
+    </div>
+    <div class="bc-key">
+      <i><span class="sw" style="background:var(--lean)"></span>瘦体重（肌肉+骨+水）</i>
+      <i><span class="sw" style="background:var(--fat)"></span>脂肪</i>
+    </div>
+    <div class="bc-delta">要动的主要是脂肪那一段：<b>脂肪 −4.5 kg</b>，瘦体重<b>尽量维持</b>。只要力量在涨、腰围在降，就是在往正确方向走——体重数字反而是次要的。</div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <div class="sec-title" id="s-principles" data-nav="核心原则" data-reveal>四条核心原则<span class="en">Principles</span></div>
+  <section class="principles">
+    <div class="pr" data-reveal><h4>先保成绩，再重塑</h4><p>不能同时冲马拉松 PB 和猛减脂。赛季（天津 10/25、可能的南京）先维持体重、吃饱练好；赛后再进入降脂增肌。</p></div>
+    <div class="pr" data-reveal style="--d:80ms"><h4>慢，才留得住肌肉</h4><p>每月降 0.7–0.9 kg、每周约 −0.1~0.2 kg。掉太快=在掉肌肉和成绩，要回调。温和赤字 + 高蛋白 + 力量，才是 recomp。</p></div>
+    <div class="pr" data-reveal style="--d:160ms"><h4>不能定点减脂</h4><p>腹部、背部的脂肪只能靠整体体脂下降来减，且往往最后才掉。但练厚阔背 + 强核心，会让体态先「显瘦有型」。</p></div>
+    <div class="pr" data-reveal style="--d:240ms"><h4>力量涨 = 肌肉在长</h4><p>渐进超负荷是保肌肉/长肌肉的核心信号。关键动作的重量或次数持续上升，就说明方向对了。</p></div>
+  </section>
+
+  <!-- PHASES -->
+  <div class="sec-title" id="s-roadmap" data-nav="五阶段路线" data-reveal>六个月 · 五阶段路线<span class="en">Roadmap</span></div>
+  <section>
+    <div class="phase" style="--pc:#ff5a1a" data-reveal>
+      <div class="ph-top"><span class="ph-no"><span>P0</span></span><span class="ph-name">赛季收尾</span><span class="ph-when">现在 — 11 月中</span></div>
+      <p class="ph-goal">含天津 10/25（及可能的南京）。<b>维持体重、保成绩、不主动减脂</b>；跑量按现有马拉松计划走，力量维持每周 2 次，吃饱、练前后补碳。</p>
+      <div class="ph-tags"><span>马拉松优先</span><span>体重维持</span><span>力量 2×/周</span></div>
+    </div>
+    <div class="phase" style="--pc:#6a5cf0" data-reveal>
+      <div class="ph-top"><span class="ph-no"><span>P1</span></span><span class="ph-name">赛后恢复 · 转换</span><span class="ph-when">11 月下旬（约 2–3 周）</span></div>
+      <p class="ph-goal">赛后第 1 周只做轻松恢复，别急着减。之后<b>建立系统力量基础</b>（3 次/周），跑量降到轻松有氧；恢复到位后再开始<b>轻度赤字</b>。</p>
+      <div class="ph-tags"><span>恢复优先</span><span>力量转 3×/周</span><span>赤字起步</span></div>
+    </div>
+    <div class="phase" style="--pc:#12b5a8" data-reveal>
+      <div class="ph-top"><span class="ph-no"><span>P2</span></span><span class="ph-name">增肌 · 缓降脂</span><span class="ph-when">12 月 — 1 月（约 8 周）</span></div>
+      <p class="ph-goal">主攻期。<b>力量/增肌为主 + 温和赤字（约 −300 kcal）+ 高蛋白</b>；跑量维持 3–4 次/周（多为轻松 + 1 次质量）。目标减脂 ~2 kg、力量稳步上升。</p>
+      <div class="ph-tags"><span>渐进超负荷</span><span>−300 kcal</span><span>蛋白 1.8–2.0 g/kg</span></div>
+    </div>
+    <div class="phase" style="--pc:#8bbf1e" data-reveal>
+      <div class="ph-top"><span class="ph-no"><span>P3</span></span><span class="ph-name">体能回升 · 继续雕刻</span><span class="ph-when">2 月（约 4 周）</span></div>
+      <p class="ph-goal">恢复部分跑量与强度找回心肺，<b>力量维持不掉、赤字继续</b>。这一阶段容易「有型」显现——线条开始清晰。</p>
+      <div class="ph-tags"><span>跑量回升</span><span>力量维持</span><span>继续降脂</span></div>
+    </div>
+    <div class="phase" style="--pc:#ff2d55" data-reveal>
+      <div class="ph-top"><span class="ph-no"><span>P4</span></span><span class="ph-name">冲刺到目标</span><span class="ph-when">3 月（约 4 周）</span></div>
+      <p class="ph-goal">收尾降到 <b>70 kg / 14%</b>。此阶段<b>务必保肌肉</b>——蛋白拉满、力量强度别降、赤字别加大。到点后转入维持，别继续往下掉。</p>
+      <div class="ph-tags"><span>收尾 70 / 14</span><span>保肌肉</span><span>转维持</span></div>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <div class="sec-title" id="s-strength" data-nav="力量框架" data-reveal>力量训练框架<span class="en">Strength</span></div>
+  <section class="two">
+    <div class="card blk" data-reveal>
+      <h3>三天分化（P1–P4）</h3>
+      <div class="day-split">
+        <div class="ds"><h4>Day A · 拉 + 核心</h4><ul>
+          <li><span>引体 / 高位下拉</span><span class="d">4×6–10</span></li>
+          <li><span>杠铃 / 哑铃划船</span><span class="d">4×8–10</span></li>
+          <li><span>面拉（后肩）</span><span class="d">3×12–15</span></li>
+          <li><span>二头弯举</span><span class="d">3×10–12</span></li>
+          <li><span>悬垂举腿 + 死虫</span><span class="d">3×10</span></li>
+        </ul></div>
+        <div class="ds"><h4>Day B · 腿 + 后链</h4><ul>
+          <li><span>深蹲</span><span class="d">4×6–8</span></li>
+          <li><span>罗马尼亚硬拉</span><span class="d">3×8–10</span></li>
+          <li><span>保加利亚分腿蹲</span><span class="d">3×8/腿</span></li>
+          <li><span>臀桥 / 髋外展</span><span class="d">3×12</span></li>
+          <li><span>提踵</span><span class="d">3×15</span></li>
+        </ul></div>
+        <div class="ds"><h4>Day C · 推 + 核心</h4><ul>
+          <li><span>卧推 / 俯卧撑</span><span class="d">4×6–10</span></li>
+          <li><span>肩上推举</span><span class="d">3×8–10</span></li>
+          <li><span>双杠臂屈伸 / 三头</span><span class="d">3×10–12</span></li>
+          <li><span>侧平板 + 抗旋</span><span class="d">3×30″/侧</span></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="card blk" data-reveal>
+      <h3>要点与跑步安排</h3>
+      <ul class="plist">
+        <li><b>渐进超负荷：</b>每周尽量在重量或次数上加一点点；到 6–12 次能轻松完成就加重。</li>
+        <li><b>重点在背与后链：</b>阔背/划船练宽、后链练厚，是「穿衣显瘦」V 型的关键；也改善你之前测出的<b>左右不平衡</b>——单侧动作弱侧优先。</li>
+        <li><b>核心练抗旋/抗伸展：</b>死虫、鸟狗、平板、悬垂举腿，比卷腹更实用，腹肌靠降脂显现。</li>
+        <li><b>跑步分阶段：</b>P0 按马拉松量；P1 恢复→轻松有氧；P2 维持 3–4 次/周；P3 回升强度；P4 维持。力量日避免叠加当天的大强度跑。</li>
+      </ul>
+      <div class="run-note">每周节奏参考：力量 3 次 + 跑步 3–4 次，其中留 1–2 天完全休息或只做平衡/拉伸。</div>
+      <a class="exlink" href="exercises.html#cat-strength">查看 21 个动作的演示 <svg viewBox="0 0 24 24"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg></a>
+    </div>
+  </section>
+
+  <!-- NUTRITION -->
+  <div class="sec-title" id="s-nutrition" data-nav="饮食要点" data-reveal>饮食要点<span class="en">Nutrition</span></div>
+  <section class="card" data-reveal>
+    <ul class="plist">
+      <li><b>先找到维持热量：</b>用 1–2 周现有饮食称重，体重基本稳定的摄入就是你的维持点；减脂期在此基础上 <b>−250~350 kcal/天</b>即可，别更多。</li>
+      <li><b>蛋白质拉满：</b><b>1.8–2.0 g/kg ≈ 135–150 g/天</b>，分 3–4 餐，每餐 30–40 g；这是保肌肉的第一要素。</li>
+      <li><b>碳水跟着训练走：</b>大跑量日 / 力量日多给碳水，休息日少给；不做极端低碳，长跑与质量课当天要吃够。</li>
+      <li><b>脂肪 0.6–0.8 g/kg 保底：</b>优先坚果、橄榄油、鱼；维持激素与恢复。</li>
+      <li><b>睡眠 ≥7 小时：</b>呼应你之前偏低的睡眠分——减脂期睡眠不足会掉肌肉、拖恢复，比少吃更关键。</li>
+      <li><b>少酒精、少精加工：</b>酒精直接压制恢复与减脂，尽量留给特殊场合。</li>
+    </ul>
+  </section>
+
+  <!-- TRACKING -->
+  <div class="sec-title" id="s-tracking" data-nav="追踪方式" data-reveal>怎么追踪<span class="en">Tracking</span></div>
+  <section class="track">
+    <div class="tk" data-reveal><h4>体重 · 看周平均</h4><p>每日同条件称，取 7 日平均判断趋势，别被单日波动带偏（趋势图已在训练页）。</p></div>
+    <div class="tk" data-reveal style="--d:80ms"><h4>腰围 · 每周一次</h4><p>晨起、同一位置量肚脐水平——比体脂秤更能反映腹部脂肪变化。</p></div>
+    <div class="tk" data-reveal style="--d:160ms"><h4>体脂 · 2–4 周一次</h4><p>同方法同时段测，只看趋势。消费级体脂秤/手表误差大，别纠结绝对数字。</p></div>
+    <div class="tk" data-reveal style="--d:240ms"><h4>力量 & 照片</h4><p>记录关键动作重量/次数（涨=长肌肉）；每月同光线同角度拍一张对比照。</p></div>
+  </section>
+
+  <!-- HEALTH -->
+  <section class="health" id="s-health" data-nav="健康前提" data-reveal>
+    <h3>健康前提</h3>
+    <p>14% 是健康偏精瘦的范围，不极端；但<b>消费级体脂数据误差很大</b>，请以趋势、腰围、镜子和力量表现为准，别死磕某个数字。</p>
+    <p>若出现<b>持续疲劳、成绩明显下滑、睡眠或情绪变差、反复受伤</b>，说明赤字过大或恢复不足，应放缓甚至暂停减脂。有基础疾病或用药，开始前先咨询医生 / 注册营养师。</p>
+  </section>
+
+  <footer class="foot">
+    本计划为通用模板，基于你提供的 <b>75.5 kg / 19% → 70 kg / 14%</b> 目标与马拉松赛程周期化编排。告诉我你的<b>训练器械、每周可训练天数、饮食偏好</b>，我可进一步定制动作、组数与热量区间。
+  </footer>
+
+</main>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
