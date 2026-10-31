@@ -54,6 +54,26 @@ const gameRewrites: { source: string; destination: string }[] = [
 /** Clean URLs for the marathon mini-site. The .html links in the pages still work as files. */
 const marathonPages = ["exercises", "recomp", "nanjing", "tianjin", "september", "october"];
 
+// public/images 下的文件名都带内容哈希（如 c043b0045903c751.png），内容变了文件名就变，
+// 所以可以长期强缓存。
+const HASHED_ASSET_CACHE = "public, max-age=31536000, immutable";
+// 自托管游戏/迷你站的资源用固定文件名（如 intro.mp4），升级后 URL 不变，
+// 只能用短期缓存 + 后台再验证，避免把旧版本钉死在浏览器里。
+const FIXED_NAME_CACHE = "public, max-age=86400, stale-while-revalidate=604800";
+const fixedNameDirs = [
+  "apo-game",
+  "apo-game01",
+  "apo-game02",
+  "apo-game03",
+  "apo-game04",
+  "apo-game05",
+  "apo-game09",
+  "dayou",
+  "marathon",
+  "moving",
+  "pencil-garden",
+];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
@@ -62,6 +82,18 @@ const nextConfig: NextConfig = {
   // rule sends every trailing slash the other way, so turn that rule off and
   // put the same redirect back for every path except /marathon/.
   skipTrailingSlashRedirect: true,
+  async headers() {
+    return [
+      {
+        source: "/images/:path*",
+        headers: [{ key: "Cache-Control", value: HASHED_ASSET_CACHE }],
+      },
+      ...fixedNameDirs.map((dir) => ({
+        source: `/${dir}/:path*`,
+        headers: [{ key: "Cache-Control", value: FIXED_NAME_CACHE }],
+      })),
+    ];
+  },
   async rewrites() {
     return [
       ...gameRewrites,
