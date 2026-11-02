@@ -1,7 +1,15 @@
 {
   "author": "yostyang",
-  "source_total": 46,
-  "added": [],
+  "source_total": 47,
+  "added": [
+    {
+      "id": 117689,
+      "title": "中年人的第二场全马，2026 天津马拉松小结",
+      "slug": "sspai-117689",
+      "date": "2026-10-28",
+      "category": "跑步"
+    }
+  ],
   "skipped_duplicates": [
     {
       "id": 111187,
@@ -423,6 +431,14 @@
     }
   ],
   "articles": [
+    {
+      "id": 117689,
+      "title": "中年人的第二场全马，2026 天津马拉松小结",
+      "slug": "sspai-117689",
+      "date": "2026-10-28",
+      "category": "跑步",
+      "status": "added"
+    },
     {
       "id": 116267,
       "title": "三年前儿子画在便签纸上的小人，今天被 AI 做成了游戏",
