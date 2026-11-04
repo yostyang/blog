@@ -3,7 +3,8 @@ import { LedgerList } from "@/components/LedgerList";
 import { memoIndex, MemoMonth } from "@/components/MemoCalendar";
 import { TagFilters } from "@/components/TagFilters";
 import { shanghaiToday } from "@/lib/calendar";
-import { getAllMemos, getMemoTags } from "@/lib/memos";
+import { getMemoIndex } from "@/lib/indexes";
+import { getMemoTags } from "@/lib/memos";
 import type { MemoMeta } from "@/lib/types";
 
 type Props = {
@@ -35,7 +36,7 @@ function monthsOf(memos: MemoMeta[]) {
 
 export default async function MemoPage({ searchParams }: Props) {
   const tag = oneTag((await searchParams).tag);
-  const all = getAllMemos();
+  const all = getMemoIndex();
   const visible = tag ? all.filter((memo) => memo.tags.includes(tag)) : all;
   const today = shanghaiToday();
   const groups = new Map<string, MemoMeta[]>();
