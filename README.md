@@ -44,7 +44,7 @@ npm run build
 npm start
 ```
 
-`npm run build` 会预渲染首页、文章列表、备忘录、关于我、搜索页、4 个专题页、标签页、全部文章和全部备忘录。
+`npm run build` 会先跑 `npm test`。`/articles` 的篇数、首页「全部 N 篇文章」和 `/memo` 的天数如果对不上 `content/` 里的公开文件，构建会停。然后预渲染首页、文章列表、备忘录、关于我、搜索页、4 个专题页、标签页、全部文章和全部备忘录。
 
 ## 目录
 
@@ -96,7 +96,7 @@ cover: "/images/thumbs/sm_example.jpg"
 ## 部署到 Vercel
 
 1. 把仓库推到 GitHub。
-2. 在 Vercel 里 Import 这个仓库。框架选 Next.js，构建命令 `npm run build`，输出目录保持默认（不要改成静态导出目录）。
+2. 在 Vercel 里 Import 这个仓库。框架选 Next.js，构建命令保持 `npm run build`（不要改成直接 `next build`，否则会跳过篇数校验），输出目录保持默认（不要改成静态导出目录）。
 3. 可选：设置环境变量 `NEXT_PUBLIC_SITE_URL`（不要末尾斜杠）。RSS 和 sitemap 会用它做绝对地址。不设置时使用 https://yostyang.com 。
 
 这些地址可用：
