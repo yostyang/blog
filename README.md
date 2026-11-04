@@ -44,7 +44,7 @@ npm run build
 npm start
 ```
 
-`npm run build` 会预渲染首页、文章列表、备忘录、关于我、搜索页、4 个专题页、标签页、全部文章和全部备忘录。
+`npm run build` 会先跑 `npm test`。检查不过，构建就停。检查确认 `/articles` 列出的就是全部公开文章，首页「全部 N 篇文章」用的是同一个数，`/memo` 的天数等于 `content/memos` 里的文件数。通过之后预渲染首页、文章列表、备忘录、关于我、搜索页、4 个专题页、标签页、全部文章和全部备忘录。
 
 ## 目录
 
@@ -54,7 +54,8 @@ components/           导航、文章列表、备忘录日历、正文、目录�
 content/posts/*.md    文章（Markdown + frontmatter）
 content/memos/*.md    产业与普通人备忘录
 content/about/        关于我页面的 HTML 和脚本
-lib/                  读取文章、备忘录与站点配置
+lib/                  读取文章、备忘录与站点配置；catalog 是文章和备忘录索引
+CHANGELOG.md          版本说明
 public/avatar.jpg     头像
 public/favicon.png    站点图标
 public/qrcode.jpg     页脚公众号二维码
@@ -62,6 +63,8 @@ public/images/        正文配图
 public/images/yost/   从 yost-pt.top 转存的配图
 public/assets/me/     关于我页面的配图
 scripts/import-yost.py  从 yost-pt.top 导入内容
+scripts/import-memo.py  导入一天的备忘录
+scripts/release.mjs     升版本并写入更新日志
 ```
 
 ## 新增一篇文章
@@ -93,11 +96,39 @@ cover: "/images/thumbs/sm_example.jpg"
 
 保存后重新跑 `npm run dev` 或 `npm run build` 即可。
 
-## 部署到 Vercel
+## 版本
 
-1. 把仓库推到 GitHub。
-2. 在 Vercel 里 Import 这个仓库。框架选 Next.js，构建命令 `npm run build`，输出目录保持默认（不要改成静态导出目录）。
-3. 可选：设置环境变量 `NEXT_PUBLIC_SITE_URL`（不要末尾斜杠）。RSS 和 sitemap 会用它做绝对地址。不设置时使用 https://yostyang.com 。
+当前版本在 `package.json` 的 `version`，说明写在 `CHANGELOG.md`。页脚有一行小号的 `vX.Y.Z`，用来看线上是哪一版。
+
+改动站点的 PR 都要升版本。只导入一天备忘录时升 patch：
+
+```bash
+npm run release -- patch "导入 2026-11-05 的备忘录"
+npm run release -- minor "说明"
+npm run release -- major "说明"
+```
+
+脚本会改 `package.json`、`package-lock.json` 里的版本号，并在 `CHANGELOG.md` 顶部加一节。它不提交，也不打标签。
+
+### 发布
+
+这个仓库没有连接 Vercel 的 Git。PR squash-merge 到 `main` 之后：
+
+1. 在合并提交上打标签，名字是 `v` 加版本号，例如 `v1.1.0`。
+2. 用这一版的更新日志建一个 GitHub Release。
+3. 在 Vercel 项目 **yost-blog** 里，用这个提交手动创建 Production Deployment。框架选 Next.js，构建命令 `npm run build`，输出目录保持默认。可选环境变量 `NEXT_PUBLIC_SITE_URL`（不要末尾斜杠）。不设置时 RSS 和 sitemap 用 https://yostyang.com 。
+
+```bash
+git checkout main
+git pull
+git tag v1.1.0
+git push origin v1.1.0
+gh release create v1.1.0 --title "v1.1.0" --notes "贴上 CHANGELOG 里这一节"
+```
+
+### 回滚
+
+生产环境是某一次提交的部署。要回到上一版，找到上一个标签（例如 `v1.0.0`）指向的提交，在 Vercel 项目 yost-blog 里用那个提交重新部署到 Production。不要靠改写 Git 历史来回滚。
 
 这些地址可用：
 

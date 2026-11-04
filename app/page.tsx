@@ -4,10 +4,10 @@ import { EssayList } from "@/components/EssayList";
 import { LedgerList } from "@/components/LedgerList";
 import { memoIndex, WeekCalendar } from "@/components/MemoCalendar";
 import { shanghaiToday, weekContaining } from "@/lib/calendar";
+import { getMemoIndex, homeArticleCountText } from "@/lib/catalog";
 import { essayFromPost } from "@/lib/essay";
 import { formatDate } from "@/lib/format";
-import { getAllMemos } from "@/lib/memos";
-import { getAllPosts, getAllTags, getFeaturedPosts } from "@/lib/posts";
+import { getAllTags, getFeaturedPosts } from "@/lib/posts";
 import { getSiteUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,9 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const posts = getAllPosts();
   const picks = getFeaturedPosts();
-  const memos = getAllMemos();
+  const memos = getMemoIndex();
   const latest = memos[0];
   const today = shanghaiToday();
   const week = weekContaining(today);
@@ -80,7 +79,7 @@ export default function HomePage() {
             <div className="section-head">
               <h2 id="picks">推荐阅读</h2>
               <Link className="more" href="/articles">
-                全部 {posts.length} 篇文章
+                {homeArticleCountText()}
               </Link>
             </div>
             <EssayList posts={picks.slice(0, 6).map(essayFromPost)} />

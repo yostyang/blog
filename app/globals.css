@@ -902,10 +902,23 @@ a.tag:hover {
   line-height: 1.7;
 }
 
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
 .site-footer nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.25rem;
+}
+
+.site-version {
+  margin: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .site-footer a:hover {

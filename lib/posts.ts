@@ -21,7 +21,7 @@ function loadRedirectSources(): Set<string> {
 }
 
 /** Drafts, hidden posts, flagged duplicates, and URLs that redirect elsewhere have no public page. `featured` is not an exclusion. */
-function isOmitted(data: Record<string, unknown>, publicPath: string, redirects: Set<string>) {
+export function isOmittedPost(data: Record<string, unknown>, publicPath: string, redirects: Set<string>) {
   if (data.draft === true || data.hidden === true || data.duplicate === true) return true;
   return redirects.has(publicPath);
 }
@@ -71,7 +71,7 @@ function loadPosts(): Post[] {
     const featured = data.featured === true;
     const alias = asOptionalPath(data.alias);
     const publicPath = featured ? `/articles/${alias || slug}` : `/posts/${slug}`;
-    if (isOmitted(data, publicPath, redirects)) return [];
+    if (isOmittedPost(data, publicPath, redirects)) return [];
     return [
       {
         slug,
