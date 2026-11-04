@@ -2,7 +2,7 @@ import Link from "next/link";
 import { EssayList } from "@/components/EssayList";
 import { CATEGORIES } from "@/lib/categories";
 import { essayFromPost } from "@/lib/essay";
-import { getAllPosts } from "@/lib/posts";
+import { getArticleIndex } from "@/lib/catalog";
 import type { PostMeta } from "@/lib/types";
 
 export function ArticleIndex({
@@ -16,7 +16,7 @@ export function ArticleIndex({
   lede: string;
   active: string;
 }) {
-  const all = getAllPosts();
+  const all = getArticleIndex();
   const counts = new Map<string, number>();
   for (const post of all) counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
 

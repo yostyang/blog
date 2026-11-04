@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { EssayList } from "@/components/EssayList";
 import { TagFilters } from "@/components/TagFilters";
+import { getArticleIndex, getMemoIndex } from "@/lib/catalog";
 import { essayFromPost } from "@/lib/essay";
-import { getAllMemos } from "@/lib/memos";
-import { getAllPosts, getAllTags } from "@/lib/posts";
+import { getAllTags } from "@/lib/posts";
 
 type Props = {
   searchParams: Promise<{ tag?: string | string[] }>;
@@ -32,9 +32,9 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function ArticlesPage({ searchParams }: Props) {
   const tag = oneTag((await searchParams).tag);
-  const posts = getAllPosts();
+  const posts = getArticleIndex();
   const visible = tag ? posts.filter((post) => post.tags.includes(tag)) : posts;
-  const memos = getAllMemos();
+  const memos = getMemoIndex();
   return (
     <main id="main">
       <div className="wrap narrow">

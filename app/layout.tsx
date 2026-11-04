@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { getSiteUrl, site } from "@/lib/site";
+import { siteVersion } from "@/lib/version";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -62,12 +63,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <p>用车体验、纯电转型记录和长期测评，公众号同步更新。</p>
               </div>
             </div>
-            <nav aria-label="页脚">
-              <Link href="/articles">全部文章</Link>
-              <Link href="/memo">备忘录</Link>
-              <a href="/rss.xml">RSS 订阅</a>
-              <Link href="/me">关于我</Link>
-            </nav>
+            <div className="footer-links">
+              <nav aria-label="页脚">
+                <Link href="/articles">全部文章</Link>
+                <Link href="/memo">备忘录</Link>
+                <a href="/rss.xml">RSS 订阅</a>
+                <Link href="/me">关于我</Link>
+              </nav>
+              <p className="site-version">v{siteVersion}</p>
+            </div>
           </div>
         </footer>
       </body>
