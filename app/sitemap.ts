@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: origin, lastModified: latest, changeFrequency: "weekly", priority: 1 },
-    { url: `${origin}/articles`, lastModified: posts.find((post) => post.featured)?.date, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${origin}/articles`, lastModified: posts[0]?.date, changeFrequency: "weekly", priority: 0.8 },
     { url: `${origin}/memo`, lastModified: memos[0]?.date, changeFrequency: "daily", priority: 0.8 },
     { url: `${origin}/search`, changeFrequency: "monthly", priority: 0.3 },
     { url: `${origin}/me`, changeFrequency: "monthly", priority: 0.4 },

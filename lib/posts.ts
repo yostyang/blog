@@ -6,8 +6,25 @@ import { isCategory } from "@/lib/categories";
 import type { Post, PostMeta } from "@/lib/types";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
+const REDIRECTS_PATH = path.join(process.cwd(), "content", "redirects.json");
 
 let cacheAll: Post[] | null = null;
+
+/** Old copies that permanently redirect to the kept post. Those files are not their own page. */
+function loadRedirectSources(): Set<string> {
+  try {
+    const raw = JSON.parse(fs.readFileSync(REDIRECTS_PATH, "utf8")) as Record<string, string>;
+    return new Set(Object.keys(raw));
+  } catch {
+    return new Set();
+  }
+}
+
+/** Drafts, hidden posts, flagged duplicates, and URLs that redirect elsewhere have no public page. `featured` is not an exclusion. */
+function isOmitted(data: Record<string, unknown>, publicPath: string, redirects: Set<string>) {
+  if (data.draft === true || data.hidden === true || data.duplicate === true) return true;
+  return redirects.has(publicPath);
+}
 
 function asDateString(value: unknown, file: string) {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
@@ -38,7 +55,8 @@ function loadPosts(): Post[] {
     .readdirSync(POSTS_DIR)
     .filter((file) => file.endsWith(".md"));
 
-  const posts = files.map((file) => {
+  const redirects = loadRedirectSources();
+  const posts = files.flatMap((file) => {
     const slug = file.slice(0, -3);
     const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
     const { data, content } = matter(raw);
@@ -52,21 +70,25 @@ function loadPosts(): Post[] {
     const order = typeof data.order === "number" ? data.order : -1;
     const featured = data.featured === true;
     const alias = asOptionalPath(data.alias);
-    return {
-      slug,
-      title: asString(data.title, file, "title"),
-      date: asDateString(data.date, file),
-      category,
-      tags,
-      excerpt: asString(data.excerpt, file, "excerpt"),
-      thumb: asOptionalPath(data.thumb),
-      cover: asOptionalPath(data.cover),
-      order,
-      featured,
-      alias,
-      path: featured ? `/articles/${alias || slug}` : `/posts/${slug}`,
-      content: content.trim(),
-    } satisfies Post;
+    const publicPath = featured ? `/articles/${alias || slug}` : `/posts/${slug}`;
+    if (isOmitted(data, publicPath, redirects)) return [];
+    return [
+      {
+        slug,
+        title: asString(data.title, file, "title"),
+        date: asDateString(data.date, file),
+        category,
+        tags,
+        excerpt: asString(data.excerpt, file, "excerpt"),
+        thumb: asOptionalPath(data.thumb),
+        cover: asOptionalPath(data.cover),
+        order,
+        featured,
+        alias,
+        path: publicPath,
+        content: content.trim(),
+      } satisfies Post,
+    ];
   });
 
   posts.sort((a, b) => {
@@ -109,16 +131,6 @@ export function getFeaturedPost(slug: string): Post | undefined {
 
 export function getPostsByTag(tag: string): PostMeta[] {
   return getAllPosts().filter((post) => post.tags.includes(tag));
-}
-
-export function getFeaturedTags() {
-  const counts = new Map<string, number>();
-  for (const post of getFeaturedPosts()) {
-    for (const tag of post.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
-  }
-  return [...counts.entries()]
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "zh-CN"));
 }
 
 export function getAdjacentFeatured(slug: string) {

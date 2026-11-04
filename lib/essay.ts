@@ -7,7 +7,6 @@ export function tagHref(base: "/articles" | "/memo" | "/tag", name: string) {
 }
 
 export function essayFromPost(post: PostMeta): EssayListItem {
-  const base = post.featured ? "/articles" : "/tag";
   return {
     key: post.path,
     href: post.path,
@@ -15,7 +14,7 @@ export function essayFromPost(post: PostMeta): EssayListItem {
     date: post.date,
     excerpt: post.excerpt,
     thumb: post.thumb,
-    tags: post.tags.map((name) => ({ name, href: tagHref(base, name) })),
+    tags: post.tags.map((name) => ({ name, href: tagHref("/articles", name) })),
   };
 }
 

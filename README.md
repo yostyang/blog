@@ -4,8 +4,8 @@
 
 正文分两层：
 
-- **推荐文章**（`featured: true`）来自 https://yost-pt.top/ 的 20 篇长文，地址是 `/articles/<slug>`，文件名就是源站 slug。
-- **归档**是其余长文，地址是 `/posts/<文件名>`。同一标题只留一份：有 yost-pt.top 版本时留那一版并删掉旧副本，否则留正文最完整的一份。删掉的地址记在 `content/redirects.json`，永久跳到留下来的那篇。
+- **推荐文章**（`featured: true`）来自 https://yost-pt.top/ 的 20 篇长文，地址是 `/articles/<slug>`，文件名就是源站 slug。首页「推荐阅读」只放这些。
+- **归档**是其余长文，地址是 `/posts/<文件名>`。`/articles` 按发布时间倒序列出全部公开文章，不看 `featured`。同一标题只留一份：有 yost-pt.top 版本时留那一版并删掉旧副本，否则留正文最完整的一份。删掉的地址记在 `content/redirects.json`，永久跳到留下来的那篇。`draft`、`hidden`、`duplicate` 为 true 的稿，以及公开地址本身就在跳转表里的稿，不进列表。
 - **备忘录**在 `content/memos/`，大约每天一篇，地址是 `/articles/memo-YYYY-MM-DD`，日历和话题筛选在 `/memo`。
 
 从源站重新拉正文、配图和关于我页面：
@@ -88,8 +88,8 @@ cover: "/images/thumbs/sm_example.jpg"
 - `category` 只能是 `电车出行`、`跑步`、`中年成长`、`生活随笔` 之一。要增加专题，改 `lib/categories.ts`。
 - `date` 用引号包住的 `YYYY-MM-DD`。同一天有多篇时，可以用可选字段 `order`（数字越小越靠前）固定顺序。不写 `order` 时，新文章会排在同一天已有文章的前面。
 - 图片放到 `public/images/`，文中写成 `/images/文件名.jpg`。`thumb` 是列表右侧缩略图，`cover` 用于分享卡片；没有配图时这两个字段可以不写。
-- `tags` 可选。归档文章的标签链到 `/tag/标签名`。推荐文章（`featured: true`）的标签链到 `/articles?tag=`。
-- 可选 `featured: true` 把文章放进首页「推荐阅读」和 `/articles`，公开地址是 `/articles/<文件名>`。如果另外写了 `alias`，这段地址改用 alias。
+- `tags` 可选。文章上的标签筛到 `/articles?tag=`。`/tag/标签名` 仍在，给旧链接和站点地图。
+- 可选 `featured: true` 把文章放进首页「推荐阅读」，公开地址是 `/articles/<文件名>`。如果另外写了 `alias`，这段地址改用 alias。`/articles` 索引不看这个标记。
 
 保存后重新跑 `npm run dev` 或 `npm run build` 即可。
 
@@ -102,7 +102,7 @@ cover: "/images/thumbs/sm_example.jpg"
 这些地址可用：
 
 - `/` 首页：推荐阅读、本周备忘录、按话题读
-- `/articles` 推荐文章，可用 `?tag=` 筛选
+- `/articles` 全部文章，可用 `?tag=` 筛选
 - `/memo` 备忘录日历，可用 `?tag=` 筛选
 - `/articles/memo-YYYY-MM-DD` 某一天的备忘录
 - `/me` 关于我（`/about` 会 308 到这里）
