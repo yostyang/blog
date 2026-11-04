@@ -53,7 +53,6 @@ export default async function PostPage({ params }: Props) {
   const headings = extractHeadings(post.content);
   const minutes = readingMinutes(post.content);
   const url = `${getSiteUrl()}${post.path}`;
-  const base = post.featured ? "/articles" : "/tag";
   const crumbs = post.featured
     ? [{ href: "/articles", label: "文章" }]
     : [
@@ -65,7 +64,7 @@ export default async function PostPage({ params }: Props) {
     <ArticleView
       title={post.title}
       date={post.date}
-      tags={post.tags.map((name) => ({ name, href: tagHref(base, name) }))}
+      tags={post.tags.map((name) => ({ name, href: tagHref("/articles", name) }))}
       content={post.content}
       headings={headings}
       minutes={minutes}

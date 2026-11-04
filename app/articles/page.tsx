@@ -3,7 +3,7 @@ import { EssayList } from "@/components/EssayList";
 import { TagFilters } from "@/components/TagFilters";
 import { essayFromPost } from "@/lib/essay";
 import { getAllMemos } from "@/lib/memos";
-import { getFeaturedPosts, getFeaturedTags } from "@/lib/posts";
+import { getAllPosts, getAllTags } from "@/lib/posts";
 
 type Props = {
   searchParams: Promise<{ tag?: string | string[] }>;
@@ -19,7 +19,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   if (!tag) {
     return {
       title: "文章",
-      description: "公众号里写过的长文，按发布时间倒序。",
+      description: "公众号和少数派里写过的长文，按发布时间倒序。",
       alternates: { canonical: "/articles" },
     };
   }
@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function ArticlesPage({ searchParams }: Props) {
   const tag = oneTag((await searchParams).tag);
-  const posts = getFeaturedPosts();
+  const posts = getAllPosts();
   const visible = tag ? posts.filter((post) => post.tags.includes(tag)) : posts;
   const memos = getAllMemos();
   return (
@@ -42,9 +42,9 @@ export default async function ArticlesPage({ searchParams }: Props) {
         <p className="page-lede">
           {tag
             ? `${visible.length} 篇文章带有这个话题。`
-            : `公众号里写过的长文，按发布时间倒序。每天的产业观察单独放在备忘录，共 ${memos.length} 篇。`}
+            : `公众号和少数派里写过的长文，按发布时间倒序，共 ${posts.length} 篇。每天的产业观察放在备忘录（${memos.length} 天）。`}
         </p>
-        <TagFilters tags={getFeaturedTags()} active={tag || undefined} base="/articles" total={posts.length} />
+        <TagFilters tags={getAllTags()} active={tag || undefined} base="/articles" total={posts.length} />
         <EssayList posts={visible.map(essayFromPost)} />
       </div>
     </main>

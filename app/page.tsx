@@ -7,7 +7,7 @@ import { shanghaiToday, weekContaining } from "@/lib/calendar";
 import { essayFromPost } from "@/lib/essay";
 import { formatDate } from "@/lib/format";
 import { getAllMemos } from "@/lib/memos";
-import { getFeaturedPosts, getFeaturedTags } from "@/lib/posts";
+import { getAllPosts, getAllTags, getFeaturedPosts } from "@/lib/posts";
 import { getSiteUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,12 +22,13 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const posts = getFeaturedPosts();
+  const posts = getAllPosts();
+  const picks = getFeaturedPosts();
   const memos = getAllMemos();
   const latest = memos[0];
   const today = shanghaiToday();
   const week = weekContaining(today);
-  const tags = getFeaturedTags().filter((tag) => tag.count >= 2);
+  const tags = getAllTags().filter((tag) => tag.count >= 2);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -82,7 +83,7 @@ export default function HomePage() {
                 全部 {posts.length} 篇文章
               </Link>
             </div>
-            <EssayList posts={posts.slice(0, 6).map(essayFromPost)} />
+            <EssayList posts={picks.slice(0, 6).map(essayFromPost)} />
           </section>
 
           <section className="section" aria-labelledby="recent-memos">
