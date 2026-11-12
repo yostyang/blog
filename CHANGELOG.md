@@ -2,6 +2,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.9] - 2026-11-12
+
+### 变更
+
+- 修复 /marathon/ 部分文件 404
+
 ## [1.1.8] - 2026-11-12
 
 ### 变更
