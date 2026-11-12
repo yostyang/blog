@@ -51,7 +51,11 @@ const gameRewrites: { source: string; destination: string }[] = [
   { source: "/moving/game", destination: "/moving/game/index.html" },
 ];
 
-/** Clean URLs for the marathon mini-site. The .html links in the pages still work as files. */
+/**
+ * Clean URLs for the marathon mini-site. The .html links in the pages still work as files.
+ * These files are served from public/marathon on this deployment. A project route must not
+ * proxy /marathon/ to another host, or the pages lose CSS, scripts, and images.
+ */
 const marathonPages = ["exercises", "recomp", "nanjing", "tianjin", "september", "october"];
 
 // public/images 下的文件名都带内容哈希（如 c043b0045903c751.png），内容变了文件名就变，
