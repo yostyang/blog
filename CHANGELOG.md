@@ -2,6 +2,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.13] - 2026-11-16
+
+### 变更
+
+- 导入备忘录 2026-11-16
+
 ## [1.1.12] - 2026-11-15
 
 ### 变更
