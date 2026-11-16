@@ -2,6 +2,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.14] - 2026-11-16
+
+### 变更
+
+- 同步少数派/公众号文章
+
 ## [1.1.13] - 2026-11-16
 
 ### 变更
