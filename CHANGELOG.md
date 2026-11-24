@@ -2,6 +2,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.22] - 2026-11-24
+
+### 变更
+
+- 升级 Next.js 至 16.4.6 修复安全漏洞
+
 ## [1.1.21] - 2026-11-24
 
 ### 变更
